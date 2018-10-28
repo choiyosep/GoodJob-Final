@@ -28,6 +28,27 @@
 			$("#master").submit();
 		});
 		
+		$("#reset").click(function() {
+			$("#empTypeArea").html('');
+			var dataString='';				
+			$.ajax({
+				type:"get",
+				url:"user-getDevCatVOListAjax.do",
+				dataType:"json",
+				data:" ",
+				success:function(catList){		
+					var catListString='';
+					for(var i=0; i<catList.length; i++){			
+						for(var j=0; j<catList[i].length; j++){
+							catListString += '<input type="checkbox" class = "recruit" name="devCatNumList" value="'+catList[i][j].devCatNum+'">'+catList[i][j].devCatName+'&nbsp;';
+						}
+						catListString+='<br>';
+					}
+					$("#empTypeArea").html($("#empTypeArea").html()+catListString);
+				}//success					
+			});//ajax 			
+		});
+		
 	});//ready
 	
 	
@@ -175,11 +196,10 @@
 	<span id="enter"></span>
 	<div class="cta-text">
 		<button type="reset" class="btn btn-default" id="reset">초기화</button>
-
-		<button type="submit" id="SearchBtn" class="btn btn-default">상세
-			검색</button>
-		<button type="reset" onclick="location.href='home.do'"
-			class="btn btn-default">홈으로</button>
+		&nbsp;&nbsp;
+		<button type="submit" id="SearchBtn" class="btn btn-default">상세 검색</button><br><br>
+		<!-- <button type="reset" onclick="location.href='home.do'"
+			class="btn btn-default">홈으로</button> -->
 	</div>
 	</form>
 	
