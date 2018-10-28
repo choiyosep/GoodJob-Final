@@ -104,8 +104,6 @@ insert into PORTFOLIO(normal_id, title, content, picture_path) values('miri', 'C
 insert into PORTFOLIO(normal_id, title, content, picture_path) values('hsj', '인재를 싸게 팝니다.', '주변 사람과 소통하며 혁신을 이뤄내는 사원이 되겠습니다.', '황성진.jpg');
 insert into PORTFOLIO(normal_id, title, content, picture_path) values('qqqq', 'Coder가 아닌 Developer가 되겠습니다.', '항상 배움의 자세로 새로운 분야에 도전하고 있으며, 매사에 도전하고 노력하는 인재입니다.', '동규.png');
 
-
-update PORTFOLIO set picture_path='miri.png' where normal_id='miri';
 ---------------------------------------------------------------------
 
 -- 포트폴리오 파일 경로 
@@ -141,7 +139,6 @@ insert into COMPANY_MEMBER(company_id, introduction, company_type, industry, sal
 insert into COMPANY_MEMBER(company_id, introduction, company_type, industry, num_of_employees, picture_path) values('Tmaxuser', '대한민국 S/W의 위상을 국내 및 전세계 시장에 알려나가고 있습니다.', '중견기업', 'SI/SM', 358,'로고로고.jpg');
 
 select * from company_member;
-update company_member set picture_path='로고로고.jpg' where picture_path='로고로고'
 ---------------------------------------------------------------------
 
 -- 구인공고와  PK시퀀스
@@ -155,7 +152,7 @@ create table job_posting(
 );
 create sequence job_posting_num_seq start with 1001;
 
-insert into JOB_POSTING(job_posting_num, company_id, career_status, title, content) values(job_posting_num_seq.nextval, 'NHNuser', '경력 3년4', 'NHN엔터테인먼트에서 Java 신입, 프리랜서 개발자 모집', 'Java 어플리케이션 개발 경험자, WAS 이해도가 높은 경험자 우대합니다.');
+insert into JOB_POSTING(job_posting_num, company_id, career_status, title, content) values(job_posting_num_seq.nextval, 'NHNuser', '프리랜서', 'NHN엔터테인먼트에서 Java 신입, 프리랜서 개발자 모집', 'Java 어플리케이션 개발 경험자, WAS 이해도가 높은 경험자 우대합니다.');
 insert into JOB_POSTING(job_posting_num, company_id, career_status, title, content) values(job_posting_num_seq.nextval, 'Tmaxuser', '경력 무관', '티맥스소프트 DBA 2018 하반기 공개채용', 'MS-SQL 서버 모니터링 및 트러블 슈팅경험 있으신 분, OLTP 업무 경험 있으신 분');
 insert into JOB_POSTING(job_posting_num, company_id, career_status, title, content) values(job_posting_num_seq.nextval, 'NHNuser', '경력 3년', 'C++경력 개발자 모집  ', 'C++에 대한 깊은 이해가 있으신분 열정을 가지신 분');
 
@@ -206,11 +203,12 @@ create sequence interview_num_seq start with 2001;
 
 
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'hsj',1003 ,'면접신청합니다', '언제갈까요?');
-insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'qqqq',1003 ,'면접보러갈게요', '불러주세요~!~!~!');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'qqqq',1001 ,'면접보러갈게요', '불러주세요~!~!~!');
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1002,'포트폴리오확인하시고 연락주세요', '내일가겠습니다~');
-insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'yosep', 1002,'꼭 가고싶습니다~!', '전화번호로 연락주세요~');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'yosep', 1001,'꼭 가고싶습니다~!', '전화번호로 연락주세요~');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1001,'항시 대기중', '불러만 주세요');
 
-
+select * from interview
 
 -- 질의응답과 구인공고게시글/아이디 복합키 설정
 create table question_answer(
@@ -722,4 +720,22 @@ where jp.company_id=m.id
 ) jm, question_answer qa
 where qa.job_posting_num = jm.job_posting_num
 and qa.normal_id='qqqq'
+
+
+
+select row_number() over(order by interview_num desc) as rnum,
+	i.interview_num, i.job_posting_num, i.title, i.content, nm.normal_id, m.name
+from interview i, normal_member nm , member m
+where i.normal_id = nm.normal_id and nm.normal_id = m.id and i.job_posting_num='1001'
+order by interview_num desc
+
+select a.*
+from (
+	select row_number() over(order by interview_num desc) as rnum,
+		i.interview_num, i.job_posting_num, i.title, i.content, nm.normal_id, m.name
+	from interview i, normal_member nm , member m
+	where i.normal_id = nm.normal_id and nm.normal_id = m.id and i.job_posting_num='1001'
+	) a
+where a.rnum between 1 and 3
+order by a.interview_num desc
 

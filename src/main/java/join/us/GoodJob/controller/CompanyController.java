@@ -1,13 +1,10 @@
 package join.us.GoodJob.controller;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,12 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
-import join.us.GoodJob.model.service.CompanyService;
-import join.us.GoodJob.model.service.MemberService;
+import join.us.GoodJob.model.service.CompanyService;	
+import join.us.GoodJob.model.service.MemberService;	
 import join.us.GoodJob.model.service.NormalService;
-import join.us.GoodJob.model.service.PagingBean;
 import join.us.GoodJob.model.vo.CatNumParamVO;
 import join.us.GoodJob.model.vo.CompanyMemberVO;
 import join.us.GoodJob.model.vo.DevCatVO;
@@ -310,18 +305,16 @@ public class CompanyController {
 	 */
 	@PostMapping("getJobPostingInterviewerList.do")
 	public String getJobPostingInterviewerList(String jobPostingNum, Model model, String pageNum) {
-		System.out.println(jobPostingNum);
 		PostListVO plvo = companyService.getJobPostingInterviewerList(jobPostingNum, pageNum);
-		System.out.println(plvo);
 		model.addAttribute("plvo", plvo);
-
+		
 		List<InterviewVO> ivvoList = plvo.getIvList();
 		if(ivvoList.isEmpty() == false) {
 			List<DevCatVO> dcvoList = new ArrayList<DevCatVO>();
 			List<String> dcnameList = null;
 			List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 			for (InterviewVO ivvo : ivvoList) {
-				String id = ivvo.getNormalMemberVO().getId();
+				String id = ivvo.getNormalMemberVO().getNormalId();
 				PortfolioVO povo = normalService.normalDetailPortfolio(id);
 				dcvoList = memberService.getDevCatVOListByNormalId(id);
 				dcnameList = new ArrayList<String>();

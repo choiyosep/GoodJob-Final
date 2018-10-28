@@ -67,6 +67,7 @@
 </c:choose>
 <button class="btn-1" onclick="deleteNormalMember()" style="height:40px; width:100px;">회원탈퇴</button>
 <button class="btn-1" onclick="javascript:location.href='getMyQuestionList.do'" style="height:40px; width:100px;">나의 질문 목록</button>
+<button class="btn-1" onclick="javascript:location.href=''" style="height:40px; width:100px;">나의 면접 신청 목록</button>
 </div>
 <div class="col-sm-3"></div>
 </div>

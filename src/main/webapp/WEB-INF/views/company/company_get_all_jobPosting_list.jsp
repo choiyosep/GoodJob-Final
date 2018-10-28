@@ -29,14 +29,11 @@
   </div>
 </c:forEach>
 </div>
-
-			
-			<div class="col-lg-12">
+	<div class="col-lg-12">
 		<div align="center">
 			<ul class="pagination">
 				<c:if test="${pb.previousPageGroup }">
-					<li><a
-						href="${pageContext.request.contextPath}/user-getAllJobPostingList.do?pageNum=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+					<li><a href="${pageContext.request.contextPath}/user-getAllJobPostingList.do?pageNum=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
 				</c:if>
 				<c:forEach begin="${pb.startPageOfPageGroup}"
 					end="${pb.endPageOfPageGroup}" var="pagenum">

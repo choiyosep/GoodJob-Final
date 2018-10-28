@@ -15,7 +15,7 @@
 	<div class="media">
 		<a class="pull-left" href="#">
 			<c:forEach items="${requestScope.mapList }" var="map">
-				<c:if test="${nmvo.id == map.id }">
+				<c:if test="${nmvo.normalId == map.id }">
 					<img class="media-object" src="${pageContext.request.contextPath }/resources/upload/memberPicture/${map.picturePath}" width="145px" height="145px">
 				</c:if>
 			</c:forEach>
@@ -27,11 +27,11 @@
 			<!-- Nested media object -->
 			<div class="media-object">
 				<c:forEach items="${requestScope.mapList }" var="map">
-					<c:if test="${nmvo.id == map.id && !empty map.dcnameList }">
+					<c:if test="${nmvo.normalId == map.id && !empty map.dcnameList }">
 						개발분야 : <c:out value="${map.dcnameList }" />
 					</c:if>
 				</c:forEach>
-				<br><a href="user-normalDetailPortfolioList.do?normalId=${nmvo.id }"> 인재 상세보기 </a>
+				<br><a href="normalDetailPortfolio.do?normalId=${nmvo.normalId }"> 인재 상세보기 </a>
 			</div>
 		</div>
 	</div>

@@ -211,11 +211,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{recruitCatNumList}
 			</foreach>
 	 		 </if>
-		
 		</where>
-		
-		
-
 	</select>
 	
 	<insert id="interviewApply" parameterType="interviewVO">

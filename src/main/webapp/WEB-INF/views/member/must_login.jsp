@@ -8,8 +8,8 @@
 </head>
 <body>
 <script type="text/javascript">
-	alert("로그인을 해주세요");
-	location.href="home.do";
+	alert("로그인이 필요합니다.");
+	location.href="user-loginForm.do";
 </script>
 </body>
 </html>

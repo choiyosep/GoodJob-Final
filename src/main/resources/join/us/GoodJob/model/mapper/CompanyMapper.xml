@@ -284,11 +284,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="getInterviewerInfo"/>
 	</select> -->
 	
-	<select id="getJobPostingInterviewerList" parameterType="string" resultMap="interviewVORM">
-		select i.interview_num,i.job_posting_num,i.title,i.content,nm.normal_id,m.name
-		from interview i, normal_member nm , member m
-		where i.normal_id = nm.normal_id and nm.normal_id = m.id
-		and i.job_posting_num=#{jobPostingNum}
+	<select id="getJobPostingInterviewerList" parameterType="map" resultMap="interviewVORM">
+		select a.*
+		from (
+			select row_number() over(order by interview_num desc) as rnum,
+				i.interview_num, i.job_posting_num, i.title, i.content, nm.normal_id, m.name
+			from interview i, normal_member nm , member m
+			where i.normal_id = nm.normal_id and nm.normal_id = m.id and i.job_posting_num=#{jobPostingNum}
+			) a
+		where a.rnum between 1 and 3
+		order by a.interview_num desc
 	</select>
 	
 	<update id="updateJobPosting" parameterType="jobPostingVO">

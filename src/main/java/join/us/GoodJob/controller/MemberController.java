@@ -66,8 +66,10 @@ public class MemberController {
 	public List<List<DevCatVO>> getUserDevCatVOListAjax(CatNumParamVO paramVO) {
 		List<String> recruitCatNumList=paramVO.getRecruitCatNumList();
 		List<List<DevCatVO>> list= new ArrayList<List<DevCatVO>>();
-		for(String rcNum : recruitCatNumList) 
-			list.add(memberService.getDevCatVOListByrcNum(rcNum));		
+		if(recruitCatNumList != null) {
+			for(String rcNum : recruitCatNumList) 
+				list.add(memberService.getDevCatVOListByrcNum(rcNum));		
+		}
 		return list;				
 	}
 	
