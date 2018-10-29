@@ -17,11 +17,13 @@
 			<div class="col-lg-3">
 				<div class="box">
 					<div class="box-gray aligncenter">
-						<h4>${jobList.title}</h4>
-						<img src="/GoodJob/resources/upload/companyLogo/${requestScope.cmvo.picturePath}" height="100px" width="100px" >
-
-						<p></p>
-
+						<div class="icon">					
+							<h4><a href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingNum}">${jobList.title}</a></h4>
+							<a href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingNum}"><img src="/GoodJob/resources/upload/companyLogo/${requestScope.cmvo.picturePath}" height="100px" width="100px" ></a>
+						</div>
+						<div style="height: 70px; width: auto">
+						<p>${jobList.content}</p>
+						</div>						
 					</div>
 					<div class="box-bottom">
 						<a href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingNum}">채용정보 확인하기</a>

@@ -64,7 +64,7 @@
 				</div>
 			</h4>		
 			<h5>제목</h5>
-			 <input size="90px"  height="50px" type="text" name="title" value="${povo.title }" readonly="readonly"><br>
+			 <input type="text" name="title" value="${povo.title }" readonly="readonly" style="height:40px;width: 684px;"><br>
 			<br>
 			<div>	
 				<div style="float:left; width:180px;">

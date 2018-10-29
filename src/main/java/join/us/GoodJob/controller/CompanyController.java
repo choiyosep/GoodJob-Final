@@ -83,6 +83,9 @@ public class CompanyController {
 	 */
 	@PostMapping("updateCompanyMember.do")
 	public String updateCompanyMember(CompanyMemberVO companyMemberVO) {
+		String CompanyLogoName = companyService.getCompanyLogoNameByCompanyId(companyMemberVO.getId());
+		companyService.deleteCompanyLogo(CompanyLogoName);
+		
 		companyService.updateCompanyMember(companyMemberVO);
 		return "redirect:company_mypage.do";
 	}
@@ -287,7 +290,7 @@ public class CompanyController {
 
 		//카테고리 번호들로 기업 게시글 리스트 불러옴
 		PostListVO postListVO = companyService.findJobPostingByCatNumList(catNumParamVO,pageNum);
-		System.out.println(postListVO.getJobPostingList());
+		//System.out.println(postListVO.getJobPostingList());
 		model.addAttribute("postListVO", postListVO);
 		return "company/company_detail_search_list.company_search_tiles";
 	} 

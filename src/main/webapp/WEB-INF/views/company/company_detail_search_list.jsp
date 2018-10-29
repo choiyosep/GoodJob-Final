@@ -17,9 +17,9 @@
 						<div class="col-lg-3">
 							<div class="box">
 								<div class="box-gray aligncenter">
-									<h4>${cmvo.jobPostingVO.title}</h4>
 									<div class="icon">
-										<i class="fa fa-desktop fa-3x"></i>
+									<h4><a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}">${cmvo.jobPostingVO.title}</a></h4>
+										<a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}"><img height="100px" width="100px" src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}"></a>
 									</div>
 									<p></p>
 			

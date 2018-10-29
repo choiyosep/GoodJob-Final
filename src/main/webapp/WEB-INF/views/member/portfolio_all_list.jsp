@@ -32,7 +32,7 @@ $(document).ready(function(){
 		
 	$("#reset").click(function() {
 		$("#empTypeArea").html('');
-		var dataString='';				
+		/* var dataString='';				
 		$.ajax({
 			type:"get",
 			url:"user-DevCatVOListAjax.do",
@@ -48,7 +48,7 @@ $(document).ready(function(){
 				}
 				$("#empTypeArea").html($("#empTypeArea").html()+catListString);
 			}//success					
-		});//ajax
+		});//ajax */
 	});
 
 });//ready

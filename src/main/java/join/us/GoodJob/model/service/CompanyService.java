@@ -85,4 +85,8 @@ public interface CompanyService {
 	//181025 MIRI 구인공고별 면접자 토탈 카운트
 	int jobPostingInterviewerTotalCount(String jobPostingNum);
 
+	String getCompanyLogoNameByCompanyId(String companyId);
+
+	void deleteCompanyLogo(String companyLogoName);
+
 }
