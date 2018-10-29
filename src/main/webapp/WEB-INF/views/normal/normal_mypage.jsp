@@ -1,20 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
 <!-- normal_mypage -->
-
-<script>
-	function deleteNormalMember() {
-		var delConfirm = confirm("${requestScope.nmvo.id}님 정말 회원 탈퇴를 하시겠습니까?");
-		if(delConfirm == true) {
-			location.href="deleteMember.do";
-		} else {
-			return;
-		}
-	}
-</script>
-
 <h4 class="heading">
 	<div class="cta-text">
 		<h2>
@@ -23,51 +14,84 @@
 	</div>
 </h4>	
 
-<div class="container">
-<div class="col-sm-3"></div>
-<div class="col-sm-6" style="text-align: center">
-<table class="table table-hover">
-  <tr>
-    <th>아이디</th>
-    <td>${requestScope.nmvo.id }</td>
-  </tr>
-   <tr>
-    <th>이메일</th>
-    <td>${requestScope.nmvo.email }</td>
-  </tr>
-  <tr>
-    <th>이름</th>
-    <td>${requestScope.nmvo.name }</td>
-  </tr>
-  <tr>
-    <th>주소</th>
-    <td>${requestScope.nmvo.address }</td>
-  </tr>
-  <tr>
-    <th>연락처</th>
-    <td>${requestScope.nmvo.tel }</td>
-  </tr>
-  <tr>
-    <th>경력사항</th>
-    <td>${requestScope.nmvo.careerStatus }</td>
-  </tr>
-  <tr>
-    <th>성별</th>
-    <td>${requestScope.nmvo.gender}</td>
-  </tr> 
-</table>
-<button class="btn-1" onclick="javascript:location.href='updateNormalMemberForm.do'" style="height:40px; width:100px;">회원정보수정</button>
-<c:choose>
-<c:when test="${empty povo.title }">
-<button class="btn-1" onclick="javascript:location.href='registerPortfolioForm.do'" style="height:40px; width:100px;">이력서등록</button>
-</c:when>
-<c:otherwise>
-<button class="btn-1" onclick="javascript:location.href='normalDetailPortfolio.do?normalId=${requestScope.nmvo.id }'" style="height:40px; width:100px;">이력서보기</button>
-</c:otherwise>
-</c:choose>
-<button class="btn-1" onclick="deleteNormalMember()" style="height:40px; width:100px;">회원탈퇴</button>
-<button class="btn-1" onclick="javascript:location.href='getMyQuestionList.do'" style="height:40px; width:100px;">나의 질문 목록</button>
-<button class="btn-1" onclick="javascript:location.href=''" style="height:40px; width:100px;">나의 면접 신청 목록</button>
-</div>
-<div class="col-sm-3"></div>
+<div class="demo10">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable10">
+                    <div class="pricingTable-header">
+                        <h3 class="heading">MYINFO</h3>
+                        <span class="price-value">
+                            <span class="currency">#</span> 회원정보
+                        </span>
+                    </div>
+                    <div class="pricing-content">
+                        <ul>
+                            <li>회원 정보 수정</li>
+                            <li>회원 탈퇴</li>
+                        </ul>
+                        <a href="myinfo.do?normalId=${requestScope.nmvo.id }" class="read">바로가기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable10">
+                    <div class="pricingTable-header">
+                        <h3 class="heading">PORTFOLIO</h3>
+                        <span class="price-value">
+                            <span class="currency">#</span> 이력서
+                        </span>
+                    </div>
+                    <div class="pricing-content">
+                        <c:choose>
+							<c:when test="${empty povo.title }">
+								<ul>
+		                            <li>이력서 등록하기</li>
+		                        </ul>
+		                        <a href="registerPortfolioForm.do" class="read">바로가기</a>
+							</c:when>
+							<c:otherwise>
+								<ul>
+		                            <li>내 이력서 보기</li>
+		                        </ul>
+		                        <a href="normalDetailPortfolio.do?normalId=${requestScope.nmvo.id }" class="read">바로가기</a>
+							</c:otherwise>
+						</c:choose>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable10">
+                    <div class="pricingTable-header">
+                        <h3 class="heading">QUESTION</h3>
+                        <span class="price-value">
+                            <span class="currency">#</span> 질의응답
+                        </span>
+                    </div>
+                    <div class="pricing-content">
+                        <ul>
+                            <li>내 질문 조회</li>
+                        </ul>
+                        <a href="getMyQuestionList.do" class="read">바로가기</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pricingTable10">
+                    <div class="pricingTable-header">
+                        <h3 class="heading">INTERVIEW</h3>
+                        <span class="price-value">
+                            <span class="currency">#</span> 면접
+                        </span>
+                    </div>
+                    <div class="pricing-content">
+                        <ul>
+                            <li>내 면접 조회</li>
+                        </ul>
+                        <a href="#" class="read">바로가기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
