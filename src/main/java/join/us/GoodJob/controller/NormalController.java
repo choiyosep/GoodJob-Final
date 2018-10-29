@@ -420,7 +420,7 @@ public class NormalController {
 			return qvo;
 		}
 		
-/*		//질의응답 나의질문리스트 
+		//질의응답 나의질문리스트 
 		@RequestMapping("getMyQuestionList.do")
 		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
@@ -431,7 +431,7 @@ public class NormalController {
 	
 			return "normal/normal_my_question.tiles2";
 			
-		}*/
+		}
 		
 		//파일 다운로드 컨트롤러
 		@RequestMapping("fileDownload.do")
