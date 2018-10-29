@@ -171,7 +171,6 @@
 </script>
 
 <form id="companyUpdateForm" action = "updateCompanyMember.do" method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
 	<div class="container">	
 		<div class="col-md-3"></div>
 		<div class="col-md-6" style="text-align: left; font-size: 20px; font-weight: bold; " >

@@ -130,7 +130,7 @@ public class CompanyServiceImpl implements CompanyService {
 		Map<String,Object> map2=new HashMap<String,Object>();
 		map2.put("jobPostingNumList", jobPostingNumList);
 		map2.put("pagingBean", pagingBean);
-		System.out.println(jobPostingNumList);
+	//	System.out.println(jobPostingNumList);
       if(!jobPostingNumList.isEmpty()) {
 		List<CompanyMemberVO> jobPostingList =companyMapper.getAllJobPostingListByJobPostingNum(map2);
 		postListVO.setJobPostingList(jobPostingList);
