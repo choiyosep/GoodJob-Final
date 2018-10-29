@@ -17,8 +17,10 @@
 				<div class="col-lg-3">
 					<div class="box" >
 						<div class="box-gray aligncenter">
-							<h4>${pvo.title }</h4>
-								<img src="/GoodJob/resources/upload/memberPicture/${pvo.picturePath}" height="100px" width="100px" >
+						<div class="icon" style="margin-bottom: 20px;">						
+							<h4><a href="normalDetailPortfolio.do?normalId=${pvo.normalId}">${pvo.title }</a></h4>
+								<a href="normalDetailPortfolio.do?normalId=${pvo.normalId}"><img src="/GoodJob/resources/upload/memberPicture/${pvo.picturePath}" height="100px" width="100px" ></a>
+						</div>
 						</div>
 						<div class="box-bottom">
 							<a href="normalDetailPortfolio.do?normalId=${pvo.normalId}">Learn more</a>

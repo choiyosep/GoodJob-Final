@@ -83,6 +83,9 @@ public class CompanyController {
 	 */
 	@PostMapping("updateCompanyMember.do")
 	public String updateCompanyMember(CompanyMemberVO companyMemberVO) {
+		String CompanyLogoName = companyService.getCompanyLogoNameByCompanyId(companyMemberVO.getId());
+		companyService.deleteCompanyLogo(CompanyLogoName);
+		
 		companyService.updateCompanyMember(companyMemberVO);
 		return "redirect:company_mypage.do";
 	}
