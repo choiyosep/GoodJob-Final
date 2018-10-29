@@ -207,4 +207,23 @@ public class NormalServiceImpl implements NormalService {
 		return pvo;
 	}
 
+	@Override
+	public String getPicturePath(String normalId) {
+		return normalMapper.getPicturePath(normalId);
+	}
+
+	@Override
+	public void portfolioFileDelete(String normalId) {		
+			List<String> portfolioFileNameList= normalMapper.getPortfolioFileNameListById(normalId);
+			for(String currentFileName : portfolioFileNameList) {
+				String workspaceDeletePath="C:/java-kosta/framework-workspace2/goodjob/src/main/webapp/resources/upload/memberPortfolio/"+currentFileName;
+				File deleteWorkspaceFile = new File(workspaceDeletePath);
+				try {
+					deleteWorkspaceFile.delete();
+					System.out.println(currentFileName+"  포트폴리오 파일 삭제 완료");
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				}
+			}
+		}			
 }

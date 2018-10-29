@@ -308,7 +308,7 @@ public class NormalController {
 
 	/**
 	 * 181019 MIRI 포트폴리오 수정
-	 * 
+	 * 181029 yosep 내용 수정
 	 * @param portfolioVO
 	 * @param session
 	 * @return
@@ -317,9 +317,19 @@ public class NormalController {
 	public String updatePortfolio(PortfolioVO portfolioVO, HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		portfolioVO.setNormalId(mvo.getId());
-		normalService.updatePortfolio(portfolioVO); // 포트폴리오 수정
-		normalService.deletePortfolioMulti(portfolioVO.getNormalId()); // 포트폴리오 관련 복합 table 전부 삭제
-		normalService.registerPortfolio(portfolioVO, false); // flag 넣어주어 포트폴리오 등록 없이 복합 table에만 데이터 추가
+		String picturePath = normalService.getPicturePath(portfolioVO.getNormalId());
+		//사진 삭제
+		memberService.pictureDelete("normal", picturePath);
+		//포트폴리오 파일 삭제
+		normalService.portfolioFileDelete(portfolioVO.getNormalId());
+		//포트폴리오 삭제
+		normalService.deletePortfolio(portfolioVO.getNormalId());
+		//포트폴리오 수정
+		//normalService.updatePortfolio(portfolioVO); // 포트폴리오 수정
+		normalService.registerPortfolio(portfolioVO,true); 
+		// flag 넣어주어 포트폴리오 등록 없이 복합 table에만 데이터 추가
+		
+/*		normalService.deletePortfolioMulti(portfolioVO.getNormalId()); // 포트폴리오 관련 복합 table 전부 삭제*/
 		//181023 MIRI return값에 parameter value 넘기기
 		return "redirect:normalDetailPortfolio.do?normalId="+portfolioVO.getNormalId();	
 	}
@@ -342,7 +352,11 @@ public class NormalController {
 				e.printStackTrace();
 			}
 		}*/
+		//사진 삭제
 		memberService.pictureDelete("normal", picturePath);
+		//포트폴리오 파일 삭제
+		normalService.portfolioFileDelete(id);
+		//테이블 삭제
 		normalService.deletePortfolio(id);
 
 		return "redirect:home.do";

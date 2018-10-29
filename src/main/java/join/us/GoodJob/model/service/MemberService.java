@@ -73,4 +73,5 @@ public interface MemberService {
 	
 	//181026 MIRI 사진 삭제 공통
 	void pictureDelete(String member, String deletePicturename);
+
 }
