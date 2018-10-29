@@ -21,7 +21,7 @@
 									<h4><a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}">${cmvo.jobPostingVO.title}</a></h4>
 										<a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}"><img height="100px" width="100px" src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}"></a>
 									</div>
-									<p></p>
+									<p>${cmvo.jobPostingVO.content }</p>
 			
 								</div>
 								<div class="box-bottom">

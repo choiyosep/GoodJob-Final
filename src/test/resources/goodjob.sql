@@ -208,7 +208,7 @@ insert into interview(interview_num, normal_id ,job_posting_num, title, content)
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'yosep', 1001,'꼭 가고싶습니다~!', '전화번호로 연락주세요~');
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1001,'항시 대기중', '불러만 주세요');
 
-select * from interview
+select * from interview;
 
 -- 질의응답과 구인공고게시글/아이디 복합키 설정
 create table question_answer(
