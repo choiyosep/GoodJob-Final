@@ -61,4 +61,7 @@ public interface NormalService {
 	List<PortfolioVO> getNormalMember(String pageNum);
 	String getPicturePath(String normalId);
 	void portfolioFileDelete(String normalId);
+	
+	//나의 질문 수정
+	void updateMyQuestion(QuestionAnswerVO questionAnswerVO);
 }

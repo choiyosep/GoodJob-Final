@@ -225,5 +225,10 @@ public class NormalServiceImpl implements NormalService {
 					e.printStackTrace();
 				}
 			}
-		}			
+		}
+
+	@Override
+	public void updateMyQuestion(QuestionAnswerVO questionAnswerVO) {
+		normalMapper.updateMyQuestion(questionAnswerVO);
+	}			
 }

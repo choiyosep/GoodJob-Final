@@ -461,6 +461,7 @@ public class NormalController {
 		// 질의응답 등록 후 바로 조회
 		qavo.setNormalId(mvo.getId());
 		List<QuestionAnswerVO> qvo=normalService.getMyQuestionList(qavo);
+	
 		return qvo;
 	}
 	

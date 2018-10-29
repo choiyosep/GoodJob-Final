@@ -4,7 +4,7 @@
 
 
 <script type="text/javascript">	
-	$(document).ready(function(){				
+	$(document).ready(function(){		
 		$("input[name='recruitCatNumList']").change(function() {	
 			$("#empTypeArea").html('');
 			var dataString='';				
@@ -25,7 +25,27 @@
 				}//success					
 			});//ajax 			
 		});//change
-	});//ready
+		$("#reset").click(function() {
+			$("#empTypeArea").html('');
+			var dataString='';				
+			$.ajax({
+				type:"get",
+				url:"user-DevCatVOListAjax.do",
+				dataType:"json",
+				data:" ",
+				success:function(catList){		
+					var catListString='';
+					for(var i=0; i<catList.length; i++){			
+						for(var j=0; j<catList[i].length; j++){
+							catListString += '<input type="checkbox" class = "recruit" name="devCatNumList" value="'+catList[i][j].devCatNum+'">'+catList[i][j].devCatName+'&nbsp;';
+						}
+						catListString+='<br>';
+					}
+					$("#empTypeArea").html($("#empTypeArea").html()+catListString);
+				}//success					
+			});//ajax
+		});
+	});
 </script>
 
 
@@ -71,7 +91,7 @@
 		
 		<div class="col-md-2"></div>
 		<div class="col-md-12">
-		<button type="reset"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
+		<button type="reset"style="height:50px; width:150px;background: #81BEF7;font-size: 20px" id="reset">초기화</button>	
 		<input type="submit" value="등록하기"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		</div>
 		</div>
