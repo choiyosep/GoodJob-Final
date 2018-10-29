@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import join.us.GoodJob.model.service.CompanyService;	
-import join.us.GoodJob.model.service.MemberService;	
+import join.us.GoodJob.model.service.CompanyService;
+import join.us.GoodJob.model.service.MemberService;
 import join.us.GoodJob.model.service.NormalService;
 import join.us.GoodJob.model.vo.CatNumParamVO;
 import join.us.GoodJob.model.vo.CompanyMemberVO;
@@ -443,5 +443,35 @@ public class CompanyController {
 		return result;
 		
 	}
+
+	/**
+	 * 181029 MIRI 기업 회원 정보
+	 * 
+	 * @return
+	 */
+	@RequestMapping("companyMemberInfo.do")
+	public String companyMemberInfo(String companyId, Model model, HttpSession session) {
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if (mvo != null) {
+			CompanyMemberVO cmvo = companyService.myPageCompanyMember(mvo.getId());
+			model.addAttribute("cmvo", cmvo);
+		}
+		return "company/company_myinfo.tiles2";
+	}
 	
+	/**
+	 * 181029 MIRI 기업 회원 게시글 확인
+	 * 
+	 * @return
+	 */
+	@RequestMapping("companyMyJobPosting.do")
+	public String companyMyJobPosting(String companyId, Model model, HttpSession session) {
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if (mvo != null) {
+			CompanyMemberVO cmvo = companyService.myPageCompanyMember(mvo.getId());
+			model.addAttribute("cmvo", cmvo);
+			model.addAttribute("jobPostingList", companyService.companyJobPostingList(companyId));
+		}
+		return "company/company_my_jobposting.tiles2";
+	}
 }

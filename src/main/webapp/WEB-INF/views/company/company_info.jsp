@@ -18,26 +18,26 @@
 ${postListVO.pagingBean} --%>
 
 <%--Controller에서 받아온 기업정보리스트를 아래 div 구간에 정보들을 집어 넣고 반복문을 돌려보기  --%>	
-				<c:forEach items="${cmvoList}" var="cmvo">
-				<div class="col-lg-3">
-					<div class="box">	
-						<div class="box-gray aligncenter">
-							<div class="icon" style="margin-bottom: 20px;">
-							<h4><a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">${cmvo.name}</a></h4>
-								
-								<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}"><img src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}" height="100px" width="100px" ></a>
-							</div>
-							<p>${cmvo.introduction}</p>
-	
-						</div>
-						<div class="box-bottom">
-							<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">기업정보 자세히보기</a>
-						</div>
-					</div>					
-				</div>
-				<!-- <div class="col-lg-1">
-				</div> -->
-				</c:forEach>	
+<c:forEach items="${cmvoList}" var="cmvo">
+<div class="col-lg-3">
+	<div class="box">	
+		<div class="box-gray aligncenter">
+			<h4><a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">${cmvo.name}</a></h4>
+			<div class="icon" style="margin-bottom: 20px;">
+				
+				<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}"><img src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}" height="100px" width="100px" ></a>
+			</div>
+			<p>${cmvo.introduction}</p>
+
+		</div>
+		<div class="box-bottom">
+			<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">기업정보 자세히보기</a>
+		</div>
+	</div>					
+</div>
+<!-- <div class="col-lg-1">
+</div> -->
+</c:forEach>	
 		</div>
 	</div>
 	<div class="col-lg-12">

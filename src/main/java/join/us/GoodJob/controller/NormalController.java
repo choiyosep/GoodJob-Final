@@ -500,8 +500,8 @@ public class NormalController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("myinfo.do")
-	public String normalMemberinfo(String normalId, Model model, HttpSession session) {
+	@RequestMapping("normalMemberInfo.do")
+	public String normalMemberInfo(String normalId, Model model, HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if (mvo != null) {
 			NormalMemberVO nmvo = normalService.selectNormalMember(mvo.getId());
