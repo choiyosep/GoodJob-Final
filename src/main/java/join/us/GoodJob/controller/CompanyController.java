@@ -303,8 +303,9 @@ public class CompanyController {
 	 * @param jobPostingNum
 	 * @return
 	 */
-	@PostMapping("getJobPostingInterviewerList.do")
+	@RequestMapping("getJobPostingInterviewerList.do")
 	public String getJobPostingInterviewerList(String jobPostingNum, Model model, String pageNum) {
+		model.addAttribute("jobPostingNum", jobPostingNum);
 		PostListVO plvo = companyService.getJobPostingInterviewerList(jobPostingNum, pageNum);
 		model.addAttribute("plvo", plvo);
 		

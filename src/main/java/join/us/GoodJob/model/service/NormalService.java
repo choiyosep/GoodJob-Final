@@ -59,4 +59,6 @@ public interface NormalService {
 	List<QuestionAnswerVO> getMyQuestionList(QuestionAnswerVO qavo);
 	
 	List<PortfolioVO> getNormalMember(String pageNum);
+	String getPicturePath(String normalId);
+	void portfolioFileDelete(String normalId);
 }

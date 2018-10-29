@@ -37,3 +37,25 @@
 	</div>
 	<hr>
 </c:forEach>
+
+<div align="center">
+	<ul class="pagination">
+		<c:set value="${requestScope.plvo.pagingBean }" var="pagingBean"></c:set>
+		<c:if test="${pagingBean.previousPageGroup }">
+			<li><a href="${pageContext.request.contextPath}/getJobPostingInterviewerList.do?jobPostingNum=${requestScope.jobPostingNum }&pageNum=${pagingBean.startPageOfPageGroup-1}">&laquo;</a></li>
+		</c:if>
+		<c:forEach begin="${pagingBean.startPageOfPageGroup}" end="${pagingBean.endPageOfPageGroup}" var="pageNum">
+			<c:choose>
+				<c:when test="${pageNum == pagingBean.nowPage}">
+					<li class="active"><a href="#">${pageNum}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="${pageContext.request.contextPath}/getJobPostingInterviewerList.do?jobPostingNum=${requestScope.jobPostingNum }&pageNum=${pageNum}">${pageNum}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>				
+		<c:if test="${pagingBean.nextPageGroup }">
+			<li><a href="${pageContext.request.contextPath}/getJobPostingInterviewerList.do?jobPostingNum=${requestScope.jobPostingNum }&pageNum=${pagingBean.endPageOfPageGroup+1}">&raquo;</a></li>
+		</c:if>
+	</ul>
+</div>	

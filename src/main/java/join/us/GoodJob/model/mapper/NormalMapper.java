@@ -97,4 +97,6 @@ public interface NormalMapper {
 	
 	
 	List<PortfolioVO> getNormalMember(PagingBean pagingBean);
+	String getPicturePath(String normalId);
+	List<String> getPortfolioFileNameListById(String normalId);
 }

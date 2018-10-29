@@ -1,12 +1,9 @@
 package join.us.GoodJob.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import join.us.GoodJob.model.mapper.CompanyMapper;
 import join.us.GoodJob.model.service.CompanyService;
@@ -308,7 +304,7 @@ public class NormalController {
 
 	/**
 	 * 181019 MIRI 포트폴리오 수정
-	 * 
+	 * 181029 yosep 내용 수정
 	 * @param portfolioVO
 	 * @param session
 	 * @return
@@ -317,9 +313,19 @@ public class NormalController {
 	public String updatePortfolio(PortfolioVO portfolioVO, HttpSession session) {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		portfolioVO.setNormalId(mvo.getId());
-		normalService.updatePortfolio(portfolioVO); // 포트폴리오 수정
-		normalService.deletePortfolioMulti(portfolioVO.getNormalId()); // 포트폴리오 관련 복합 table 전부 삭제
-		normalService.registerPortfolio(portfolioVO, false); // flag 넣어주어 포트폴리오 등록 없이 복합 table에만 데이터 추가
+		String picturePath = normalService.getPicturePath(portfolioVO.getNormalId());
+		//사진 삭제
+		memberService.pictureDelete("normal", picturePath);
+		//포트폴리오 파일 삭제
+		normalService.portfolioFileDelete(portfolioVO.getNormalId());
+		//포트폴리오 삭제
+		normalService.deletePortfolio(portfolioVO.getNormalId());
+		//포트폴리오 수정
+		//normalService.updatePortfolio(portfolioVO); // 포트폴리오 수정
+		normalService.registerPortfolio(portfolioVO,true); 
+		// flag 넣어주어 포트폴리오 등록 없이 복합 table에만 데이터 추가
+		
+/*		normalService.deletePortfolioMulti(portfolioVO.getNormalId()); // 포트폴리오 관련 복합 table 전부 삭제*/
 		//181023 MIRI return값에 parameter value 넘기기
 		return "redirect:normalDetailPortfolio.do?normalId="+portfolioVO.getNormalId();	
 	}
@@ -342,7 +348,11 @@ public class NormalController {
 				e.printStackTrace();
 			}
 		}*/
+		//사진 삭제
 		memberService.pictureDelete("normal", picturePath);
+		//포트폴리오 파일 삭제
+		normalService.portfolioFileDelete(id);
+		//테이블 삭제
 		normalService.deletePortfolio(id);
 
 		return "redirect:home.do";
@@ -390,16 +400,18 @@ public class NormalController {
 		return "member/portfolio_search_list.tiles2";
 	}
 	// 면접신청하기
+	//이거 뭐가 맞는건지 몰라서 주석 (동규)
+/*<<<<<<< HEAD
 		@RequestMapping("submitInterviewForm.do")
 		public String submitInterviewForm(InterviewVO interviewVO) {
 			normalService.interviewApply(interviewVO);
 			return "redirect:home.do";
 		}
-		/**
+		*//**
 		 * 2018-10-19 성진 구인공고 조회 후 면접신청 폼으로 이동하기
 		 * 
 		 * @return
-		 */
+		 *//*
 		@RequestMapping("goInterviewApply.do")
 		public String goInterviewApply(Model model,String jobPostingNum) {
 			System.out.println(companyMapper.findCompanyIdByNum(jobPostingNum));
@@ -419,8 +431,41 @@ public class NormalController {
 			List<QuestionAnswerVO> qvo=normalService.getMyQuestionList(qavo);
 			return qvo;
 		}
-		
+		*/
 		//질의응답 나의질문리스트 
+
+	@RequestMapping("submitInterviewForm.do")
+	public String submitInterviewForm(InterviewVO interviewVO) {
+		normalService.interviewApply(interviewVO);
+		return "redirect:home.do";
+	}
+	/**
+	 * 2018-10-19 성진 구인공고 조회 후 면접신청 폼으로 이동하기
+	 * 
+	 * @return
+	 */
+	@RequestMapping("goInterviewApply.do")
+	public String goInterviewApply(Model model,String jobPostingNum) {
+		System.out.println(companyMapper.findCompanyIdByNum(jobPostingNum));
+		model.addAttribute("jobPosting", companyMapper.findCompanyIdByNum(jobPostingNum));
+		return "normal/normal_go_interview_apply.tiles2";
+	}
+	//질의응답 질문 등록(구인공고 상세보기에서)
+	@RequestMapping("registerQuestion.do")
+	@ResponseBody
+	public List<QuestionAnswerVO> registerQuestion(Model model,QuestionAnswerVO qavo,HttpSession session) {
+		// 질의응답 등록
+		MemberVO mvo=(MemberVO) session.getAttribute("mvo");
+		qavo.setNormalId(mvo.getId());
+		normalService.registerQuestion(qavo);
+		// 질의응답 등록 후 바로 조회
+		qavo.setNormalId(mvo.getId());
+		List<QuestionAnswerVO> qvo=normalService.getMyQuestionList(qavo);
+		return qvo;
+	}
+	
+/*		//질의응답 나의질문리스트 
+>>>>>>> branch 'master' of https://github.com/choiyosep/GoodJob-Final.git
 		@RequestMapping("getMyQuestionList.do")
 		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
@@ -431,6 +476,7 @@ public class NormalController {
 	
 			return "normal/normal_my_question.tiles2";
 			
+<<<<<<< HEAD
 		}
 		
 		//파일 다운로드 컨트롤러
@@ -438,6 +484,28 @@ public class NormalController {
 		public String fileDownload(String fileName){		
 			System.out.println(fileName+" download!");
 			return "downloadView";
+=======
+		}*/
+	
+	//파일 다운로드 컨트롤러
+	@RequestMapping("fileDownload.do")
+	public String fileDownload(String fileName){		
+		System.out.println(fileName+" download!");
+		return "downloadView";
+	}
+	
+	/**
+	 * 181029 MIRI 개인 회원 정보
+	 * 
+	 * @return
+	 */
+	@RequestMapping("myinfo.do")
+	public String normalMemberinfo(String normalId, Model model, HttpSession session) {
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if (mvo != null) {
+			NormalMemberVO nmvo = normalService.selectNormalMember(mvo.getId());
+			model.addAttribute("nmvo", nmvo);
 		}
-
+		return "normal/normal_myinfo.tiles2";
+	}
 }
