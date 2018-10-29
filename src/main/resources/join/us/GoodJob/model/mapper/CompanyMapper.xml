@@ -292,7 +292,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from interview i, normal_member nm , member m
 			where i.normal_id = nm.normal_id and nm.normal_id = m.id and i.job_posting_num=#{jobPostingNum}
 			) a
-		where a.rnum between 1 and 3
+		where a.rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}
 		order by a.interview_num desc
 	</select>
 	
