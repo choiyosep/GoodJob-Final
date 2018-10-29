@@ -205,7 +205,7 @@ public class CompanyServiceImpl implements CompanyService {
 		if(pageNum == null)
 			pagingBean = new PagingBean(interviewerTotCnt);
 		else
-			pagingBean = new PagingBean(interviewerTotCnt, Integer.parseInt(pageNum), 2);
+			pagingBean = new PagingBean(interviewerTotCnt, Integer.parseInt(pageNum), 1);
 		map.put("jobPostingNum", jobPostingNum);
 		map.put("pagingBean", pagingBean);
 		List<InterviewVO> ivList = companyMapper.getJobPostingInterviewerList(map);
