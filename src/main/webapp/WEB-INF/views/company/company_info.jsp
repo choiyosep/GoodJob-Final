@@ -22,8 +22,8 @@ ${postListVO.pagingBean} --%>
 				<div class="col-lg-3">
 					<div class="box">	
 						<div class="box-gray aligncenter">
-							<h4><a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">${cmvo.name}</a></h4>
 							<div class="icon" style="margin-bottom: 20px;">
+							<h4><a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">${cmvo.name}</a></h4>
 								
 								<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}"><img src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}" height="100px" width="100px" ></a>
 							</div>
