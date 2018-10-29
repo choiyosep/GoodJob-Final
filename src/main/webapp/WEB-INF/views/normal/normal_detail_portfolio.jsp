@@ -168,7 +168,9 @@
 	</c:when>	
 	<c:otherwise>
 	<div align="center">
-		<h3>열람하실 수 업습니다!!</h3>	
+		<script type="text/javascript">
+			location.href="no-authority.do";
+		</script>
 	</div>
 	</c:otherwise>
 </c:choose>

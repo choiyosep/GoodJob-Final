@@ -132,5 +132,11 @@ public class MemberController {
 	public String pictureDelete(String member, String deletePicturename) {
 		memberService.pictureDelete(member, deletePicturename);
 		return "success";
+	}	
+	
+	@RequestMapping("no-authority.do")
+	public String noauthority(){
+		return "member/no-authority";
 	}
+	
 }
