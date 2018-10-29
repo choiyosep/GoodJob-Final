@@ -38,31 +38,31 @@ ${postListVO.pagingBean} --%>
 <!-- <div class="col-lg-1">
 </div> -->
 </c:forEach>	
+		</div>
 	</div>
-</div>
-<div class="col-lg-12">
-	<div align="center">
-		<ul class="pagination">
-			<c:if test="${pb.previousPageGroup }">
-		<li><a
-			href="${pageContext.request.contextPath}/user-allCompanyInfo.do?pageNum=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
-	</c:if>
-	<c:forEach begin="${pb.startPageOfPageGroup}"
-		end="${pb.endPageOfPageGroup}" var="pagenum">
-		<c:choose>
-			<c:when test="${pagenum==pb.nowPage}">
-				<li class="active"><a href="#">${pagenum}</a></li>
-			</c:when>
-			<c:otherwise>
-				<li><a
-					href="${pageContext.request.contextPath}/user-allCompanyInfo.do?pageNum=${pagenum}">${pagenum}</a></li>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>				
-	<c:if test="${pb.nextPageGroup }">
-		<li><a
-			href="${pageContext.request.contextPath}/user-allCompanyInfo.do?pageNum=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
-	</c:if>
+	<div class="col-lg-12">
+		<div align="center">
+			<ul class="pagination">
+				<c:if test="${pb.previousPageGroup }">
+					<li><a
+						href="${pageContext.request.contextPath}/user-allCompanyInfo.do?pageNum=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+				</c:if>
+				<c:forEach begin="${pb.startPageOfPageGroup}"
+					end="${pb.endPageOfPageGroup}" var="pagenum">
+					<c:choose>
+						<c:when test="${pagenum==pb.nowPage}">
+							<li class="active"><a href="#">${pagenum}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="${pageContext.request.contextPath}/user-allCompanyInfo.do?pageNum=${pagenum}">${pagenum}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>				
+				<c:if test="${pb.nextPageGroup }">
+					<li><a
+						href="${pageContext.request.contextPath}/user-allCompanyInfo.do?pageNum=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+				</c:if>
 			</ul>
 		</div>	
 	</div>	

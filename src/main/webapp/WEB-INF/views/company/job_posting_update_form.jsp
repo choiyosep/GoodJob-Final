@@ -26,6 +26,10 @@
 			});//ajax 			
 		});//change
 		
+		$("#reset").click(function() {
+			$("#empTypeArea").html('');
+		});
+		
 		if(${requestScope.jpvo.jobPostingVO != null}) {
 			$('input:checkbox[name="locCatNumList"]').each(function() {
 				<c:forEach items="${requestScope.locCatList}" var="locCat">
@@ -60,10 +64,40 @@
 			}); 
 		}
 		
+		$("#empTypeArea").html('');
+		var dataString='';
+		$.ajax({
+			type:"get",
+			/* 181023 MIRI url 재수정 */
+			url:"user-getDevCatVOListAjax.do",
+			dataType:"json",
+			data:$("#updateForm").serialize(),
+			success:function(catList){
+				var catListString='';
+				for(var i=0; i<catList.length; i++){			
+					for(var j=0; j<catList[i].length; j++){
+						catListString += '<input type="checkbox" class = "recruit" name="devCatNumList" value="'+catList[i][j].devCatNum+'">'+catList[i][j].devCatName+'&nbsp;';
+					}
+					catListString+='<br>';
+				}
+				$("#empTypeArea").html($("#empTypeArea").html()+catListString);
+				
+				$('input:checkbox[name="devCatNumList"]').each(function() {
+					<c:forEach items="${requestScope.devCatList}" var="devCat">
+						if(this.value == ${devCat.devCatNum}) {
+							this.checked = true;
+						}
+					</c:forEach>
+				});
+			}//success					
+		});//ajax 	
+		
 		
 	});//ready
 </script>
-
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align: left">
+<form action="updateJobPosting.do" method="post" id="updateForm">
 <h4 class="heading">
 	<div class="cta-text">
 		<h2>
@@ -71,48 +105,74 @@
 		</h2>
 	</div>
 </h4>	
-<form action="updateJobPosting.do" method="post" id="updateForm">
-<div class="col-md-4"></div>
-<div class="col-md-6" style="text-align: left">
-	<h5>제목</h5><br> <input type="text" name="title" placeholder="${jpvo.jobPostingVO.title}" required="required"required="required" style="height:40px; width:400px;"><br>
-	<h5>내용</h5><br><textarea rows="10" cols="60" name="content" placeholder="${jpvo.jobPostingVO.content}" required="required"></textarea><br><br>
+	<h5>제목</h5> <input type="text" style="height:40px;width: 684px;" name="title" value="${jpvo.jobPostingVO.title}" required="required"required="required" style="height:40px; width:400px;"><br>
+	<h5>내용</h5><textarea rows="8" cols="94" name="content"  required="required">${jpvo.jobPostingVO.content}</textarea><br>
+	<h5>경력</h5><input type="text" name="careerStatus" value="${jpvo.jobPostingVO.careerStatus}" required="required"><br><br>	
+	<table class="table table-bordered" style=" width: 675px;">
+		<colgroup>
+		        <col width="92px">
+		       <%--  <col width="320px"> --%>
+		      </colgroup>
+		<tbody>
+		<tr height="50px">
+		      	<th>지역</th>
+		        <td>
+					<c:forEach items="${requestScope.allLocCatList}" var="allLocCat" varStatus="i" >
+						<input type="checkbox"  name="locCatNumList" value="${allLocCat.locNum}" >${allLocCat.locName} &thinsp;&thinsp;
+					</c:forEach>
+		        </td>      
+		      </tr>
+		      
+		      <tr height="50px">
+		      	<th>학력</th>
+		        <td>
+					<c:forEach items="${requestScope.allAcaCatList}" var="allAcaCat" varStatus="i" >
+						<input type="radio"  name="acaCatNumList" value="${allAcaCat.academicNum}" >${allAcaCat.academicName} &thinsp;&thinsp;
+					</c:forEach>
+		        </td>      
+		      </tr>
+		      
+		      <tr height="50px">
+		      	<th>고용형태</th>
+		        <td>
+					<c:forEach items="${requestScope.allEmpTypeCatList}" var="allEmpTypeCat" varStatus="i" >
+						<input type="checkbox"  name="empTypeCatNumList" value="${allEmpTypeCat.empTypeNum}" >${allEmpTypeCat.empTypeName}  &thinsp;&thinsp;
+					</c:forEach>
+		        </td>      
+		      </tr>
 		
-	<h5>지역</h5>
-	<c:forEach items="${requestScope.allLocCatList}" var="allLocCat" varStatus="i">
-		<input type="checkbox" name="locCatNumList" value="${allLocCat.locNum}" >${allLocCat.locName}&nbsp;
-	</c:forEach> <br>
-	
-	<h5>학력</h5>
-	<c:forEach items="${requestScope.allAcaCatList}" var="allAcaCat" varStatus="i">	
-		<input type="radio" name="acaCatNumList" value="${allAcaCat.academicNum}" required="required">${allAcaCat.academicName}&nbsp;
-	</c:forEach> <br>
-	
-	<h5>고용형태</h5>
-	<c:forEach items="${requestScope.allEmpTypeCatList}" var="allEmpTypeCat" varStatus="i">
-		<input type="checkbox" name="empTypeCatNumList" value="${allEmpTypeCat.empTypeNum}" >${allEmpTypeCat.empTypeName}&nbsp;
-	</c:forEach> 
-	<input type="text" name="careerStatus" placeholder="ex)경력3년" required="required"><br>
-	
-	<h5>모집직군</h5> 
-	
-		<c:forEach items="${requestScope.allRecruitCatList}" var="allRecruitCat" varStatus="i">
-			<input type="checkbox" class = "recruit" name="recruitCatNumList" value="${allRecruitCat.rcNum}" >${allRecruitCat.rcName}  &thinsp;&thinsp;
-			<c:if test="${(i.index+1)%3==0}"><br></c:if>
-		</c:forEach>
-		<input type="hidden" name="a" value="b">	
-	<h5>개발분야</h5>
-	<div id="empTypeArea">		
-	</div>
+		
+		
+		  <tr height="50px">
+		      	<th>모집직군</th>
+		        <td>
+					<c:forEach items="${requestScope.allRecruitCatList}" var="allRecruitCat" varStatus="i" >
+						<input type="checkbox" class = "recruit" name="recruitCatNumList" value="${allRecruitCat.rcNum}" >${allRecruitCat.rcName}  &thinsp;&thinsp;
+						<c:if test="${(i.index+1)%4==0}"><br></c:if>					
+					</c:forEach>	
+		        </td>      
+		      </tr>
+		      
+		      <tr height="50px" >
+		        <th>개발분야</th>
+		        <td style="padding-top:5px;">
+		        	<div id="empTypeArea">		
+					</div>					
+		        </td>        
+		      </tr>      
+		      </tbody>
+	</table>	
 
-<div class="col-md-2"></div>	
-<div class="col-md-12">	
-		<button type="reset" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
+<div class="col-md-12" align="center">	
+		<button type="reset"  id="reset" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
 		<input type="hidden" name="companyId" value="${jpvo.companyId}" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		<input type="hidden" name="jobPostingNum" value="${jpvo.jobPostingVO.jobPostingNum}" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		<input type="submit" value="수정하기" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">	
 	</div>
-</div>
 </form>	
+</div>
+<div class="col-md-2"></div>
+
 
 
 

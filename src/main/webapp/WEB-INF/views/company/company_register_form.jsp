@@ -263,11 +263,11 @@ button:hover {
 	기업 소개 <br><input type="text" name="introduction" required="required"style="height:40px; width:500px;"><br><br>
 	기업 형태 
 	<select name="companyType">
-		<option value="">----선택하세요----</option>		
+		<option value="기타">----선택하세요----</option>		
 		<option value="대기업">대기업</option>		
 		<option value="중견기업">중견기업</option>		
 		<option value="중소기업">중소기업</option>
-		<oprion value="공기업">공기업</oprion>		
+		<option value="공기업">공기업</oprion>		
 	</select>	<br><br>
 	업종 <br> <input type="text" name="industry" required="required"style="height:40px; width:500px;"><br><br>
 	매출액  <br><input type="number" name="sales"style="height:40px; width:500px;"><br><br>

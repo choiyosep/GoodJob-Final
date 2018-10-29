@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import join.us.GoodJob.model.service.CompanyService;	
-import join.us.GoodJob.model.service.MemberService;	
+import join.us.GoodJob.model.service.CompanyService;
+import join.us.GoodJob.model.service.MemberService;
 import join.us.GoodJob.model.service.NormalService;
 import join.us.GoodJob.model.vo.CatNumParamVO;
 import join.us.GoodJob.model.vo.CompanyMemberVO;
@@ -22,7 +22,6 @@ import join.us.GoodJob.model.vo.DevCatVO;
 import join.us.GoodJob.model.vo.InterviewVO;
 import join.us.GoodJob.model.vo.JobPostingVO;
 import join.us.GoodJob.model.vo.MemberVO;
-import join.us.GoodJob.model.vo.NormalMemberVO;
 import join.us.GoodJob.model.vo.PortfolioVO;
 import join.us.GoodJob.model.vo.PostListVO;
 import join.us.GoodJob.model.vo.QuestionAnswerVO;
@@ -84,6 +83,9 @@ public class CompanyController {
 	 */
 	@PostMapping("updateCompanyMember.do")
 	public String updateCompanyMember(CompanyMemberVO companyMemberVO) {
+		String CompanyLogoName = companyService.getCompanyLogoNameByCompanyId(companyMemberVO.getId());
+		companyService.deleteCompanyLogo(CompanyLogoName);
+		
 		companyService.updateCompanyMember(companyMemberVO);
 		return "redirect:company_mypage.do";
 	}
@@ -288,7 +290,7 @@ public class CompanyController {
 
 		//카테고리 번호들로 기업 게시글 리스트 불러옴
 		PostListVO postListVO = companyService.findJobPostingByCatNumList(catNumParamVO,pageNum);
-		System.out.println(postListVO.getJobPostingList());
+		//System.out.println(postListVO.getJobPostingList());
 		model.addAttribute("postListVO", postListVO);
 		return "company/company_detail_search_list.company_search_tiles";
 	} 

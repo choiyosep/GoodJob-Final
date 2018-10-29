@@ -16,11 +16,13 @@
 				<div class="col-lg-3">
 					<div class="box" >
 						<div class="box-gray aligncenter">
-							<h4>${cmvo.companyId } 채용</h4>
 								<div class="icon">
-									<i class="fa fa-pagelines fa-3x"></i>
+								<h4><a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">${cmvo.companyId } 채용</a></h4>
+								<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}"><img src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}" height="100px" width="100px" ></a>
 								</div>
-								${cmvo.introduction }
+								<div style="height: 70px; width: auto">								
+								<p>${cmvo.introduction }</p>	
+								</div>
 						</div>
 						<div class="box-bottom">
 							<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">Learn more</a>

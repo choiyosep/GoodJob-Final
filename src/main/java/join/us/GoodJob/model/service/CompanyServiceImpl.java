@@ -1,5 +1,6 @@
 package join.us.GoodJob.model.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,7 +130,7 @@ public class CompanyServiceImpl implements CompanyService {
 		Map<String,Object> map2=new HashMap<String,Object>();
 		map2.put("jobPostingNumList", jobPostingNumList);
 		map2.put("pagingBean", pagingBean);
-		System.out.println(jobPostingNumList);
+	//	System.out.println(jobPostingNumList);
       if(!jobPostingNumList.isEmpty()) {
 		List<CompanyMemberVO> jobPostingList =companyMapper.getAllJobPostingListByJobPostingNum(map2);
 		postListVO.setJobPostingList(jobPostingList);
@@ -282,4 +283,22 @@ public class CompanyServiceImpl implements CompanyService {
 	public List<InterviewVO> getAllInterviewerList2() {
 		return companyMapper.getAllInterviewerList2();
 	}*/
+
+	@Override
+	public String getCompanyLogoNameByCompanyId(String companyId) {
+		return companyMapper.getCompanyLogoNameByCompanyId(companyId);
+	}
+
+	@Override
+	public void deleteCompanyLogo(String companyLogoName) {
+		String workspaceDeletePath="C:/java-kosta/framework-workspace2/goodjob/src/main/webapp/resources/upload/companyLogo/"+companyLogoName;
+		File deleteWorkspaceFile = new File(workspaceDeletePath);
+		try {
+			deleteWorkspaceFile.delete();
+			System.out.println(companyLogoName+"  기업 로고 파일 삭제 완료");
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
