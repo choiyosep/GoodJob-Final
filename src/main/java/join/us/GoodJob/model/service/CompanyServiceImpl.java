@@ -90,18 +90,18 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public PostListVO getAllJobPostingList(String pageNum) {
-			PagingBean pagingBean;
-			//System.out.println("전체구인공고 조회시 pageNum : "+pageNum);
-			int totalJobPostingCount=companyMapper.getAlljobPostingCount();
-			if (pageNum != null) { // 페이지 번호 주면
-				pagingBean = new PagingBean(totalJobPostingCount, Integer.parseInt(pageNum));
-			} else { // 페이지 번호 안주면 1페이지
-				pagingBean = new PagingBean(totalJobPostingCount);
-			}
-			List<CompanyMemberVO> jobPostingList= companyMapper.getAllJobPostingList(pagingBean);
-			PostListVO postListVO = new PostListVO();
-			postListVO.setJobPostingList(jobPostingList);
-			postListVO.setPagingBean(pagingBean);
+		PagingBean pagingBean;
+		//System.out.println("전체구인공고 조회시 pageNum : "+pageNum);
+		int totalJobPostingCount=companyMapper.getAlljobPostingCount();
+		if (pageNum != null) { // 페이지 번호 주면
+			pagingBean = new PagingBean(totalJobPostingCount, Integer.parseInt(pageNum));
+		} else { // 페이지 번호 안주면 1페이지
+			pagingBean = new PagingBean(totalJobPostingCount);
+		}
+		List<CompanyMemberVO> jobPostingList= companyMapper.getAllJobPostingList(pagingBean);
+		PostListVO postListVO = new PostListVO();
+		postListVO.setJobPostingList(jobPostingList);
+		postListVO.setPagingBean(pagingBean);
 		return postListVO;
 	}	
 

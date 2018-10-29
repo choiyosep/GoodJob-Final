@@ -5,6 +5,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
+
 <!-- normal_mypage -->
 <h4 class="heading">
 	<div class="cta-text">
@@ -27,10 +28,9 @@
                     </div>
                     <div class="pricing-content">
                         <ul>
-                            <li>회원 정보 수정</li>
-                            <li>회원 탈퇴</li>
+                            <li>수정/탈퇴</li>
                         </ul>
-                        <a href="myinfo.do?normalId=${requestScope.nmvo.id }" class="read">바로가기</a>
+                        <a href="normalMemberInfo.do?normalId=${requestScope.nmvo.id }" class="read">바로가기</a>
                     </div>
                 </div>
             </div>
