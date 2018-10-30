@@ -7,13 +7,14 @@ public class InterviewVO {
 	private String jobPostingNum;
 	private String title;
 	private String content;
+	private CompanyMemberVO companyMemberVO;
 	private NormalMemberVO normalMemberVO;
 	public InterviewVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public InterviewVO(String interviewNum, String normalId, String companyId, String jobPostingNum, String title,
-			String content, NormalMemberVO normalMemberVO) {
+			String content, CompanyMemberVO companyMemberVO, NormalMemberVO normalMemberVO) {
 		super();
 		this.interviewNum = interviewNum;
 		this.normalId = normalId;
@@ -21,6 +22,7 @@ public class InterviewVO {
 		this.jobPostingNum = jobPostingNum;
 		this.title = title;
 		this.content = content;
+		this.companyMemberVO = companyMemberVO;
 		this.normalMemberVO = normalMemberVO;
 	}
 	public String getInterviewNum() {
@@ -59,6 +61,12 @@ public class InterviewVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public CompanyMemberVO getCompanyMemberVO() {
+		return companyMemberVO;
+	}
+	public void setCompanyMemberVO(CompanyMemberVO companyMemberVO) {
+		this.companyMemberVO = companyMemberVO;
+	}
 	public NormalMemberVO getNormalMemberVO() {
 		return normalMemberVO;
 	}
@@ -68,9 +76,10 @@ public class InterviewVO {
 	@Override
 	public String toString() {
 		return "InterviewVO [interviewNum=" + interviewNum + ", normalId=" + normalId + ", companyId=" + companyId
-				+ ", jobPostingNum=" + jobPostingNum + ", title=" + title + ", content=" + content + ", normalMemberVO="
-				+ normalMemberVO + "]";
+				+ ", jobPostingNum=" + jobPostingNum + ", title=" + title + ", content=" + content
+				+ ", companyMemberVO=" + companyMemberVO + ", normalMemberVO=" + normalMemberVO + "]";
 	}
+
 	
 	
 }

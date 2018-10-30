@@ -739,3 +739,13 @@ from (
 where a.rnum between 1 and 3
 order by a.interview_num desc
 
+select i.interview_num,i.job_posting_num,i.title,i.content,nm.normal_id,m.name
+from interview i , normal_member nm , job_posting jp , company_member cm , member m
+where i.normal_id = nm.normal_id 
+and i.job_posting_num = jp.job_posting_num
+and jp.company_id = cm.company_id
+and cm.company_id = m.id
+and nm.normal_id='hsj'
+order by i.interview_num desc
+
+

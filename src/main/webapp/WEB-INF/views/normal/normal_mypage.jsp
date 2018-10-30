@@ -88,7 +88,7 @@
                         <ul>
                             <li>내 면접 조회</li>
                         </ul>
-                        <a href="#" class="read">바로가기</a>
+                        <a href="getMyInterviewList.do?normalId=${requestScope.nmvo.id}" class="read">바로가기</a>
                     </div>
                 </div>
             </div>

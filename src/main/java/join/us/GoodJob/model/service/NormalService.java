@@ -64,4 +64,6 @@ public interface NormalService {
 	
 	//나의 질문 수정
 	void updateMyQuestion(QuestionAnswerVO questionAnswerVO);
+	// 구직자가 면접신청한 구인공고 리스트
+	List<InterviewVO> getMyInterviewList(String normalId);
 }
