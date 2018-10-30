@@ -34,7 +34,7 @@ drop sequence qa_num_seq;
 drop sequence portfolio_file_seq;
 drop sequence interview_num_seq;
 
-		
+update company_member set picture_path='로고로고.jpg' where company_id='NHNuser'
 
 
 -- 회원 ( ERD에서 기업/개인 구분하기위해 type 컬럼을 뒀으나 명령어라 사용불가함 따라서 member_type으로 변경
@@ -738,4 +738,14 @@ from (
 	) a
 where a.rnum between 1 and 3
 order by a.interview_num desc
+
+select i.interview_num,i.job_posting_num,i.title,i.content,nm.normal_id,m.name
+from interview i , normal_member nm , job_posting jp , company_member cm , member m
+where i.normal_id = nm.normal_id 
+and i.job_posting_num = jp.job_posting_num
+and jp.company_id = cm.company_id
+and cm.company_id = m.id
+and nm.normal_id='hsj'
+order by i.interview_num desc
+
 

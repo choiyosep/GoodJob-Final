@@ -278,7 +278,7 @@ public class NormalController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("user-updatePortfolioForm.do")
+	@RequestMapping("updatePortfolioForm.do")
 	public String updatePortfolioForm(String id, HttpSession session, Model model) {
 		// 내가 가진 포트폴리오 데이터 리스트
 		model.addAttribute("devCatList", memberService.getDevCatVOListByNormalId(id));
@@ -467,5 +467,15 @@ public class NormalController {
 			model.addAttribute("nmvo", nmvo);
 		}
 		return "normal/normal_myinfo.tiles2";
+	}
+	/**
+	 * 구직자가 면접신청한 구인공고 리스트
+	 */
+	@RequestMapping("getMyInterviewList.do")
+	public String getMyInterviewList(String normalId,Model model) {
+		
+		model.addAttribute("ivList",normalService.getMyInterviewList(normalId));
+		return "normal/normal_my_interviewList.tiles2";
+		
 	}
 }

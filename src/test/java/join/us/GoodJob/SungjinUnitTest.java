@@ -26,15 +26,7 @@ public class SungjinUnitTest {
 	CompanyMapper companyMapper;
 	@Test
 	public void test() {
-		String question="하이엽";
-		String jobPostingNum="1002";
-		String normalId="qqqq";
-		QuestionAnswerVO qvo=new QuestionAnswerVO();
-		//qvo.setQuestion(question);
-		qvo.setNormalId(normalId);
-		//qvo.setJobPostingNum(jobPostingNum);
-		//System.out.println(normalMapper.registerQuestion(qvo));
-		System.out.println(normalMapper.getMyQuestionList(qvo));
-		
+		String normalId="hsj";
+		System.out.println(normalMapper.getMyInterviewList(normalId));
 	}
 }

@@ -12,7 +12,9 @@ import join.us.GoodJob.model.mapper.CompanyMapper;
 import join.us.GoodJob.model.mapper.ManagerMapper;
 import join.us.GoodJob.model.mapper.MemberMapper;
 import join.us.GoodJob.model.mapper.NormalMapper;
+import join.us.GoodJob.model.vo.CompanyMemberVO;
 import join.us.GoodJob.model.vo.DevCatVO;
+import join.us.GoodJob.model.vo.JobPostingVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring-model.xml"})
 public class MiriUnitTest {
@@ -27,9 +29,10 @@ public class MiriUnitTest {
 	
 	@Test
 	public void test() {
-		List<DevCatVO> dcvoList = memberMapper.getDevCatVOListByNormalId("miri");
-		for (DevCatVO vo : dcvoList) {
+		CompanyMemberVO cmvo = companyMapper.myPageCompanyMember("NHNuser");
+		System.out.println(cmvo.getPicturePath());
+		/*for (JobPostingVO vo : jpvoList) {
 			System.out.println(vo);
-		}
+		}*/
 	}
 }
