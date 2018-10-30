@@ -25,7 +25,7 @@
 								</div>
 						</div>
 						<div class="box-bottom">
-							<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">Learn more</a>
+							<a href="user-detailCompanyInfo.do?companyId=${cmvo.companyId}">기업정보 자세히보기</a>
 						</div>
 					</div>
 				</div>
