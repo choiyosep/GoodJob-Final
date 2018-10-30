@@ -224,7 +224,7 @@ create sequence qa_num_seq start with 701;
 
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'qqqq', 1001, '수습기간이 따로 있나요?', '3개월의 수습기간을 거치게 됩니다.');
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'qqqq', 1001, '정확한 채용 인원이 몇 명인가요?', '5명입니다.');
-insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'miri', 1001, '중식은 어떻게 지원되나요?', '중식은 따로 지원되지 않습니다.');
+insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'miri', 1003, '2중식은 어떻게 지원되나요?', null);
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'miri', 1002, '가장 자랑할만한 복리후생은 어떻게 되나요?', '탄력 근무제로 출퇴근 시간의 조정이 가능합니다.');
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'qqqq', 1002, '졸업 예정자도 지원 가능한가요?', '네. 가능합니다.');
 
