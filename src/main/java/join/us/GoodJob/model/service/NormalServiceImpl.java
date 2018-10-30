@@ -235,5 +235,11 @@ public class NormalServiceImpl implements NormalService {
 	@Override
 	public List<InterviewVO> getMyInterviewList(String normalId) {
 		return normalMapper.getMyInterviewList(normalId);
+	}
+
+	@Override
+	public List<String> checkContent(String interviewNum) {
+		System.out.println(interviewNum);
+		return normalMapper.checkContent(interviewNum);
 	}			
 }

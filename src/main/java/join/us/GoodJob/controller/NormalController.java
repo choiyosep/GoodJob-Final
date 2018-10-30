@@ -478,4 +478,17 @@ public class NormalController {
 		return "normal/normal_my_interviewList.tiles2";
 		
 	}
+	/**
+	 * 구직자가 면접신청한 구인공고 리스트에서 내용 확인
+	 */
+	@RequestMapping("checkContent.do")
+	@ResponseBody
+	public List<String> checkContent(String interviewNum , Model model){
+		System.out.println(interviewNum);
+		List<String> contentList = normalService.checkContent(interviewNum);
+		System.out.println(contentList);
+		model.addAttribute("contentList", contentList);
+		return contentList;
+		
+	}
 }

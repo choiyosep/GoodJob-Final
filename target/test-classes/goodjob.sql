@@ -748,4 +748,13 @@ and cm.company_id = m.id
 and nm.normal_id='hsj'
 order by i.interview_num desc
 
-
+select 
+		job_posting_num, title, company_id, career_status, content, keyword_name ,picture_path
+		from(
+		select row_number() over(order by j.job_posting_num) as rnum, k.job_posting_num, j.title, j.company_id, j.career_status, j.content, k.keyword_name , cm.picture_path 
+		from job_posting j, job_posting_keyword k , company_member cm
+		where j.job_posting_num = k.job_posting_num 
+		and j.company_id = cm.company_id
+		and k.keyword_name like '%워라밸%'
+		)
+		where rnum between 1 and 3	
