@@ -99,10 +99,10 @@ public interface NormalMapper {
 	List<PortfolioVO> getNormalMember(PagingBean pagingBean);
 	String getPicturePath(String normalId);
 	List<String> getPortfolioFileNameListById(String normalId);
-	// 구직자가 면접신청한 구인공고
+	// 구직자가 면접신청한 구인공고리스트
 	List<InterviewVO> getMyInterviewList(String normalId);
-	//나의 질문 수정
-	void updateMyQuestion(QuestionAnswerVO questionAnswerVO);
+	// 구직자가 면접신청한 구인공고리스트에서 컨텐츠 확인하기
+	List<String> checkContent(String interviewNum);
 	
 	//181030 MIRI Q&A 질문&답변 삭제
 	void deleteQAToQuestion(String QANum);

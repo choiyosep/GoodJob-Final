@@ -228,11 +228,6 @@ public class NormalServiceImpl implements NormalService {
 		}
 
 	@Override
-	public void updateMyQuestion(QuestionAnswerVO questionAnswerVO) {
-		normalMapper.updateMyQuestion(questionAnswerVO);
-	}
-
-	@Override
 	public List<InterviewVO> getMyInterviewList(String normalId) {
 		return normalMapper.getMyInterviewList(normalId);
 	}
@@ -245,5 +240,11 @@ public class NormalServiceImpl implements NormalService {
 	@Override
 	public void updateQAToQuestion(QuestionAnswerVO qavo) {
 		normalMapper.updateQAToQuestion(qavo);
+	}
+	
+	@Override
+	public List<String> checkContent(String interviewNum) {
+		System.out.println(interviewNum);
+		return normalMapper.checkContent(interviewNum);
 	}			
 }

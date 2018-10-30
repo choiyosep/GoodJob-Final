@@ -270,16 +270,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select file_path from portfolio_file where normal_id = #{value}
 	 </select>
 	 
-	 <update id="updateMyQuestion" parameterType="questionAnswerVO">
-	 	update QUESTION_ANSWER set question=#{question} where normal_id=#{normalId} and qa_num=#{qaNum}
-	 </update>
-	 
 	 <!-- 구직자가 면접신청한 구인공고 리스트 -->
 	 <resultMap type="interviewVO" id="interviewVORM">
 	 	<result column="name" property="companyMemberVO.name"/>
 	 </resultMap>
 	 <select id="getMyInterviewList" parameterType="string" resultMap="interviewVORM">
-		select i.interview_num,i.job_posting_num,i.title,i.content,nm.normal_id,m.name
+		select distinct i.job_posting_num,i.interview_num,i.title,i.content,nm.normal_id,m.name
 		from interview i , normal_member nm , job_posting jp , company_member cm , member m
 		where i.normal_id = nm.normal_id 
 		and i.job_posting_num = jp.job_posting_num
@@ -292,7 +288,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <delete id="deleteQAToQuestion" parameterType="string">
 	 	delete from question_answer where qa_num=#{value}
 	 </delete>
+	 
 	 <update id="updateQAToQuestion" parameterType="questionAnswerVO">
 	 	update question_answer set question=#{question} where qa_num=#{qaNum}
 	 </update>
+	 
+	 <!-- 구직자 면접신청한 구인공고 리스트 에서 내용 확인하기 -->
+	 <select id="checkContent" resultType="string" parameterType="string">
+	 	select content 
+	 	from interview
+	 	where interview_num=#{value}
+	 </select>
 </mapper>
