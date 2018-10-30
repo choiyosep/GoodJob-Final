@@ -326,10 +326,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 제목으로 구인공고 검색 -->
 	<select id="findJobPostingBytitle" parameterType="map" resultMap="companyMemberVORM3" >
 		select
-		job_posting_num,title,company_id,career_status,content
+		job_posting_num,title,company_id,career_status,content,picture_path
 		from(
-		select row_number() over(order by job_posting_num) as rnum, job_posting_num ,title,company_id,career_status,content
-		from job_posting 
+		select row_number() over(order by job_posting_num) as rnum, jp.job_posting_num ,jp.title,jp.company_id,jp.career_status,jp.content,cm.picture_path
+		from job_posting jp, company_member cm
 		where title like '%'|| #{title} ||'%'
 		)
 		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}	
@@ -351,11 +351,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 키워드로 구인공고 검색 -->
 	<select id="findJobPostingByKeyword" parameterType="map" resultMap="companyMemberVORM4" >
 		select 
-		job_posting_num, title, company_id, career_status, content, keyword_name 
+		job_posting_num, title, company_id, career_status, content, keyword_name,picture_path
 		from(
-		select row_number() over(order by j.job_posting_num) as rnum, k.job_posting_num, j.title, j.company_id, j.career_status, j.content, k.keyword_name 
-		from job_posting j, job_posting_keyword k
+		select row_number() over(order by j.job_posting_num) as rnum, k.job_posting_num, j.title, j.company_id, j.career_status, j.content, k.keyword_name , cm.picture_path
+		from job_posting j, job_posting_keyword k, company_member cm
 		where j.job_posting_num = k.job_posting_num 
+		and j.company_id=cm.company_id
 		and k.keyword_name like '%'|| #{keyword} ||'%'
 		)
 		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}	

@@ -123,7 +123,20 @@
 	<h2>
 		<span>GoodJob</span> 채용 정보 검색
 	</h2>
-</div>
+	</div>
+	<br>
+	<div class=col-sm-5></div>
+	<div class=col-sm-5 style="text-align: right">
+	<form action="user-findJobPostingByTitle.do" >
+		<input type="radio" name="searchType" value="keyword" required="required">키워드 
+		<input type="radio" name="searchType" value="title" required="required">제목
+		<input type="text" name="searchText" required="required" style="width:350px;">
+		<input type="submit" id="searchBtn" value="검색하기">
+	</form>
+	</div>
+	<div class=col-sm-2></div>
+
+<br><br>
 <div class="container"
 	style="padding-left: 120px; padding-right: 120px;">
 	<form action="user-company_detail_search_list.do" method="get"
@@ -203,11 +216,5 @@
 	</div>
 	</form>
 	
-	<form action="user-findJobPostingByTitle.do" >
-		<input type="radio" name="searchType" value="keyword" required="required">키워드 
-		<input type="radio" name="searchType" value="title" required="required">제목
-		<input type="text" name="searchText" required="required">
-		<input type="submit" id="searchBtn" value="검색하기">
-	</form>
 
 </div>

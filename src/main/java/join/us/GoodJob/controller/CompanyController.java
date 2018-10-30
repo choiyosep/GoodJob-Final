@@ -342,7 +342,7 @@ public class CompanyController {
 	 * @param jobPostingNum
 	 * @return
 	 */
-	@PostMapping("getJobPostingQAList.do")
+	@RequestMapping("getJobPostingQAList.do")
 	public String getJobPostingQAList(String jobPostingNum, Model model) {
 		List<QuestionAnswerVO> qavo = companyService.getJobPostingQAList(jobPostingNum);
 		model.addAttribute("qavo", qavo);
@@ -469,8 +469,9 @@ public class CompanyController {
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if (mvo != null) {
 			CompanyMemberVO cmvo = companyService.myPageCompanyMember(mvo.getId());
+			List<JobPostingVO> jpvoLit = companyService.companyJobPostingList(companyId);
 			model.addAttribute("cmvo", cmvo);
-			model.addAttribute("jobPostingList", companyService.companyJobPostingList(companyId));
+			model.addAttribute("jobPostingList", jpvoLit);
 		}
 		return "company/company_my_jobposting.tiles2";
 	}
