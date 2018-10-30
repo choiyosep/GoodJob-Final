@@ -72,5 +72,4 @@
 
 	</c:otherwise>
 </c:choose>
-${jobPostingList}
 
