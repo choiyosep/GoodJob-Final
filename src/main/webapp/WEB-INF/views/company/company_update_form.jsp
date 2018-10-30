@@ -251,7 +251,7 @@ button:hover {
 			아이디  <br> <input type="text" value="${requestScope.cmvo.id }" name="id" readonly="readonly" ><br><br>
 			비밀번호  <input type="password" id="password" name="password" required="required" ><br>
 			<span id="passwordView"> </span><br><br>
-			비밀번호 확인  <input type="password" id="checkPass" name="checkPass" required="required" >
+			비밀번호 확인  <input type="password" id="checkPass" name="checkPass" required="required" ><br>
 			<span id="checkPassView"> </span><br><br>
 			이메일 주소  <input type="text" value="${requestScope.cmvo.email }" name="email" required="required"><br><br>
 			기업 명  <input type="text" value="${requestScope.cmvo.name }" name="name" readonly="readonly"><br><br>

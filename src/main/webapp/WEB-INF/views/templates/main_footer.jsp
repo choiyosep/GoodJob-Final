@@ -23,7 +23,7 @@
 						</div>
 						</div>
 						<div class="box-bottom">
-							<a href="normalDetailPortfolio.do?normalId=${pvo.normalId}">Learn more</a>
+							<a href="normalDetailPortfolio.do?normalId=${pvo.normalId}">이력서 보기</a>
 						</div>
 					</div>
 				</div>
