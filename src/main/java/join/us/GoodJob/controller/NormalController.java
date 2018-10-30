@@ -278,7 +278,7 @@ public class NormalController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("user-updatePortfolioForm.do")
+	@RequestMapping("updatePortfolioForm.do")
 	public String updatePortfolioForm(String id, HttpSession session, Model model) {
 		// 내가 가진 포트폴리오 데이터 리스트
 		model.addAttribute("devCatList", memberService.getDevCatVOListByNormalId(id));

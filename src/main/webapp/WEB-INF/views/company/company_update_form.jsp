@@ -189,7 +189,7 @@ button:hover {
             pictureDelete(deletePictureName); //삭제
          }      
          //사진 업로드   
-         var form = $("#companyRegisterForm")[0];   
+         var form = $("#companyUpdateForm")[0];   
          var formData = new FormData(form);
          formData.append('member', "company");
          $.ajax({
