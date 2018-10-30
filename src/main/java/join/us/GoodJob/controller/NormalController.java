@@ -468,4 +468,14 @@ public class NormalController {
 		}
 		return "normal/normal_myinfo.tiles2";
 	}
+	/**
+	 * 구직자가 면접신청한 구인공고 리스트
+	 */
+	@RequestMapping("getMyInterviewList.do")
+	public String getMyInterviewList(String normalId,Model model) {
+		
+		model.addAttribute("ivList",normalService.getMyInterviewList(normalId));
+		return "normal/normal_my_interviewList.tiles2";
+		
+	}
 }

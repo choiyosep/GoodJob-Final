@@ -6,7 +6,7 @@
 
 <div class="container mt-40">
 	<div class="row mt-30">
-		<c:forEach items="${${requestScope.postListVO.jobPostingList}}" var="cmvo">
+		<c:forEach items="${requestScope.postListVO.jobPostingList}" var="cmvo">
 			<div class="col-md-4 col-sm-6">
 				<div class="box12">
 					<img src="http://bestjquery.com/tutorial/hover-effect/demo133/images/img-1.jpg">

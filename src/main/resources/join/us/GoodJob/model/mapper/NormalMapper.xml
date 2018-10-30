@@ -274,4 +274,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <update id="updateMyQuestion" parameterType="questionAnswerVO">
 	 	update QUESTION_ANSWER set question=#{question} where normal_id=#{normalId} and qa_num=#{qaNum}
 	 </update>
+	 
+	 <!-- 구직자가 면접신청한 구인공고 리스트 -->
+	 <resultMap type="interviewVO" id="interviewVORM">
+	 	<result column="name" property="companyMemberVO.name"/>
+	 </resultMap>
+	 <select id="getMyInterviewList" parameterType="string" resultMap="interviewVORM">
+		select i.interview_num,i.job_posting_num,i.title,i.content,nm.normal_id,m.name
+		from interview i , normal_member nm , job_posting jp , company_member cm , member m
+		where i.normal_id = nm.normal_id 
+		and i.job_posting_num = jp.job_posting_num
+		and jp.company_id = cm.company_id
+		and cm.company_id = m.id
+		and nm.normal_id=#{normalId}
+		order by i.interview_num desc 
+	 </select>
+	 
 </mapper>
