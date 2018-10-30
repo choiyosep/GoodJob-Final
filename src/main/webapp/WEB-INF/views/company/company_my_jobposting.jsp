@@ -6,18 +6,21 @@
 
 <div class="container mt-40">
 	<div class="row mt-30">
-		<c:forEach items="${${requestScope.postListVO.jobPostingList}}" var="cmvo">
+		<c:forEach items="${requestScope.jobPostingList}" var="jpvo">
 			<div class="col-md-4 col-sm-6">
-				<div class="box12">
-					<img src="http://bestjquery.com/tutorial/hover-effect/demo133/images/img-1.jpg">
+				<div class="box14">
+					<img src="/GoodJob/resources/upload/companyLogo/${requestScope.cmvo.picturePath }" alt="">
 					<div class="box-content">
-						<h3 class="title">${cmvo.jobPostingVO.title}</h3>
-						<ul class="icon">
-							<li><a href="#">상세보기</a></li>
-							<li><a href="#">수정/삭제</a></li>
-							<li><a href="#">면접신청자</a></li>
-							<li><a href="#">질의응답</a></li>
-						</ul>
+						<h3 class="title">${jpvo.title}</h3><br>
+						<c:set value="${jpvo.jobPostingNum }" var="jobPostingNum"/>
+						<c:if test="${sessionScope.mvo.id == jpvo.companyId}">
+                        <ul class="icon">
+							<li><a href="job_posting_detail.do?jobPostingNum=${jobPostingNum }">상세보기</a> &nbsp;&nbsp;&nbsp;
+							<a href="updateJobPostingForm.do?jobPostingNum=${jobPostingNum }">수정/삭제</a></li><br>
+							<li><a href="getJobPostingInterviewerList.do?jobPostingNum=${jobPostingNum }">면접신청자</a>&nbsp;&nbsp;&nbsp;
+							<a href="getJobPostingQAList.do?jobPostingNum=${jobPostingNum }">질의응답</a></li>
+                        </ul>
+                        </c:if>
 					</div>
 				</div>
 			</div>

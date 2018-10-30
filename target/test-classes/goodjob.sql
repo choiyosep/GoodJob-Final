@@ -34,7 +34,7 @@ drop sequence qa_num_seq;
 drop sequence portfolio_file_seq;
 drop sequence interview_num_seq;
 
-		
+update company_member set picture_path='로고로고.jpg' where company_id='NHNuser'
 
 
 -- 회원 ( ERD에서 기업/개인 구분하기위해 type 컬럼을 뒀으나 명령어라 사용불가함 따라서 member_type으로 변경
