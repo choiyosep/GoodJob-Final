@@ -264,7 +264,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 </select>
 	 
 	 <select id="getPicturePath" resultType="string">
-		select picture_path from portfolio where normal_id=#{value} and and qa_num=#{qa_num}
+		select picture_path from portfolio where normal_id=#{value} and qa_num=#{qa_num}
 	 </select>
 	 
 	 <select id="getPortfolioFileNameListById" resultType="string">
