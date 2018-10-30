@@ -230,5 +230,10 @@ public class NormalServiceImpl implements NormalService {
 	@Override
 	public void updateMyQuestion(QuestionAnswerVO questionAnswerVO) {
 		normalMapper.updateMyQuestion(questionAnswerVO);
+	}
+
+	@Override
+	public List<InterviewVO> getMyInterviewList(String normalId) {
+		return normalMapper.getMyInterviewList(normalId);
 	}			
 }

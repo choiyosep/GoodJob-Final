@@ -278,7 +278,7 @@ public class NormalController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("user-updatePortfolioForm.do")
+	@RequestMapping("updatePortfolioForm.do")
 	public String updatePortfolioForm(String id, HttpSession session, Model model) {
 		// 내가 가진 포트폴리오 데이터 리스트
 		model.addAttribute("devCatList", memberService.getDevCatVOListByNormalId(id));
@@ -399,41 +399,11 @@ public class NormalController {
 
 		return "member/portfolio_search_list.tiles2";
 	}
-	// 면접신청하기
-	//이거 뭐가 맞는건지 몰라서 주석 (동규)
-/*<<<<<<< HEAD
-		@RequestMapping("submitInterviewForm.do")
-		public String submitInterviewForm(InterviewVO interviewVO) {
-			normalService.interviewApply(interviewVO);
-			return "redirect:home.do";
-		}
-		*//**
+		/**
 		 * 2018-10-19 성진 구인공고 조회 후 면접신청 폼으로 이동하기
 		 * 
 		 * @return
-		 *//*
-		@RequestMapping("goInterviewApply.do")
-		public String goInterviewApply(Model model,String jobPostingNum) {
-			System.out.println(companyMapper.findCompanyIdByNum(jobPostingNum));
-			model.addAttribute("jobPosting", companyMapper.findCompanyIdByNum(jobPostingNum));
-			return "normal/normal_go_interview_apply.tiles2";
-		}
-		//질의응답 질문 등록(구인공고 상세보기에서)
-		@RequestMapping("registerQuestion.do")
-		@ResponseBody
-		public List<QuestionAnswerVO> registerQuestion(Model model,QuestionAnswerVO qavo,HttpSession session) {
-			// 질의응답 등록
-			MemberVO mvo=(MemberVO) session.getAttribute("mvo");
-			qavo.setNormalId(mvo.getId());
-			normalService.registerQuestion(qavo);
-			// 질의응답 등록 후 바로 조회
-			qavo.setNormalId(mvo.getId());
-			List<QuestionAnswerVO> qvo=normalService.getMyQuestionList(qavo);
-			return qvo;
-		}
-		*/
-		//질의응답 나의질문리스트 
-
+		 */
 	@RequestMapping("submitInterviewForm.do")
 	public String submitInterviewForm(InterviewVO interviewVO) {
 		normalService.interviewApply(interviewVO);
@@ -465,8 +435,7 @@ public class NormalController {
 		return qvo;
 	}
 	
-/*		//질의응답 나의질문리스트 
->>>>>>> branch 'master' of https://github.com/choiyosep/GoodJob-Final.git
+	
 		@RequestMapping("getMyQuestionList.do")
 		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
@@ -477,17 +446,7 @@ public class NormalController {
 	
 			return "normal/normal_my_question.tiles2";
 			
-<<<<<<< HEAD
 		}
-		
-		//파일 다운로드 컨트롤러
-		@RequestMapping("fileDownload.do")
-		public String fileDownload(String fileName){		
-			System.out.println(fileName+" download!");
-			return "downloadView";
-=======
-		}*/
-	
 	//파일 다운로드 컨트롤러
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){		
@@ -508,5 +467,15 @@ public class NormalController {
 			model.addAttribute("nmvo", nmvo);
 		}
 		return "normal/normal_myinfo.tiles2";
+	}
+	/**
+	 * 구직자가 면접신청한 구인공고 리스트
+	 */
+	@RequestMapping("getMyInterviewList.do")
+	public String getMyInterviewList(String normalId,Model model) {
+		
+		model.addAttribute("ivList",normalService.getMyInterviewList(normalId));
+		return "normal/normal_my_interviewList.tiles2";
+		
 	}
 }

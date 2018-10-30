@@ -15,19 +15,36 @@
 				<c:otherwise>
 					<c:forEach items="${jobPostingList}" var="cmvo">
 						<div class="col-lg-3">
-							<div class="box">
+							<%-- <div class="box">
 								<div class="box-gray aligncenter">
 									<div class="icon">
 									<h4><a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}">${cmvo.jobPostingVO.title}</a></h4>
 										<a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}"><img height="100px" width="100px" src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}"></a>
 									</div>
-									<p></p>
+									<p>${cmvo.jobPostingVO.content }</p>
 			
 								</div>
 								<div class="box-bottom">
 									<a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}">채용정보 확인하기</a>
 								</div>
-							</div>
+							</div>	 --%>						
+							
+							<div class="thumbnail">
+						      <a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}"><img src="/GoodJob/resources/upload/companyLogo/${cmvo.picturePath}" ></a>
+						      <div class="caption" style="height: 200px; width: auto;
+						    border-bottom-width: 1px;">
+						    	<div style="height: 60px; width: auto">
+						        <h4><a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}">${cmvo.jobPostingVO.title}</a></h4>
+						        </div>
+						        <div style="height: 70px; width: auto">
+						        <p>${cmvo.jobPostingVO.content }</p>
+						        </div>
+						       <div style="height: 30px; width: auto">
+						        <p align="center"><a href="job_posting_detail.do?jobPostingNum=${cmvo.jobPostingVO.jobPostingNum}" class="btn btn-primary">채용정보 확인하기</a></p>
+						        </div>
+						      </div>
+						    </div>
+							
 						</div>
 					</c:forEach>
 				</c:otherwise>				

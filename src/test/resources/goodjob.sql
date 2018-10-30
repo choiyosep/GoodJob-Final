@@ -208,7 +208,7 @@ insert into interview(interview_num, normal_id ,job_posting_num, title, content)
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'yosep', 1001,'꼭 가고싶습니다~!', '전화번호로 연락주세요~');
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1001,'항시 대기중', '불러만 주세요');
 
-select * from interview
+select * from interview;
 
 -- 질의응답과 구인공고게시글/아이디 복합키 설정
 create table question_answer(
@@ -738,4 +738,14 @@ from (
 	) a
 where a.rnum between 1 and 3
 order by a.interview_num desc
+
+select i.interview_num,i.job_posting_num,i.title,i.content,nm.normal_id,m.name
+from interview i , normal_member nm , job_posting jp , company_member cm , member m
+where i.normal_id = nm.normal_id 
+and i.job_posting_num = jp.job_posting_num
+and jp.company_id = cm.company_id
+and cm.company_id = m.id
+and nm.normal_id='hsj'
+order by i.interview_num desc
+
 
