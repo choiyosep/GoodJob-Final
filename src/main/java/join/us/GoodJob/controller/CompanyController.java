@@ -161,6 +161,7 @@ public class CompanyController {
 		//jobPostingVO.setJobPostingNum(jobPostingVO.getJobPostingNum());
 		System.out.println(jobPostingVO);
 		companyService.registerJobPosting(jobPostingVO,true);
+		companyService.insertKeyword(jobPostingVO);
 		return "redirect:job_posting_detail.do?jobPostingNum="+jobPostingVO.getJobPostingNum();
 	}
 
