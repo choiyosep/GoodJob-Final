@@ -1,7 +1,9 @@
 package join.us.GoodJob.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import join.us.GoodJob.model.mapper.CompanyMapper;
 import join.us.GoodJob.model.service.CompanyService;
-//github.com/Munchurwoo/goodjob
 import join.us.GoodJob.model.service.MemberService;
 import join.us.GoodJob.model.service.NormalService;
+import join.us.GoodJob.model.vo.CompanyMemberVO;
 import join.us.GoodJob.model.vo.DevCatVO;
 import join.us.GoodJob.model.vo.InterviewVO;
 import join.us.GoodJob.model.vo.MemberVO;
@@ -407,7 +409,7 @@ public class NormalController {
 	@RequestMapping("submitInterviewForm.do")
 	public String submitInterviewForm(InterviewVO interviewVO) {
 		normalService.interviewApply(interviewVO);
-		return "redirect:home.do";
+		return "redirect:getMyInterviewList.do?normalId="+interviewVO.getNormalId();
 	}
 	/**
 	 * 2018-10-19 성진 구인공고 조회 후 면접신청 폼으로 이동하기
@@ -436,30 +438,32 @@ public class NormalController {
 	}
 	
 
-	
-		@RequestMapping("getMyQuestionList.do")
-		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
-			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			qaVO.setJobPostingNum(mvo.getId());
-			qaVO.setNormalId(mvo.getId());
+		@ResponseBody
+		@RequestMapping("MyQuestionList.do")
+		public String myQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
+			String result=null;			
 			List<QuestionAnswerVO> qavo=normalService.getMyQuestionList(qaVO);
 			model.addAttribute("qavo", qavo);
-	
-			return "normal/normal_my_question.tiles2";
+			if(qavo.isEmpty()) {
+				result="asd";
+			}else {
+				result="dsa";
+			}
+			return result;
 			
 		}
-	//개인회원질문수정 동규 
-	/*	@ResponseBody
-		@RequestMapping("updateMyQuestion.do")
-		public QuestionAnswerVO updateMyQuestion(QuestionAnswerVO qavo,HttpSession session,Model model) {						
-			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			qavo.setNormalId(mvo.getId());
-			normalService.updateMyQuestion(qavo);
-			model.addAttribute("qavo", qavo);
-			return qavo;
-			
-		}
-*/
+		@RequestMapping("getMyQuestionList.do")
+	      public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {         
+	         MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	         qaVO.setJobPostingNum(mvo.getId());
+	         qaVO.setNormalId(mvo.getId());
+	         List<QuestionAnswerVO> qavo=normalService.getMyQuestionList(qaVO);
+	         model.addAttribute("qavo", qavo);
+	   
+	         return "normal/normal_my_question.tiles2";
+	         
+	      }
+		
 	//파일 다운로드 컨트롤러
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){		
@@ -486,8 +490,19 @@ public class NormalController {
 	 */
 	@RequestMapping("getMyInterviewList.do")
 	public String getMyInterviewList(String normalId,Model model) {
-		
-		model.addAttribute("ivList",normalService.getMyInterviewList(normalId));
+		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
+		List<InterviewVO> ivList = normalService.getMyInterviewList(normalId);
+		for (InterviewVO ivvo : ivList) {
+			String jobPostingNum = ivvo.getJobPostingNum();
+			CompanyMemberVO cmvo = companyService.jobPostingDetail(jobPostingNum);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("companyName", cmvo.getName());
+			map.put("postingTitle", cmvo.getJobPostingVO().getTitle());
+			map.put("interviewTitle", ivvo.getTitle());
+			map.put("interviewContent", ivvo.getContent());
+			mapList.add(map);
+		}
+		model.addAttribute("ivList",mapList);
 		return "normal/normal_my_interviewList.tiles2";
 		
 	}

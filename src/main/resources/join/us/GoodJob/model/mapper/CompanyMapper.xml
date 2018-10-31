@@ -378,6 +378,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCompanyLogoNameByCompanyId" resultType="string">
 		select picture_path from company_member where company_id=#{value}
 	</select>
+	
+	<!-- 키워드 등록  -->
+	<insert id="insertKeyword" parameterType="jobPostingVO">
+		insert into job_posting_keyword(job_posting_num , keyword_name)
+		values (#{jobPostingNum},#{keywordName})
+	</insert>
 </mapper> 		
  
 
