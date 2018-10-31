@@ -171,8 +171,8 @@ public class NormalServiceImpl implements NormalService {
 		}
 	// 구직자가 구인공고에 등록한 QNA 조회하기
 	@Override
-	public List<QuestionAnswerVO> getMyQuestionList(QuestionAnswerVO questionAnswerVO) {
-		return normalMapper.getMyQuestionList(questionAnswerVO);
+	public List<QuestionAnswerVO> getMyQuestionList(QuestionAnswerVO qavo) {
+		return normalMapper.getMyQuestionList(qavo);
 	}
 
 	@Override
@@ -228,12 +228,23 @@ public class NormalServiceImpl implements NormalService {
 		}
 
 	@Override
-	public void updateMyQuestion(QuestionAnswerVO questionAnswerVO) {
-		normalMapper.updateMyQuestion(questionAnswerVO);
+	public List<InterviewVO> getMyInterviewList(String normalId) {
+		return normalMapper.getMyInterviewList(normalId);
 	}
 
 	@Override
-	public List<InterviewVO> getMyInterviewList(String normalId) {
-		return normalMapper.getMyInterviewList(normalId);
+	public void deleteQAToQuestion(String QANum) {
+		normalMapper.deleteQAToQuestion(QANum);
+	}
+
+	@Override
+	public void updateQAToQuestion(QuestionAnswerVO qavo) {
+		normalMapper.updateQAToQuestion(qavo);
+	}
+	
+	@Override
+	public List<String> checkContent(String interviewNum) {
+		System.out.println(interviewNum);
+		return normalMapper.checkContent(interviewNum);
 	}			
 }
