@@ -4,7 +4,12 @@
 
 <!-- login_fail -->
 
-<script>
-	alert("로그인이 실패했습니다! 다시 로그인하세요");
+<script type="text/javascript">
+	if(${sessionScope.mvo.memberType == "2"}) {
+		alert("로그인 실패! 아직 관리자에게 승인받지 못했습니다.");
+	} else {
+		alert("로그인에 실패했습니다! 다시 로그인하세요");
+	}
 	location.href="user-loginForm.do";
 </script>
+

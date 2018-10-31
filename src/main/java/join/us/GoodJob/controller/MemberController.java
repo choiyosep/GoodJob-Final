@@ -31,11 +31,11 @@ public class MemberController {
 	@RequestMapping("user-login.do")
 	public String login(MemberVO memberVO, HttpSession session) {
 		MemberVO mvo = memberService.loginMember(memberVO);
-		if(mvo!=null) { //로그인 성공
-			session.setAttribute("mvo", mvo);
+		session.setAttribute("mvo", mvo);
+		if(mvo == null || mvo.getMemberType().equals("2")) { //로그인 실패
+			return	"member/login_fail.tiles2";
+		} else { //로그인 성공
 			return "redirect:home.do";
-		}else { //로그인 실패
-			return 	"member/login_fail";
 		}
 	}	
 	
