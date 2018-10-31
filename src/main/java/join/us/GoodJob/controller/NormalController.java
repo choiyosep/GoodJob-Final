@@ -379,6 +379,7 @@ public class NormalController {
 	 */
 	@RequestMapping("user-portfolioSearchList.do")
 	public String portfolioSearchList(PortfolioVO portfolioVO, Model model) {
+		
 		// 인재 상세검색 결과 String normal_id 로 받기
 		List<String> normalId = normalService.portfolioSearchList(portfolioVO);
 		List<List<DevCatVO>> devCatList = new ArrayList<List<DevCatVO>>();
@@ -502,6 +503,8 @@ public class NormalController {
 			map.put("postingTitle", cmvo.getJobPostingVO().getTitle());
 			map.put("interviewTitle", ivvo.getTitle());
 			map.put("interviewContent", ivvo.getContent());
+			map.put("jobPostingNum", ivvo.getJobPostingNum());
+			map.put("interviewNum", ivvo.getInterviewNum());
 			mapList.add(map);
 		}
 		model.addAttribute("ivList",mapList);

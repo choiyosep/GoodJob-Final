@@ -87,6 +87,7 @@ public interface CompanyService {
 
 	void deleteCompanyLogo(String companyLogoName);
 
-	void insertKeyword(JobPostingVO jobPostingVO);
+
+	List<String> getMyKeyword(String jobPostingNum);
 
 }
