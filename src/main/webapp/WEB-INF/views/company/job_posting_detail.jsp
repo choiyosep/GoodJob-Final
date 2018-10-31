@@ -162,11 +162,8 @@ $(document).ready(function(){
 		</c:choose>
 <th>
 	</tr>
-		
 		<tr><td colspan="2" id="detail">
 		<c:forEach items="${qaList}" var="qaList">질문 : ${qaList.question }<br>답 : ${qaList.answer }<br><br></c:forEach></td></tr>
-		
-
 	</tbody>
 </table>
 </div>
@@ -179,7 +176,7 @@ $(document).ready(function(){
 	</form>
 	</c:when>
 	<c:otherwise>
-	<c:if test="${sessionScope.mvo.id==jpvo.companyId}">
+	<c:if test="${sessionScope.mvo.id}==${jpvo.companyId}">
 	<form action="updateJobPostingForm.do">
 	<input type="hidden" name="companyId" value="${jpvo.companyId}">
 	<input type="hidden" name="jobPostingNum" value="${jpvo.jobPostingVO.jobPostingNum}">
@@ -195,3 +192,4 @@ $(document).ready(function(){
 	</c:otherwise>
 </c:choose>
 <br>
+

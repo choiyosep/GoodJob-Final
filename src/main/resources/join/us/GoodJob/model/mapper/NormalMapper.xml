@@ -261,7 +261,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	)where rnum between #{startRowNumber} and #{endRowNumber}
 	 	
 	 </select>
-	 
 	 <select id="getPicturePath" resultType="string">
 		select picture_path from portfolio where normal_id=#{value}
 	 </select>

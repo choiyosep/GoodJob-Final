@@ -435,16 +435,31 @@ public class NormalController {
 		return qvo;
 	}
 	
-	@RequestMapping("getMyQuestionList.do")
-	public String getMyQuestionList(Model model,QuestionAnswerVO qavo,HttpSession session) {
-		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-		qavo.setNormalId(mvo.getId());
-		List<QuestionAnswerVO> qavoList = normalService.getMyQuestionList(qavo);
-		model.addAttribute("qavoList", qavoList);
 
-		return "normal/normal_my_question.tiles2";
-		
-	}
+	
+		@RequestMapping("getMyQuestionList.do")
+		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			qaVO.setJobPostingNum(mvo.getId());
+			qaVO.setNormalId(mvo.getId());
+			List<QuestionAnswerVO> qavo=normalService.getMyQuestionList(qaVO);
+			model.addAttribute("qavo", qavo);
+	
+			return "normal/normal_my_question.tiles2";
+			
+		}
+	//개인회원질문수정 동규 
+	/*	@ResponseBody
+		@RequestMapping("updateMyQuestion.do")
+		public QuestionAnswerVO updateMyQuestion(QuestionAnswerVO qavo,HttpSession session,Model model) {						
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			qavo.setNormalId(mvo.getId());
+			normalService.updateMyQuestion(qavo);
+			model.addAttribute("qavo", qavo);
+			return qavo;
+			
+		}
+*/
 	//파일 다운로드 컨트롤러
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){		
