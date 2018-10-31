@@ -246,11 +246,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	 <select id="getMyQuestionList" resultType="questionAnswerVO" parameterType="string">
-		select qa.question,qa.answer,jm.name,jm.title,qa.normal_id,qa.job_posting_num
+		select qa.qa_num,qa.question,qa.answer,jm.name,jm.title,qa.normal_id,qa.job_posting_num
 		from (select jp.job_posting_num,m.name,jp.title from job_posting jp,member m where jp.company_id=m.id) jm, question_answer qa
 		where qa.job_posting_num=jm.job_posting_num
 		and qa.normal_id=#{normalId}
-		
 	</select>
 	
 	 <select id="getNormalMember" resultType="portfolioVO" parameterType="pagingBean">
@@ -262,7 +261,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	)where rnum between #{startRowNumber} and #{endRowNumber}
 	 	
 	 </select>
-	 
 	 <select id="getPicturePath" resultType="string">
 		select picture_path from portfolio where normal_id=#{value}
 	 </select>
@@ -270,10 +268,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <select id="getPortfolioFileNameListById" resultType="string">
 		select file_path from portfolio_file where normal_id = #{value}
 	 </select>
-	 
-	 <update id="updateMyQuestion" parameterType="questionAnswerVO">
-	 	update QUESTION_ANSWER set question=#{question} where normal_id=#{normalId} and qa_num=#{qaNum}
-	 </update>
 	 
 	 <!-- 구직자가 면접신청한 구인공고 리스트 -->
 	 <resultMap type="interviewVO" id="interviewVORM">
@@ -289,6 +283,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and nm.normal_id=#{normalId}
 		order by i.interview_num desc 
 	 </select>
+	 
+	 <delete id="deleteQAToQuestion" parameterType="string">
+	 	delete from question_answer where qa_num=#{value}
+	 </delete>
+	 
+	 <update id="updateQAToQuestion" parameterType="questionAnswerVO">
+	 	update question_answer set question=#{question} where qa_num=#{qaNum}
+	 </update>
+	 
 	 <!-- 구직자 면접신청한 구인공고 리스트 에서 내용 확인하기 -->
 	 <select id="checkContent" resultType="string" parameterType="string">
 	 	select content 

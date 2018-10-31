@@ -62,10 +62,15 @@ public interface NormalService {
 	String getPicturePath(String normalId);
 	void portfolioFileDelete(String normalId);
 	
-	//나의 질문 수정
-	void updateMyQuestion(QuestionAnswerVO questionAnswerVO);
 	// 구직자가 면접신청한 구인공고 리스트
 	List<InterviewVO> getMyInterviewList(String normalId);
+	
+	//181022 MIRI Q&A 질문&답변 삭제
+	void deleteQAToQuestion(String QANum);
+	
+	//181030 MIRI Q&A 질문 수정
+	void updateQAToQuestion(QuestionAnswerVO qavo);
+
 	// 구직자가 면접신창한 구인공고 리스트에서 내용 확인
 	List<String> checkContent(String interviewNum);
 }

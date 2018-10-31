@@ -435,6 +435,7 @@ public class NormalController {
 		return qvo;
 	}
 	
+
 	
 		@RequestMapping("getMyQuestionList.do")
 		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
@@ -447,6 +448,18 @@ public class NormalController {
 			return "normal/normal_my_question.tiles2";
 			
 		}
+	//개인회원질문수정 동규 
+	/*	@ResponseBody
+		@RequestMapping("updateMyQuestion.do")
+		public QuestionAnswerVO updateMyQuestion(QuestionAnswerVO qavo,HttpSession session,Model model) {						
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			qavo.setNormalId(mvo.getId());
+			normalService.updateMyQuestion(qavo);
+			model.addAttribute("qavo", qavo);
+			return qavo;
+			
+		}
+*/
 	//파일 다운로드 컨트롤러
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){		
@@ -478,6 +491,36 @@ public class NormalController {
 		return "normal/normal_my_interviewList.tiles2";
 		
 	}
+	
+	/**
+	 * 181030 MIRI Q&A 질문&답변 삭제
+	 * @param QANum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("deleteQAToQuestion.do")
+	public QuestionAnswerVO deleteQAToQuestion(String QANum, Model model) {
+		normalService.deleteQAToQuestion(QANum);
+		QuestionAnswerVO qavo = companyService.getJobPostingQAByQANum(QANum);
+		return qavo;
+	}
+	
+	/**
+	 * 181030 MIRI Q&A 질문 수정
+	 * @param QANum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("updateQAToQuestion.do")
+	public QuestionAnswerVO updateQAToQuestion(String QANum, String question, Model model) {
+		QuestionAnswerVO qavo = companyService.getJobPostingQAByQANum(QANum);
+		qavo.setQuestion(question);
+		normalService.updateQAToQuestion(qavo);
+		qavo = companyService.getJobPostingQAByQANum(QANum);
+		model.addAttribute("qavo", qavo);
+		return qavo;
+	}
+	
 	/**
 	 * 구직자가 면접신청한 구인공고 리스트에서 내용 확인
 	 */

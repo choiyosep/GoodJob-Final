@@ -90,7 +90,7 @@ public interface NormalMapper {
 	//질의응답 질문등록
 	void registerQuestion(QuestionAnswerVO questionAnswerVO);
 	//질의응답 나의 질문 리스트
-	List<QuestionAnswerVO> getMyQuestionList(QuestionAnswerVO questionAnswerVO);
+	List<QuestionAnswerVO> getMyQuestionList(QuestionAnswerVO qavo);
 	
 	//개인회원id로 포트폴리오 파일 경로 찾기
 	List<String> getPortfolioFileList(String normalId);
@@ -103,6 +103,10 @@ public interface NormalMapper {
 	List<InterviewVO> getMyInterviewList(String normalId);
 	// 구직자가 면접신청한 구인공고리스트에서 컨텐츠 확인하기
 	List<String> checkContent(String interviewNum);
-	//나의 질문 수정
-	void updateMyQuestion(QuestionAnswerVO questionAnswerVO);
+	
+	//181030 MIRI Q&A 질문&답변 삭제
+	void deleteQAToQuestion(String QANum);
+	
+	//181030 MIRI Q&A 질문 수정
+	void updateQAToQuestion(QuestionAnswerVO qavo);
 }

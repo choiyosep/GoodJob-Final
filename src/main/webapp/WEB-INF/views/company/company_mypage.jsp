@@ -27,7 +27,7 @@ $(document).ready(function(){
 		success:function(result) {
 		 	if(result=="asd"){
 				alert("등록된 구인공고가 없습니다")
-				return false
+				return false;
 			}else{
 				location.href = "companyMyJobPosting.do?companyId="+companyId;
 			} 
