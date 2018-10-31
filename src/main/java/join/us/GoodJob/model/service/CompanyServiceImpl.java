@@ -301,4 +301,9 @@ public class CompanyServiceImpl implements CompanyService {
 		}
 		
 	}
+
+	@Override
+	public void insertKeyword(JobPostingVO jobPostingVO) {
+		companyMapper.insertKeyword(jobPostingVO);
+	}
 }

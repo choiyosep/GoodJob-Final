@@ -23,8 +23,7 @@
 						<div class="thumbnail">
 							<a
 								href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingVO.jobPostingNum}"><img
-								src="${pageContext.request.contextPath}/
-										resources/upload/companyLogo/${jobList.picturePath }"
+								src="${pageContext.request.contextPath}/resources/upload/companyLogo/${jobList.picturePath }"
 								alt="사진을 불러올 수 없습니다."></a>
 							
 							<div class="caption"
