@@ -47,10 +47,33 @@
 			});//ajax
 		});
 		
-	});
+	});//ready
+	function checkForm(){
+		if($("input[name=locCatNumList]:checked").size()==0){
+			alert("지역을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=acaCatNumList]:checked").size()==0){
+			alert("학력을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=empTypeCatNumList]:checked").size()==0){
+			alert("고용형태를 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=recruitCatNumList]:checked").size()==0){
+			alert("모집직군을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=devCatNumList]:checked").size()==0){
+			alert("개발분야를 하나 이상 선택해주세요!");
+			return false;
+		}
+	}
 </script>	
 
 <script>
+/* 키워드 인풋 추가/제거 되는 코드 */
 var arrInput = new Array(0);
   var arrInputValue = new Array(0);
  
@@ -162,7 +185,7 @@ function deleteInput() {
 		
 		<div class="col-md-12">
 		<button id="reset" type="reset"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
-		<input type="submit" value="등록하기"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
+		<input type="submit" value="등록하기" onclick="return checkForm()" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		</div>
 </form>	
 </div>
