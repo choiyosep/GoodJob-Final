@@ -500,6 +500,8 @@ public class NormalController {
 			map.put("postingTitle", cmvo.getJobPostingVO().getTitle());
 			map.put("interviewTitle", ivvo.getTitle());
 			map.put("interviewContent", ivvo.getContent());
+			map.put("jobPostingNum", ivvo.getJobPostingNum());
+			map.put("interviewNum", ivvo.getInterviewNum());
 			mapList.add(map);
 		}
 		model.addAttribute("ivList",mapList);

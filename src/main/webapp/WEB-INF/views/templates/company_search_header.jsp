@@ -95,7 +95,6 @@
 			<input type="checkbox" class = "recruit" name="recruitCatNumList" value="${recruitCat.rcNum}" >${recruitCat.rcName}  &thinsp;&thinsp;
 			<c:if test="${(i.index+1)%3==0}"><br></c:if>
 		</c:forEach>
-		<input type="hidden" name="a" value="b">	
 	<h5>개발분야</h5>
 	<div id="empTypeArea">		
 	</div>	
@@ -200,7 +199,6 @@
 				<h3 class="panel-title">개발 분야</h3>
 			</div>
 			<div class="panel-body">
-				<input type="hidden" name="a" value="b">
 				<div id="empTypeArea"></div>
 
 			</div>
