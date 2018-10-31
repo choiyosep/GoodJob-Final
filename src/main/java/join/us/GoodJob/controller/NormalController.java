@@ -447,6 +447,16 @@ public class NormalController {
 			return "normal/normal_my_question.tiles2";
 			
 		}
+		@ResponseBody
+		@RequestMapping("updateMyQuestion.do")
+		public QuestionAnswerVO updateMyQuestion(QuestionAnswerVO qavo,HttpSession session,Model model) {						
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			qavo.setNormalId(mvo.getId());
+			normalService.updateMyQuestion(qavo);
+			model.addAttribute("qavo", qavo);
+			return qavo;
+			
+		}
 	//파일 다운로드 컨트롤러
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){		
