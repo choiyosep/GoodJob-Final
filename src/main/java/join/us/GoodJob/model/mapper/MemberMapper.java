@@ -1,10 +1,13 @@
 package join.us.GoodJob.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import join.us.GoodJob.model.vo.AcaCatVO;
+import join.us.GoodJob.model.vo.CompanyMemberVO;
+import join.us.GoodJob.model.vo.CompanySearchParamVO;
 import join.us.GoodJob.model.vo.DevCatVO;
 import join.us.GoodJob.model.vo.EmpTypeCatVO;
 import join.us.GoodJob.model.vo.LocCatVO;
@@ -59,4 +62,8 @@ public interface MemberMapper {
 
 	// 포트폴리오 노말아이디로 고용형태 분류 리스트 받아오기
 	List<EmpTypeCatVO> getEmpCatVOListByNormalId(String normalId);
+	//기업 상세검색 개수받아오기(페이징)
+	int getDetailCompanyListCount(CompanySearchParamVO companySearchParamVO);
+	//기업 상세검색 리스트 받아오기
+	List<MemberVO> getDetailCompanyList(Map<String, Object> map);
 }

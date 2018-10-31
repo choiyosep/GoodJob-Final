@@ -53,7 +53,6 @@ $(document).ready(function(){
 
 });//ready
 
-	//ready
 </script>
 
 <div class="cta-text">
