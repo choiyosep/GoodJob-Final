@@ -6,6 +6,28 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
 
+<script type="text/javascript">
+	$(document).ready(function () {
+		var normalId="${requestScope.nmvo.id }";
+		$("#questionBtn").click(function(){
+			$.ajax({
+				type:"get",
+				url:"MyQuestionList.do",
+				data:"normalId="+normalId,
+				success:function(result) {
+					if(result=="asd"){
+						alert("등록된 질문이 없습니다")
+						return false;
+				}else{ 
+						location.href = "getMyQuestionList.do?normalId="+normalId;	
+					}
+				}//success
+			});//ajax
+		});//click
+	});//ready
+	
+	</script>
+
 <!-- normal_mypage -->
 <h4 class="heading">
 	<div class="cta-text">
@@ -72,7 +94,7 @@
                         <ul>
                             <li>내 질문 조회</li>
                         </ul>
-                        <a href="getMyQuestionList.do" class="read">바로가기</a>
+                        <a href="#" class="read" id="questionBtn">바로가기</a>
                     </div>
                 </div>
             </div>

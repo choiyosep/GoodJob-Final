@@ -249,28 +249,27 @@ button:hover {
 		<div class="col-md-3"></div>
 		<div class="col-md-6" style="text-align: left; font-size: 20px; font-weight: bold; " >
 			아이디  <br> <input type="text" value="${requestScope.cmvo.id }" name="id" readonly="readonly" ><br><br>
-			비밀번호  <input type="password" id="password" name="password" required="required" ><br>
+			비밀번호  <br><input type="password" id="password" name="password" required="required" ><br>
 			<span id="passwordView"> </span><br><br>
-			비밀번호 확인  <input type="password" id="checkPass" name="checkPass" required="required" ><br>
+			비밀번호 확인  <br><input type="password" id="checkPass" name="checkPass" required="required" ><br>
 			<span id="checkPassView"> </span><br><br>
-			이메일 주소  <input type="text" value="${requestScope.cmvo.email }" name="email" required="required"><br><br>
-			기업 명  <input type="text" value="${requestScope.cmvo.name }" name="name" readonly="readonly"><br><br>
-			주소  <input type="text" value="${requestScope.cmvo.address }" name="address" required="required"><br><br>
-			연락처  <input type="text" value="${requestScope.cmvo.tel }" name="tel" required="required"><br><br>
-			기업 소개  <input type="text" value="${requestScope.cmvo.introduction }" name="introduction" required="required"><br><br>
+			이메일 주소  <br><input type="text" value="${requestScope.cmvo.email }" name="email" required="required"><br><br>
+			기업 명 <br> <input type="text" value="${requestScope.cmvo.name }" name="name" readonly="readonly"><br><br>
+			주소  <br><input type="text" value="${requestScope.cmvo.address }" name="address" required="required"><br><br>
+			연락처  <br><input type="text" value="${requestScope.cmvo.tel }" name="tel" required="required"><br><br>
+			기업 소개  <br><input type="text" value="${requestScope.cmvo.introduction }" name="introduction" required="required"><br><br>
 			기업 형태  
-			<select name="companyType">
+			<select name="companyType"  style="height:40px; width:500px;">
 				<option value="${requestScope.cmvo.companyType }">${requestScope.cmvo.companyType }</option>		
 				<option value="대기업">대기업</option>		
 				<option value="중견기업">중견기업</option>		
 				<option value="중소기업">중소기업</option>
 				<option value="공기업">공기업</oprion>		
-			</select>	<br><br>
-			
-			업종  <input type="text" value="${requestScope.cmvo.industry }" name="industry" required="required"><br><br>
-			매출액 <input type="number" value="${requestScope.cmvo.sales }" name="sales"><br><br>
-			설립일 <input type="date" value="${requestScope.cmvo.dateOfEstablishment }" name="dateOfEstablishment"><br><br>
-			사원수 <input type="number" value="${requestScope.cmvo.numOfEmployees }" name="numOfEmployees"><br><br>
+			</select>	<br><br>		
+			업종  <br><input type="text" value="${requestScope.cmvo.industry }" name="industry" required="required"><br><br>
+			매출액 <br><input type="number" value="${requestScope.cmvo.sales }" name="sales"><br><br>
+			설립일 <br><input type="date" value="${requestScope.cmvo.dateOfEstablishment }" name="dateOfEstablishment"><br><br>
+			사원수 <br><input type="number" value="${requestScope.cmvo.numOfEmployees }" name="numOfEmployees"><br><br>
 			회사로고<br>
 			<div class="resume_photo" style="width:120px;">
 				<img id="company-picture"  src="${pageContext.request.contextPath}/resources/upload/etc/company_picture_add.png" border="0" width="120" height="160"  >

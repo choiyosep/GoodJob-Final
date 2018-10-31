@@ -436,30 +436,32 @@ public class NormalController {
 	}
 	
 
-	
-		@RequestMapping("getMyQuestionList.do")
-		public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
-			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			qaVO.setJobPostingNum(mvo.getId());
-			qaVO.setNormalId(mvo.getId());
+		@ResponseBody
+		@RequestMapping("MyQuestionList.do")
+		public String myQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {			
+			String result=null;			
 			List<QuestionAnswerVO> qavo=normalService.getMyQuestionList(qaVO);
 			model.addAttribute("qavo", qavo);
-	
-			return "normal/normal_my_question.tiles2";
+			if(qavo.isEmpty()) {
+				result="asd";
+			}else {
+				result="dsa";
+			}
+			return result;
 			
 		}
-	//개인회원질문수정 동규 
-	/*	@ResponseBody
-		@RequestMapping("updateMyQuestion.do")
-		public QuestionAnswerVO updateMyQuestion(QuestionAnswerVO qavo,HttpSession session,Model model) {						
-			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			qavo.setNormalId(mvo.getId());
-			normalService.updateMyQuestion(qavo);
-			model.addAttribute("qavo", qavo);
-			return qavo;
-			
-		}
-*/
+		@RequestMapping("getMyQuestionList.do")
+	      public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {         
+	         MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	         qaVO.setJobPostingNum(mvo.getId());
+	         qaVO.setNormalId(mvo.getId());
+	         List<QuestionAnswerVO> qavo=normalService.getMyQuestionList(qaVO);
+	         model.addAttribute("qavo", qavo);
+	   
+	         return "normal/normal_my_question.tiles2";
+	         
+	      }
+		
 	//파일 다운로드 컨트롤러
 	@RequestMapping("fileDownload.do")
 	public String fileDownload(String fileName){		
