@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import join.us.GoodJob.model.mapper.CompanyMapper;
 import join.us.GoodJob.model.service.CompanyService;
-//github.com/Munchurwoo/goodjob
 import join.us.GoodJob.model.service.MemberService;
 import join.us.GoodJob.model.service.NormalService;
 import join.us.GoodJob.model.vo.CompanyMemberVO;
