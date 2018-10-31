@@ -146,6 +146,15 @@ $(document).ready(function(){
 	</tr>
 	
 	<tr>
+	<th>검색 키워드</th>
+	<td>
+	<c:forEach items="${keyword}" var="keyword">
+	${keyword.keywordName}&nbsp;/
+	</c:forEach>
+	</td>
+	</tr>
+	
+	<tr>
 	<th colspan="2" id="questionTable"><a href="##">질의응답</a></th>
 	</tr>	
 	<tr>

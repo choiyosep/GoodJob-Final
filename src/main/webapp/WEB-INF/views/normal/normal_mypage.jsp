@@ -24,6 +24,21 @@
 				}//success
 			});//ajax
 		});//click
+		$("#interviewBtn").click(function(){
+			$.ajax({
+				type:"get",
+				url:"MyInterviewList.do",
+				data:"normalId="+normalId,
+				success:function(result) {
+					if(result=="asd"){
+						alert("신청한 면접이 없습니다")
+						return false;
+					}else{
+						location.href="getMyInterviewList.do?normalId="+normalId;
+					}
+				}
+			})//ajax
+		})//click
 	});//ready
 	
 	</script>
@@ -110,7 +125,7 @@
                         <ul>
                             <li>내 면접 조회</li>
                         </ul>
-                        <a href="getMyInterviewList.do?normalId=${requestScope.nmvo.id}" class="read">바로가기</a>
+                        <a href="#" class="read" id="interviewBtn">바로가기</a>
                     </div>
                 </div>
             </div>

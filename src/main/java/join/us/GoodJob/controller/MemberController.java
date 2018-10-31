@@ -8,15 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import join.us.GoodJob.model.mapper.MemberMapper;
 import join.us.GoodJob.model.service.MemberService;
 import join.us.GoodJob.model.vo.CatNumParamVO;
+import join.us.GoodJob.model.vo.CompanySearchParamVO;
 import join.us.GoodJob.model.vo.DevCatVO;
 import join.us.GoodJob.model.vo.MemberVO;
+import join.us.GoodJob.model.vo.PostListVO;
 
 @Controller
 public class MemberController {
@@ -137,6 +141,12 @@ public class MemberController {
 	@RequestMapping("no-authority.do")
 	public String noauthority(){
 		return "member/no-authority";
+	}
+	@RequestMapping("user-companySearchList.do")
+	public String findcompanySearchList(CompanySearchParamVO companySearchParamVO, Model model, String pageNum, HttpServletRequest request){
+		PostListVO postListVO = memberService.findcompanySearchList(companySearchParamVO, pageNum);
+		model.addAttribute("postListVO", postListVO);
+		return "company/company_info_search_list.tiles2";		
 	}
 	
 }

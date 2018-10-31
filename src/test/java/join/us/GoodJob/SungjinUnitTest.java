@@ -1,5 +1,7 @@
 package join.us.GoodJob;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,9 @@ public class SungjinUnitTest {
 	CompanyMapper companyMapper;
 	@Test
 	public void test() {
-		int jobPostingNum=1002;
-		String keywordName="복리후생좋습니다";
-		JobPostingVO jobPostingVO=new JobPostingVO();
-		jobPostingVO.setJobPostingNum(jobPostingNum);
-		jobPostingVO.setKeywordName(keywordName);
-		
-		companyMapper.insertKeyword(jobPostingVO);
+		String keyword = "안녕,바보,멍청이";
+		String[] abc=keyword.split(",");
+		for(String vo:abc)
+		System.out.println(vo);
 	}
 }

@@ -57,8 +57,8 @@
 			<div align="center">
 			<ul class="pagination">
 				<c:if test="${pb.previousPageGroup }">
-					<li><a
-						href="${pageContext.request.contextPath}/user-company_detail_search_list.do?pageNum=${pb.startPageOfPageGroup-1}">&laquo;</a></li>
+					<li>
+					<a onclick="paging(${pb.startPageOfPageGroup-1})">&laquo;</a>
 				</c:if>
 				<c:forEach begin="${pb.startPageOfPageGroup}"
 					end="${pb.endPageOfPageGroup}" var="pagenum">
@@ -67,17 +67,41 @@
 							<li class="active"><a href="#">${pagenum}</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a
-								href="${pageContext.request.contextPath}/user-company_detail_search_list.do?pageNum=${pagenum}">${pagenum}</a></li>
+							<li><a onclick="paging(${pagenum})">${pagenum}</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>				
 				<c:if test="${pb.nextPageGroup }">
-					<li><a
-						href="${pageContext.request.contextPath}/user-company_detail_search_list.do?pageNum=${pb.endPageOfPageGroup+1}">&raquo;</a></li>
+					<li><a onclick="paging(${pb.endPageOfPageGroup+1})">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>	
 	</div>
-			
-		
+
+
+<script type="text/javascript">
+	function paging(pageNum){
+		$("#pageNumInput").val(pageNum);
+		$("#pagingForm").submit();
+	}
+</script>
+	
+	
+<form action="${pageContext.request.contextPath}/user-company_detail_search_list.do" id="pagingForm">	
+	<input type="hidden" name="pageNum" value="" id="pageNumInput">	
+	<c:forEach items="${paramValues.acaCatNumList}" var="acaCatNum">
+		<input type="hidden" name="acaCatNumList" value="${acaCatNum}">		
+	</c:forEach>
+	<c:forEach items="${paramValues.locCatNumList}" var="locCatNum">
+		<input type="hidden" name="locCatNumList" value="${locCatNum}">		
+	</c:forEach>
+	<c:forEach items="${paramValues.empTypeCatNumList}" var="empTypeCatNum">
+		<input type="hidden" name="empTypeCatNumList" value="${empTypeCatNum}">		
+	</c:forEach>
+	<c:forEach items="${paramValues.recruitCatNumList}" var="recruitCatNum">
+		<input type="hidden" name="recruitCatNumList" value="${recruitCatNum}">		
+	</c:forEach>
+	<c:forEach items="${paramValues.devCatNumList}" var="devCatNum">
+		<input type="hidden" name="devCatNumList" value="${devCatNum}">		
+	</c:forEach>	
+</form>

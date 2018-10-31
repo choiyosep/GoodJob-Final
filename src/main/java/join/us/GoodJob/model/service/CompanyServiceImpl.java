@@ -172,6 +172,11 @@ public class CompanyServiceImpl implements CompanyService {
 			map.put("devCatNum", devCatNum);
 			companyMapper.registerJobPostingDev(map);
 		}
+		
+		for(String keywordName : jobPostingVO.getKeywordNameList()) {
+			map.put("keywordName", keywordName);
+			companyMapper.insertKeyword(map);
+		}
 	}
 
 
@@ -237,7 +242,6 @@ public class CompanyServiceImpl implements CompanyService {
 	public PostListVO findJobPostingBytitle(String searchText,String searchType,String pageNum) {
 		PagingBean pagingBean;	
 		PostListVO postListVO=new PostListVO();
-		ModelAndView mav=new ModelAndView();
 		Map<String,Object> map=new HashMap<String,Object>();
 
 		System.out.println("검색조건 : "+searchType);
@@ -302,8 +306,11 @@ public class CompanyServiceImpl implements CompanyService {
 		
 	}
 
+
+
 	@Override
-	public void insertKeyword(JobPostingVO jobPostingVO) {
-		companyMapper.insertKeyword(jobPostingVO);
+	public List<String> getMyKeyword(String jobPostingNum) {
+		
+		return companyMapper.getMyKeyword(jobPostingNum);
 	}
 }

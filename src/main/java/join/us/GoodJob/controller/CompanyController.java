@@ -161,7 +161,6 @@ public class CompanyController {
 		//jobPostingVO.setJobPostingNum(jobPostingVO.getJobPostingNum());
 		System.out.println(jobPostingVO);
 		companyService.registerJobPosting(jobPostingVO,true);
-		companyService.insertKeyword(jobPostingVO);
 		return "redirect:job_posting_detail.do?jobPostingNum="+jobPostingVO.getJobPostingNum();
 	}
 
@@ -211,6 +210,7 @@ public class CompanyController {
 		model.addAttribute("acaCatList", memberService.getAcaCatVOListByNum(jobPostingNum));
 		model.addAttribute("jpvo", companyService.jobPostingDetail(jobPostingNum));
 		model.addAttribute("qaList", companyService.getJobPostingQAList(jobPostingNum));
+		model.addAttribute("keyword", companyService.getMyKeyword(jobPostingNum));
 		return "company/job_posting_detail.tiles2";
 	}
 	
@@ -336,6 +336,19 @@ public class CompanyController {
 		}
 		model.addAttribute("ivvoList", ivvoList);
 		return "company/job_posting_interviewer_list.tiles2";
+	}
+	@ResponseBody
+	@RequestMapping("JobPostingInterviewerList.do")
+	public String JobPostingInterviewerList(String jobPostingNum, Model model, String pageNum) {
+		String result=null;
+		PostListVO plvo = companyService.getJobPostingInterviewerList(jobPostingNum, pageNum);		
+		List<InterviewVO> ivvoList = plvo.getIvList();
+		if(ivvoList.isEmpty()) {
+			result="asd";
+			}else {
+				result="dsa";
+			}
+		return result;
 	}
 	
 	/**

@@ -2,6 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	var companyId="${requestScope.cmvo.companyId}";
+	var jobPostingNum="${jobPostingNum }";
+	$("#interviewBtn").click(function(){
+	    $.ajax({
+		type:"get",
+		url:"JobPostingInterviewerList.do",
+		data:"companyId="+companyId+"jobPostingNum="+jobPostingNum,
+		success:function(result) {
+		 	if(result=="asd"){
+				alert("면접 신청자가 없습니다")
+				return false;
+			}else{
+				location.href = "getJobPostingInterviewerList.do?jobPostingNum="+jobPostingNum;
+			} 
+		}//success
+		});//ajax  
+	});//click
+});//ready
+</script>
+
 <link href="${pageContext.request.contextPath }/resources/css/jobposting.css" rel="stylesheet">
 
 <div class="container mt-40">
@@ -17,7 +39,7 @@
                         <ul class="icon">
 							<li><a href="job_posting_detail.do?jobPostingNum=${jobPostingNum }">상세보기</a> &nbsp;&nbsp;&nbsp;
 							<a href="updateJobPostingForm.do?jobPostingNum=${jobPostingNum }">수정/삭제</a></li><br>
-							<li><a href="getJobPostingInterviewerList.do?jobPostingNum=${jobPostingNum }">면접신청자</a>&nbsp;&nbsp;&nbsp;
+							<li><a href="#" id="interviewBtn">면접신청자</a>&nbsp;&nbsp;&nbsp;
 							<a href="getJobPostingQAList.do?jobPostingNum=${jobPostingNum }">질의응답</a></li>
                         </ul>
                         </c:if>

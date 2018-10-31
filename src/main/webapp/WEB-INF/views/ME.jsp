@@ -118,7 +118,6 @@
 				<h3 class="panel-title">개발 분야</h3>
 			</div>
 			<div class="panel-body">
-				<input type="hidden" name="a" value="b">
 				<div id="empTypeArea"></div>
 
 			</div>
