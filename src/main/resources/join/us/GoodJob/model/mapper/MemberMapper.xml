@@ -92,5 +92,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where ac.academic_num=pa.academic_num
 		and pa.normal_id=#{normalId}
 	</select>
+	
+	<select id="getDetailCompanyListCount" parameterType="companySearchParamVO" resultType="int">
+		select count(*) 
+		from member m , company_member cm		
+		<where>
+			m.id=cm.company_id
+			
+			<if test="companyTypeList != null ">
+			and cm.company_type in
+			<foreach collection="companyTypeList" item="companyType" separator="," open="(" close=")">
+				#{companyType}
+			</foreach>
+			</if>
+			
+			<if test="address != null ">
+			and m.address like '%'|| #{address} ||'%'
+			</if>
+			
+			<if test="companyName!=null">
+				and m.name like '%'|| #{companyName} ||'%'
+			</if> 
+		
+		</where>
+		
+	</select>
+	
+	<select id="getDetailCompanyList" parameterType="map" resultType="companyMemberVO">
+		select company_id, name, introduction, picture_path		
+		from(
+		select row_number() over(order by cm.company_id) as rnum, 
+		cm.company_id, m.name, cm.introduction, cm.picture_path
+		from member m , company_member cm
+<!-- 		where m.id=cm.company_id and cm.company_type=#{companySearchParamVO.companyType} and m.address like '%'|| #{companySearchParamVO.address} ||'%' and m.name like '%'|| #{companySearchParamVO.companyName} ||'%'
+ -->	
+ 		<where>
+			m.id=cm.company_id
+			
+			<if test="companySearchParamVO.companyTypeList != null ">
+			and cm.company_type in
+			<foreach collection="companySearchParamVO.companyTypeList" item="companyType" separator="," open="(" close=")">
+				#{companyType}
+			</foreach>
+			</if>
+			
+			<if test="companySearchParamVO.address != null ">
+			and m.address like '%'|| #{companySearchParamVO.address} ||'%'
+			</if>
+			
+			<if test="companySearchParamVO.companyName!=null">
+				and m.name like '%'|| #{companySearchParamVO.companyName} ||'%'
+			</if> 
+		
+		</where>
+ 
+ 		) 
+		where rnum between #{pagingBean.startRowNumber} and #{pagingBean.endRowNumber}	
+	</select>
+	
+
 </mapper>
  

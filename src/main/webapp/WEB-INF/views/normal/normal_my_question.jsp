@@ -13,7 +13,7 @@
 				</div>
 			</h4>
 			<div class="panel-group" id="faqAccordion">
-				<c:forEach items="${requestScope.qavoList}" var="qavo" varStatus="status">
+				<c:forEach items="${requestScope.qavo}" var="qavo" varStatus="status">
 					<div class="panel panel-default ">
 						<div id="buttonSubmit${qavo.qaNum }"
 							class="panel-heading accordion-toggle question-toggle collapsed"

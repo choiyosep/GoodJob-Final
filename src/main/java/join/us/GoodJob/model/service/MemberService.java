@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import join.us.GoodJob.model.vo.AcaCatVO;
+import join.us.GoodJob.model.vo.CompanySearchParamVO;
 import join.us.GoodJob.model.vo.DevCatVO;
 import join.us.GoodJob.model.vo.EmpTypeCatVO;
 import join.us.GoodJob.model.vo.LocCatVO;
 import join.us.GoodJob.model.vo.MemberVO;
+import join.us.GoodJob.model.vo.PostListVO;
 import join.us.GoodJob.model.vo.RecruitCatVO;
 
 public interface MemberService {
@@ -73,5 +75,8 @@ public interface MemberService {
 	
 	//181026 MIRI 사진 삭제 공통
 	void pictureDelete(String member, String deletePicturename);
+
+	//181031 yosep 기업 상세 검색
+	PostListVO findcompanySearchList(CompanySearchParamVO companySearchParamVO, String pageNum);
 
 }

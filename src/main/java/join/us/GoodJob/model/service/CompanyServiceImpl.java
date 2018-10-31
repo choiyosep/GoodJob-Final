@@ -211,7 +211,7 @@ public class CompanyServiceImpl implements CompanyService {
 		if(pageNum == null)
 			pagingBean = new PagingBean(interviewerTotCnt);
 		else
-			pagingBean = new PagingBean(interviewerTotCnt, Integer.parseInt(pageNum), 1);
+			pagingBean = new PagingBean(interviewerTotCnt, Integer.parseInt(pageNum));
 		map.put("jobPostingNum", jobPostingNum);
 		map.put("pagingBean", pagingBean);
 		List<InterviewVO> ivList = companyMapper.getJobPostingInterviewerList(map);
@@ -242,7 +242,6 @@ public class CompanyServiceImpl implements CompanyService {
 	public PostListVO findJobPostingBytitle(String searchText,String searchType,String pageNum) {
 		PagingBean pagingBean;	
 		PostListVO postListVO=new PostListVO();
-		ModelAndView mav=new ModelAndView();
 		Map<String,Object> map=new HashMap<String,Object>();
 
 		System.out.println("검색조건 : "+searchType);

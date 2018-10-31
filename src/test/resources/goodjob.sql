@@ -34,7 +34,6 @@ drop sequence qa_num_seq;
 drop sequence portfolio_file_seq;
 drop sequence interview_num_seq;
 
-update company_member set picture_path='로고로고.jpg' where company_id='NHNuser'
 
 
 -- 회원 ( ERD에서 기업/개인 구분하기위해 type 컬럼을 뒀으나 명령어라 사용불가함 따라서 member_type으로 변경
@@ -762,3 +761,27 @@ select
 		and k.keyword_name like '%워라밸%'
 		)
 		where rnum between 1 and 3	
+		
+		
+		
+		
+		
+		
+		select count(*) 
+		from member m , company_member cm
+		where m.id=cm.company_id and cm.company_type='중견기업' and m.address like '%성남%' and m.name like '%max%'
+		
+		
+		select company_id, name, introduction, picture_path		
+		from(
+		select row_number() over(order by cm.company_id) as rnum, 
+		cm.company_id, m.name, cm.introduction, cm.picture_path
+		from member m , company_member cm
+		where m.id=cm.company_id and cm.company_type='중견기업' and m.address like '%성남%' and m.name like '%max%'
+		) 
+		where rnum between #{startRowNumber} and #{endRowNumber}	
+		
+		select count(*) 
+		from member m , company_member cm
+		where m.id=cm.company_id
+		
