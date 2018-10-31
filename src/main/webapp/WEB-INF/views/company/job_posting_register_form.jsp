@@ -100,7 +100,7 @@ function deleteInput() {
 	<h5>제목</h5><input type="text" style="height:40px;width: 684px;" name="title" placeholder="제목을 입력하세요" required="required" style="height:40px; width:400px;"><br>
 	<h5>내용</h5><textarea rows="8" cols="94" name="content" placeholder="내용을 입력하세요" required="required"></textarea><br>	
 	<h5>경력</h5><input type="text" name="careerStatus" placeholder="ex)경력3년" required="required"><br><br>
-	<h5>검색 키워드</h5><input type="text" name="keywordNameList" placeholder="ex)자율복장" > &nbsp; 
+	<h5>검색 키워드</h5><input type="text" name="keywordNameList" placeholder="ex)자율복장" required="required"> &nbsp; 
 					<input type="button" value="추가" onclick="addInput()"> 
 					<input type="button" value="삭제" onclick="deleteInput()"><br>
 					<div id="parah"></div>	
