@@ -109,4 +109,6 @@ public interface NormalMapper {
 	
 	//181030 MIRI Q&A 질문 수정
 	void updateQAToQuestion(QuestionAnswerVO qavo);
+	// 인재 상세검색 페이징
+	int portfolioSearchListCount();
 }
