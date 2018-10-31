@@ -54,9 +54,10 @@ insert into MEMBER(id, password, email, name, address, tel, member_type) values(
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('miri', '123', 'miri@gmail.com', '서미리', '경기도 성남시 중원구', '010-2222-2222', 1);
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('yosep', '123', 'yosep@gmail.com', '최요셉', '경기도 수원시', '010-3333-3333', 1);
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('hsj', '123', 'hsj@gmail.com', '황성진', '경기도 안양시', '010-4444-4444', 1);
-insert into MEMBER(id, password, email, name, address, tel, member_type) values('MCW', '123', 'MCW@gmail.com', '문철우', '서울특별시 중랑구', '010-5555-5555', 1);
+insert into MEMBER(id, password, email, name, address, tel, member_type) values('MCW5', '123', 'MCW@gmail.com', '문철우', '서울특별시 중랑구', '010-5555-5555', 1);
 
 select * from member;
+update member set member_type='2' where id='Tmaxuser3'
 ---------------------------------------------------------------------
  
 -- 관리자
@@ -138,6 +139,7 @@ insert into COMPANY_MEMBER(company_id, introduction, company_type, industry, sal
 insert into COMPANY_MEMBER(company_id, introduction, company_type, industry, num_of_employees, picture_path) values('Tmaxuser', '대한민국 S/W의 위상을 국내 및 전세계 시장에 알려나가고 있습니다.', '중견기업', 'SI/SM', 358,'로고로고.jpg');
 
 select * from company_member;
+
 ---------------------------------------------------------------------
 
 -- 구인공고와  PK시퀀스
@@ -208,6 +210,7 @@ insert into interview(interview_num, normal_id ,job_posting_num, title, content)
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1001,'항시 대기중', '불러만 주세요');
 
 select * from interview;
+delete from interview where interview_num='2023'
 
 -- 질의응답과 구인공고게시글/아이디 복합키 설정
 create table question_answer(
@@ -281,7 +284,7 @@ insert into PORTFOLIO_RECRUITMENT(normal_id, rc_num) values('MCW', 101);
 insert into PORTFOLIO_RECRUITMENT(normal_id, rc_num) values('MCW', 108);
 insert into PORTFOLIO_RECRUITMENT(normal_id, rc_num) values('qqqq', 107);
 insert into PORTFOLIO_RECRUITMENT(normal_id, rc_num) values('miri', 103);
-insert into PORTFOLIO_RECRUITMENT(normal_id, rc_num) values('hsj', 104);
+insert into PORTFOLIO_RECRUITMENT(normal_id, rc_num) values('hsj', 101);
 
 
 select * from portfolio_recruitment;
@@ -333,6 +336,7 @@ insert into PORTFOLIO_EMP(normal_id, emp_type_num) values('yosep', 302);
 insert into PORTFOLIO_EMP(normal_id, emp_type_num) values('yosep', 304);
 insert into PORTFOLIO_EMP(normal_id, emp_type_num) values('MCW', 303);
 insert into PORTFOLIO_EMP(normal_id, emp_type_num) values('MCW', 304);
+insert into PORTFOLIO_EMP(normal_id, emp_type_num) values('hsj', 304);
 
 select * from portfolio_emp;
 ---------------------------------------------------------------------
@@ -379,6 +383,7 @@ insert into PORTFOLIO_LOC(normal_id, loc_num) values('yosep', 501);
 insert into PORTFOLIO_LOC(normal_id, loc_num) values('yosep', 503);
 insert into PORTFOLIO_LOC(normal_id, loc_num) values('MCW', 502);
 insert into PORTFOLIO_LOC(normal_id, loc_num) values('MCW', 503);
+insert into PORTFOLIO_LOC(normal_id, loc_num) values('hsj', 503);
 
 select * from portfolio_loc;
 -----------------------------------------------------------------------
@@ -470,6 +475,7 @@ insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('yosep', 203);
 insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('yosep', 227);
 insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('MCW', 201);
 insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('MCW', 234);
+insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('hsj', 220);
 /**
  insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('miri', 234);
 insert into PORTFOLIO_DEV(normal_id, dev_cat_num) values('miri', 234);
@@ -525,6 +531,7 @@ create table portfolio_academic(
 
 insert into PORTFOLIO_ACADEMIC(normal_id, academic_num) values('yosep', 403);
 insert into PORTFOLIO_ACADEMIC(normal_id, academic_num) values('MCW', 404);
+insert into PORTFOLIO_ACADEMIC(normal_id, academic_num) values('hsj', 404);
 
 select * from portfolio_academic;
 

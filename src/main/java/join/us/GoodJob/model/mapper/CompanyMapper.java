@@ -126,8 +126,9 @@ public interface CompanyMapper {
 		InterviewVO findCompanyIdByNum(String jobPostingNum);
 		String getCompanyLogoNameByCompanyId(String companyId);
 	// 키워드 등록
-	void insertKeyword(JobPostingVO jobPostingVO);
+	void insertKeyword(Map<String, Object> map);
 	//구인 분류 등록	
+	List<String> getMyKeyword(String jobPostingNum);
 
 	//구인공고 전체보기
 	
