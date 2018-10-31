@@ -45,9 +45,9 @@
 					$("#empTypeArea").html($("#empTypeArea").html()+catListString);
 				}//success					
 			});//ajax
-		});
-		
+		});		
 	});
+
 </script>	
 
 <script>
@@ -84,6 +84,26 @@ function deleteInput() {
   }
   display(); 
 }
+
+function checkForm(){
+	if($("input[name=locCatNumList]:checked").size()==0){
+		alert("지역을 하나 이상 선택해주세요!");
+		return false;
+	}
+	
+	if($("input[name=empTypeCatNumList]:checked").size()==0){
+		alert("고용형태를 하나 이상 선택해주세요!");
+		return false;
+	}
+	if($("input[name=recruitCatNumList]:checked").size()==0){
+		alert("모집직군을 하나 이상 선택해주세요!");
+		return false;
+	}
+	if($("input[name=devCatNumList]:checked").size()==0){
+		alert("개발분야를 하나 이상 선택해주세요!");
+		return false;
+	}
+}
 </script>
 
 
@@ -115,7 +135,7 @@ function deleteInput() {
 		      	<th>지역</th>
 		        <td>
 					<c:forEach items="${requestScope.locCatList}" var="locCat" varStatus="i" >
-						<input type="checkbox"  name="locCatNumList" value="${locCat.locNum}" >${locCat.locName} &thinsp;&thinsp;
+						<input type="checkbox"  name="locCatNumList" value="${locCat.locNum}">${locCat.locName} &thinsp;&thinsp;
 					</c:forEach>
 		        </td>      
 		      </tr>
@@ -162,7 +182,7 @@ function deleteInput() {
 		
 		<div class="col-md-12">
 		<button id="reset" type="reset"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
-		<input type="submit" value="등록하기"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
+		<input type="submit" value="등록하기"style="height:50px; width:150px;background: #81BEF7;font-size: 20px"  onclick="return checkForm()">
 		</div>
 </form>	
 </div>

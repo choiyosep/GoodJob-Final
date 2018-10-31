@@ -94,6 +94,26 @@
 		
 		
 	});//ready
+	
+	function checkForm(){
+		if($("input[name=locCatNumList]:checked").size()==0){
+			alert("지역을 하나 이상 선택해주세요!");
+			return false;
+		}
+		
+		if($("input[name=empTypeCatNumList]:checked").size()==0){
+			alert("고용형태를 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=recruitCatNumList]:checked").size()==0){
+			alert("모집직군을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=devCatNumList]:checked").size()==0){
+			alert("개발분야를 하나 이상 선택해주세요!");
+			return false;
+		}
+	}
 </script>
 <div class="col-md-2"></div>
 <div class="col-md-8" style="text-align: left">
@@ -167,7 +187,7 @@
 		<button type="reset"  id="reset" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
 		<input type="hidden" name="companyId" value="${jpvo.companyId}" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		<input type="hidden" name="jobPostingNum" value="${jpvo.jobPostingVO.jobPostingNum}" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
-		<input type="submit" value="수정하기" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">	
+		<input type="submit" value="수정하기" style="height:50px; width:150px;background: #81BEF7;font-size: 20px"  onclick="return checkForm()">	
 	</div>
 </form>	
 </div>
