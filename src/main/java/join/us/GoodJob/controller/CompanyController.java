@@ -337,6 +337,19 @@ public class CompanyController {
 		model.addAttribute("ivvoList", ivvoList);
 		return "company/job_posting_interviewer_list.tiles2";
 	}
+	@ResponseBody
+	@RequestMapping("JobPostingInterviewerList.do")
+	public String JobPostingInterviewerList(String jobPostingNum, Model model, String pageNum) {
+		String result=null;
+		PostListVO plvo = companyService.getJobPostingInterviewerList(jobPostingNum, pageNum);		
+		List<InterviewVO> ivvoList = plvo.getIvList();
+		if(ivvoList.isEmpty()) {
+			result="asd";
+			}else {
+				result="dsa";
+			}
+		return result;
+	}
 	
 	/**
 	 * 181020 MIRI 구인 공고별 질답 리스트
