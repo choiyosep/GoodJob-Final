@@ -240,7 +240,7 @@ button:hover {
 <h4 class="heading">
    <div class="cta-text">
       <h2>
-         <span>GoodJob</span> 기업 회원 가입
+         <span>GoodJob</span> 기업 회원 정보 수정
       </h2>
    </div>
 </h4>   

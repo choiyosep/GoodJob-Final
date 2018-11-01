@@ -203,13 +203,9 @@ function checkForm(){
 		      </tbody>
 	</table>	
 		
-		<div class="col-md-12">
+		<div class="col-md-12" style="text-align: center">
 		<button id="reset" type="reset"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
-<<<<<<< HEAD
-		<input type="submit" value="등록하기"style="height:50px; width:150px;background: #81BEF7;font-size: 20px"  onclick="return checkForm()">
-=======
 		<input type="submit" value="등록하기" onclick="return checkForm()" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
->>>>>>> branch 'master' of https://github.com/choiyosep/GoodJob-Final.git
 		</div>
 </form>	
 </div>
