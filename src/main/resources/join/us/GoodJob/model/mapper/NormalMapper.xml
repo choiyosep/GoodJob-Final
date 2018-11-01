@@ -245,7 +245,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	values(qa_num_seq.nextval, #{normalId}, #{jobPostingNum}, #{question})
 	</insert>
 	
-	 <select id="getMyQuestionList" resultType="questionAnswerVO" parameterType="string">
+	<resultMap type="questionAnswerVO" id="questionAnswerVORM">
+		<result column="job_posting_num" property="jobPostingVO.jobPostingNum"/>
+		<result column="title" property="jobPostingVO.title"/>
+		<result column="name" property="jobPostingVO.companyMemberVO.name"/>
+	</resultMap>
+	
+	 <select id="getMyQuestionList" resultMap="questionAnswerVORM" parameterType="string">
 		select qa.qa_num,qa.question,qa.answer,jm.name,jm.title,qa.normal_id,qa.job_posting_num
 		from (select jp.job_posting_num,m.name,jp.title from job_posting jp,member m where jp.company_id=m.id) jm, question_answer qa
 		where qa.job_posting_num=jm.job_posting_num
@@ -299,5 +305,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	where interview_num=#{value}
 	 </select>
 
+	 <delete id="deleteInterview" >
+	 	delete from interview where interview_num=#{value}
+	 </delete>
+	 
+	 <update id="updateInterview">
+	 	update interview set title=#{title}, content=#{content} where interview_num=#{interviewNum}
+	 </update>
+	 
+	 <select id="getInterviewbyInterviewNum" resultType="interviewVO">
+	 	select title, content from interview where interview_num=#{value}
+	 </select>
+	 
+	<select id="getJopPostingNumListByNormalId" resultType="string" >
+		select distinct job_posting_num from question_answer where normal_id=#{value} 
+	</select>
+	
+	<select id="getMyQuestionListByNormalIdAndJobPostingNum" parameterType="questionAnswerVO" resultType="questionAnswerVO">
+		select question,answer,qa_num from question_answer where normal_id=#{normalId} and job_posting_num=#{jobPostingNum}
+	</select>
+	
+	<resultMap type="jobPostingVO" id="jobPostingVORMM">
+		<result property="companyMemberVO.name" column="name"/>
+	</resultMap>
+	<select id="getJobPostingInfoByJobPostingNum"  resultMap="jobPostingVORMM">
+		select m.name, j.job_posting_num, j.title, j.company_id from job_posting j, member m where j.company_id=m.id and j.job_posting_num=#{value} 
+	</select>
 	 
 </mapper>

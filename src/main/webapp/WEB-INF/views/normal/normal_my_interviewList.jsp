@@ -16,7 +16,7 @@
 <div class="panel-group" id="faqAccordion">
 	<c:forEach items="${requestScope.ivList}" var="ivList" varStatus="status">
 	<h1>
- 		<div class="animated fadeInLeft"><a href="job_posting_detail.do?jobPostingNum=${ivList.jobPostingNum}">${ivList.companyName }</a></div>
+ 		<div class="animated fadeInLeft"><a href="user-detailCompanyInfo.do?companyId=${ivList.companyId}">${ivList.companyName }</a></div><br>
  		<div class="animated fadeInRight"><a style="color:#333;" href="job_posting_detail.do?jobPostingNum=${ivList.jobPostingNum}">${ivList.postingTitle }</a></div>
 	</h1>
 		<div class="panel panel-default ">
@@ -25,90 +25,102 @@
 				data-toggle="collapse" data-parent="#faqAccordion"
 				data-target="#interview${status.index}">
 				<h4 class="panel-title">
-					<a href="javascript:return false;" class="ing">${ivList.interviewTitle}</a>
+					<a href="javascript:return false;" id="interviewText${ivList.interviewNum }" class="ing">${ivList.interviewTitle}</a>
 				</h4>
 				<button type="submit" id="interviewUpdate${ivList.interviewNum }" >수정</button>
 				<button type="submit" id="interviewDelete${ivList.interviewNum }" >삭제</button>
-				<button type="submit" id="interviewCancel${ivList.interviewNum }" style="visibility: hidden;">취소</button>
-				<button type="submit" id="interviewOK${ivList.interviewNum }" style="visibility: hidden;">완료</button><br>
+				
 			</div>
 			<div id="interview${status.index}" class="panel-collapse collapse"
 				style="height: 0px;">
 				<div class="panel-body">
-					<p>${ivList.interviewContent}</p>
+					<p id="interviewContent${ivList.interviewNum }">${ivList.interviewContent}</p>
+					<button type="submit" id="interviewCancel${ivList.interviewNum }" style="visibility: hidden;">취소</button>
+				<button type="submit" id="interviewOK${ivList.interviewNum }" style="visibility: hidden;">완료</button><br>
 				</div>
 			</div>
 		</div>			
-	</c:forEach>
-</div>
-
-
-<script type="text/javascript">
-						$(document).ready(function() {
-							var question = "${qavo.question}";
-							$("#questionUpdate"+${qavo.qaNum}).click(function() {
-								var qanum = ${qavo.qaNum};
-								var text = "<textarea rows=\"1\" cols=\"100\" id=\"qaTextArea"+qanum+"\">";
-								text += question;
-								text += "</textarea>";
-								$("#qaText"+qanum).html(text);
-								$("#qaTextArea"+qanum).focus();
-								document.getElementById('questionOK'+qanum).style.visibility = 'visible';
-								document.getElementById('questionCancel'+qanum).style.visibility = 'visible';
-								document.getElementById('questionUpdate'+qanum).style.visibility = 'hidden';
-								document.getElementById('questionDelete'+qanum).style.visibility = 'hidden';
+		
+		<script type="text/javascript">
+						$(document).ready(function() {							
+							var title = "${ivList.interviewTitle}";						
+							
+							$("#interviewUpdate"+${ivList.interviewNum}).click(function() {
+								var interviewNum = ${ivList.interviewNum};
+								var text = "<textarea rows=\"1\" cols=\"100\" id=\"interviewTextArea"+interviewNum+"\">";
+								text += title;
+								text += "</textarea>";	
+								$("#interviewText"+interviewNum).html(text);
+								
+								var content="<textarea rows=\"3\" cols=\"100\" id=\"interviewcontentArea"+interviewNum+"\">${ivList.interviewContent}</textarea>";
+								$("#interviewContent${ivList.interviewNum }").html(content); 
+								
+								$("#interviewTextArea"+interviewNum).focus();
+								document.getElementById('interviewOK'+interviewNum).style.visibility = 'visible';
+								document.getElementById('interviewCancel'+interviewNum).style.visibility = 'visible';
+								document.getElementById('interviewUpdate'+interviewNum).style.visibility = 'hidden';
+								document.getElementById('interviewDelete'+interviewNum).style.visibility = 'hidden';
 							});
-							$("#interviewDelete"+${qavo.qaNum}).click(function() {
-								var qanum = ${qavo.qaNum};
-								/* if(question == null) {
-									alert("답변이 아직 등록되지 않았습니다.");
-									return false;
-								} */
+							
+							
+							 $("#interviewDelete"+${ivList.interviewNum}).click(function() {
+								var interviewNum = ${ivList.interviewNum};
+							/* 	 if(question == null) {
+									//alert("답변이 아직 등록되지 않았습니다.");
+									//return false;
+								}  */
 								var delConfirm = confirm("정말 삭제하시겠습니까?");
 								if(delConfirm == false) {
 									return false;
 								} else {
 									$.ajax({
 										type:"get",
-										data:"QANum="+qanum,
-										url:"deleteQAToQuestion.do?",
+										data:"interviewNum="+interviewNum,
+										url:"deleteInterview.do?",
 										success:function(result) {
-											if(result.question == null) {
-												alert("해당 질문이 삭제 되었습니다.");
-												location.href="getMyQuestionList.do";
-											}
+												alert("면접 신청이 삭제 되었습니다.");
+												location.href="getMyInterviewList.do";
 										}
 									});
 								}
 							});
-							$("#questionOK"+${qavo.qaNum}).click(function() {
-								var qanum = ${qavo.qaNum};
+							 
+							 
+							$("#interviewOK"+${ivList.interviewNum}).click(function() {
+								var interviewNum = ${ivList.interviewNum};
 								$.ajax({
 									type:"get",
-									data:"QANum="+qanum+"&question="+$("#qaTextArea"+qanum).val(),
-									url:"updateQAToQuestion.do",
+									data:"interviewNum="+interviewNum+"&title="+$("#interviewTextArea"+interviewNum).val()+"&content="+$("#interviewcontentArea${ivList.interviewNum}").val(),
+									url:"updateInterview.do",
 									success:function(result) {
-										if(result.question != null) {
-											alert("해당 질문이 수정되었습니다.");
-											$("#qaText"+qanum).text("Q: "+result.question);
-											question = result.question;
-											document.getElementById('questionOK'+qanum).style.visibility = 'hidden';
-											document.getElementById('questionCancel'+qanum).style.visibility = 'hidden';
-											document.getElementById('questionUpdate'+qanum).style.visibility = 'visible';
-											document.getElementById('questionDelete'+qanum).style.visibility = 'visible';
+										if(result != null) {
+											alert("수정되었습니다.");
+											$("#interviewText"+interviewNum).text(result.title);
+											$("#interviewContent${ivList.interviewNum }").text(result.content);
+											document.getElementById('interviewOK'+interviewNum).style.visibility = 'hidden';
+											document.getElementById('interviewCancel'+interviewNum).style.visibility = 'hidden';
+											document.getElementById('interviewUpdate'+interviewNum).style.visibility = 'visible';
+											document.getElementById('interviewDelete'+interviewNum).style.visibility = 'visible';
 										} else {
 										}
 									}
 								});
 							});
-							$("#questionCancel"+${qavo.qaNum}).click(function() {
-								var qanum = ${qavo.qaNum};
-								$("#qaText"+qanum).html("Q: "+question);
-								document.getElementById('questionOK'+qanum).style.visibility = 'hidden';
-								document.getElementById('questionCancel'+qanum).style.visibility = 'hidden';
-								document.getElementById('questionUpdate'+qanum).style.visibility = 'visible';
-								document.getElementById('questionDelete'+qanum).style.visibility = 'visible';
-							});
-						})
+							 
+							$("#interviewCancel"+${ivList.interviewNum}).click(function() {
+								var interviewNum = ${ivList.interviewNum};
+								$("#interviewText"+interviewNum).html(title);
+								document.getElementById('interviewOK'+interviewNum).style.visibility = 'hidden';
+								document.getElementById('interviewCancel'+interviewNum).style.visibility = 'hidden';
+								document.getElementById('interviewUpdate'+interviewNum).style.visibility = 'visible';
+								document.getElementById('interviewDelete'+interviewNum).style.visibility = 'visible';
+							}); 
+						});
 					</script>
+		
+	</c:forEach>
+</div>
+
+
+
 			

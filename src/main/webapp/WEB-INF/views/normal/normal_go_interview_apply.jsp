@@ -20,9 +20,7 @@
 					required="required" style=" height: 27px;  width: 604px;"> <br>
 				<br> 내용<br>
 				<textarea rows="15" cols="89" name="content"
-					placeholder="내용을 입력하세요">
-				
-				</textarea>
+					placeholder="내용을 입력하세요"></textarea>
 				<br>
 				<br> <input type="submit" value="면접신청하기">
 			</form>

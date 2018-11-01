@@ -22,6 +22,7 @@ import join.us.GoodJob.model.service.NormalService;
 import join.us.GoodJob.model.vo.CompanyMemberVO;
 import join.us.GoodJob.model.vo.DevCatVO;
 import join.us.GoodJob.model.vo.InterviewVO;
+import join.us.GoodJob.model.vo.JobPostingVO;
 import join.us.GoodJob.model.vo.MemberVO;
 import join.us.GoodJob.model.vo.NormalMemberVO;
 import join.us.GoodJob.model.vo.PortfolioVO;
@@ -410,7 +411,7 @@ public class NormalController {
 	@RequestMapping("submitInterviewForm.do")
 	public String submitInterviewForm(InterviewVO interviewVO) {
 		normalService.interviewApply(interviewVO);
-		return "redirect:getMyInterviewList.do?normalId="+interviewVO.getNormalId();
+		return "redirect:getMyInterviewList.do";
 	}
 	
 	
@@ -455,13 +456,17 @@ public class NormalController {
 			return result;
 			
 		}
+		//181101 yosep 수정
 		@RequestMapping("getMyQuestionList.do")
-	      public String getMyQuestionList(Model model,QuestionAnswerVO qaVO,HttpSession session) {         
+	      public String getMyQuestionList(Model model,HttpSession session) {         
 	         MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-	         qaVO.setJobPostingNum(mvo.getId());
-	         qaVO.setNormalId(mvo.getId());
+	         
+	         List<JobPostingVO> jpvoList = normalService.getMyQuestionListBynormalId(mvo.getId());
+	         model.addAttribute("jpvoList", jpvoList);	                  
+	         
+	         /*qaVO.setNormalId(mvo.getId());
 	         List<QuestionAnswerVO> qavo=normalService.getMyQuestionList(qaVO);
-	         model.addAttribute("qavo", qavo);
+	         model.addAttribute("qavo", qavo);*/
 	   
 	         return "normal/normal_my_question.tiles2";
 	         
@@ -492,8 +497,9 @@ public class NormalController {
 	 * 구직자가 면접신청한 구인공고 리스트
 	 */
 	@RequestMapping("getMyInterviewList.do")
-	public String MyInterviewList(String normalId,Model model) {
+	public String MyInterviewList(Model model, HttpSession session) {
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
+		String normalId= ((MemberVO)(session.getAttribute("mvo"))).getId();
 		List<InterviewVO> ivList = normalService.getMyInterviewList(normalId);
 		for (InterviewVO ivvo : ivList) {
 			String jobPostingNum = ivvo.getJobPostingNum();
@@ -505,6 +511,7 @@ public class NormalController {
 			map.put("interviewContent", ivvo.getContent());
 			map.put("jobPostingNum", ivvo.getJobPostingNum());
 			map.put("interviewNum", ivvo.getInterviewNum());
+			map.put("companyId", cmvo.getCompanyId());
 			mapList.add(map);
 		}
 		model.addAttribute("ivList",mapList);
@@ -566,5 +573,25 @@ public class NormalController {
 		model.addAttribute("contentList", contentList);
 		return contentList;
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping("deleteInterview.do")
+	public String deleteInterview(String interviewNum) {
+		
+		normalService.deleteInterview(interviewNum);
+		
+		return "success";
+	}
+	
+	@ResponseBody
+	@RequestMapping("updateInterview.do")
+	public InterviewVO updateInterview(InterviewVO interviewVO) {
+		System.out.println(interviewVO);
+		normalService.updateInterview(interviewVO);
+		InterviewVO afterInterviewVO= normalService.getInterviewbyInterviewNum(interviewVO.getInterviewNum());
+		System.out.println(afterInterviewVO);
+		
+		return afterInterviewVO;
 	}
 }
