@@ -229,7 +229,7 @@ function deleteInput() {
 		<button type="reset"  id="reset" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
 		<input type="hidden" name="companyId" value="${jpvo.companyId}" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		<input type="hidden" name="jobPostingNum" value="${jpvo.jobPostingVO.jobPostingNum}" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
-		<input type="submit" value="수정하기" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">	
+		<input type="submit" value="수정하기" style="height:50px; width:150px;background: #81BEF7;font-size: 20px"  onclick="return checkForm()">	
 	</div>
 </form>	
 </div>
