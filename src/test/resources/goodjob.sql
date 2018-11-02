@@ -210,7 +210,6 @@ insert into interview(interview_num, normal_id ,job_posting_num, title, content)
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1001,'항시 대기중', '불러만 주세요');
 
 select * from interview;
-delete from interview where interview_num='2023'
 
 -- 질의응답과 구인공고게시글/아이디 복합키 설정
 create table question_answer(
