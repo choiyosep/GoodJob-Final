@@ -91,9 +91,66 @@
 				});
 			}//success					
 		});//ajax 	
-		
-		
 	});//ready
+	function checkForm(){
+		if($("input[name=locCatNumList]:checked").size()==0){
+			alert("지역을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=acaCatNumList]:checked").size()==0){
+			alert("학력을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=empTypeCatNumList]:checked").size()==0){
+			alert("고용형태를 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=recruitCatNumList]:checked").size()==0){
+			alert("모집직군을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=devCatNumList]:checked").size()==0){
+			alert("개발분야를 하나 이상 선택해주세요!");
+			return false;
+		}
+	}
+</script>
+
+<script>
+/* 키워드 인풋 추가/제거 되는 코드 */
+var arrInput = new Array(0);
+  var arrInputValue = new Array(0);
+ 
+function addInput() {
+  arrInput.push(arrInput.length);
+  arrInputValue.push("");
+  display();
+}
+ 
+function display() {
+  document.getElementById('parah').innerHTML="";
+  for (intI=0;intI<arrInput.length;intI++) {
+    document.getElementById('parah').innerHTML+=createInput(arrInput[intI], arrInputValue[intI]);
+  }
+}
+ 
+function saveValue(intId,strValue) {
+  arrInputValue[intId]=strValue;
+}  
+ 
+function createInput(id,value) {
+  return "<input type='text' name='keywordNameList' id='test "+ id +"' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
+ 
+value +"'><br>";
+}
+ 
+function deleteInput() {
+  if (arrInput.length > 0) { 
+     arrInput.pop(); 
+     arrInputValue.pop();
+  }
+  display(); 
+}
 </script>
 <div class="col-md-2"></div>
 <div class="col-md-8" style="text-align: left">
@@ -108,6 +165,11 @@
 	<h5>제목</h5> <input type="text" style="height:40px;width: 684px;" name="title" value="${jpvo.jobPostingVO.title}" required="required"required="required" style="height:40px; width:400px;"><br>
 	<h5>내용</h5><textarea rows="8" cols="94" name="content"  required="required">${jpvo.jobPostingVO.content}</textarea><br>
 	<h5>경력</h5><input type="text" name="careerStatus" value="${jpvo.jobPostingVO.careerStatus}" required="required"><br><br>	
+	<h5>검색 키워드</h5><input type="text" name="keywordNameList" placeholder="ex)자율복장" required="required"> &nbsp; 
+					<input type="button" value="추가" onclick="addInput()"> 
+					<input type="button" value="삭제" onclick="deleteInput()"><br>
+					<div id="parah"></div>	
+					<br><br>
 	<table class="table table-bordered" style=" width: 675px;">
 		<colgroup>
 		        <col width="92px">
