@@ -4,6 +4,7 @@ import java.util.List;
 
 import join.us.GoodJob.model.vo.CatNumParamVO;
 import join.us.GoodJob.model.vo.CompanyMemberVO;
+import join.us.GoodJob.model.vo.InterviewVO;
 import join.us.GoodJob.model.vo.JobPostingVO;
 import join.us.GoodJob.model.vo.NormalMemberVO;
 import join.us.GoodJob.model.vo.PostListVO;
@@ -89,5 +90,7 @@ public interface CompanyService {
 
 
 	List<String> getMyKeyword(String jobPostingNum);
+
+	InterviewVO findCompanyIdByNum(String jobPostingNum);
 
 }

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import join.us.GoodJob.model.mapper.CompanyMapper;
 import join.us.GoodJob.model.service.CompanyService;
 import join.us.GoodJob.model.service.MemberService;
 import join.us.GoodJob.model.service.NormalService;
@@ -36,8 +35,6 @@ public class NormalController {
 	NormalService normalService;
 	@Resource
 	MemberService memberService;
-	@Resource
-	CompanyMapper companyMapper;
 	@Resource
 	CompanyService companyService;
 	// private String serverUploadPath; //삭제하지마 ㅠㅠ
@@ -422,8 +419,8 @@ public class NormalController {
 	 */
 	@RequestMapping("goInterviewApply.do")
 	public String goInterviewApply(Model model,String jobPostingNum) {
-		System.out.println(companyMapper.findCompanyIdByNum(jobPostingNum));
-		model.addAttribute("jobPosting", companyMapper.findCompanyIdByNum(jobPostingNum));
+		System.out.println(companyService.findCompanyIdByNum(jobPostingNum));
+		model.addAttribute("jobPosting", companyService.findCompanyIdByNum(jobPostingNum));
 		return "normal/normal_go_interview_apply.tiles2";
 	}
 	//질의응답 질문 등록(구인공고 상세보기에서)
