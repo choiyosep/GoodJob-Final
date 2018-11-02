@@ -39,7 +39,7 @@ $(document).ready(function(){
                         <ul class="icon">
 							<li><a href="job_posting_detail.do?jobPostingNum=${jobPostingNum }">상세보기</a> &nbsp;&nbsp;&nbsp;
 							<a href="updateJobPostingForm.do?jobPostingNum=${jobPostingNum }">수정/삭제</a></li><br>
-							<li><a href="#" id="interviewBtn">면접신청자</a>&nbsp;&nbsp;&nbsp;
+							<li><a href="getJobPostingInterviewerList.do?jobPostingNum=${jobPostingNum }" id="interviewBtn">면접신청자</a>&nbsp;&nbsp;&nbsp;
 							<a href="getJobPostingQAList.do?jobPostingNum=${jobPostingNum }">질의응답</a></li>
                         </ul>
                         </c:if>

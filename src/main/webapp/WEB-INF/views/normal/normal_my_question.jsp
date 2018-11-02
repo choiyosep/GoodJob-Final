@@ -13,17 +13,17 @@
 				</div>
 			</h4>
 			<div class="panel-group" id="faqAccordion">
-				<c:forEach items="${requestScope.jpvoList}" var="jpvo" varStatus="status">
+				<c:forEach items="${requestScope.jpvoList}" var="jpvo" varStatus="i" >
 					<h2>
 				 		<div class="animated fadeInLeft"><a href="user-detailCompanyInfo.do?companyId=${jpvo.companyId}">${jpvo.companyMemberVO.name}</a></div>
 				 		<div class="animated fadeInRight"><a style="color:#333;" href="job_posting_detail.do?jobPostingNum=${jpvo.jobPostingNum}">${jpvo.title}</a></div>
 					</h2>
-					<c:forEach items="${jpvo.questionAnswerVOList}" var="qavo">
+					<c:forEach items="${jpvo.questionAnswerVOList}" var="qavo" varStatus="j">
 						<div class="panel panel-default ">
 							<div id="buttonSubmit${qavo.qaNum }"
 								class="panel-heading accordion-toggle question-toggle collapsed"
 								data-toggle="collapse" data-parent="#faqAccordion"
-								data-target="#question${status.index}">
+								data-target="#interview${i.index}${j.index}">
 								<h4 class="panel-title">
 									<a href="#" class="ing" id="qaText${qavo.qaNum }">Q: ${qavo.question }</a>
 									<button type="submit" id="questionCancel${qavo.qaNum }" style="visibility: hidden;">취소</button>
@@ -34,7 +34,7 @@
 									<button type="submit" id="questionDelete${qavo.qaNum }" >삭제</button>
 								</h4>
 							</div>
-							<div id="question${status.index }" class="panel-collapse collapse" style="height: 0px;">
+							<div id="interview${i.index}${j.index}" class="panel-collapse collapse" style="height: 0px;">
 								<div class="panel-body">
 									<h5>
 										<span class="label label-primary">Answer</span>
