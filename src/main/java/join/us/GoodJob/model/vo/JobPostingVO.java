@@ -5,6 +5,7 @@ import java.util.List;
 public class JobPostingVO {
 	private int jobPostingNum;
 	private String  companyId;
+	private CompanyMemberVO companyMemberVO;
 	private String title;
 	private String careerStatus;
 	private String content;
@@ -26,6 +27,14 @@ public class JobPostingVO {
 		
 	}
 	
+	public CompanyMemberVO getCompanyMemberVO() {
+		return companyMemberVO;
+	}
+
+	public void setCompanyMemberVO(CompanyMemberVO companyMemberVO) {
+		this.companyMemberVO = companyMemberVO;
+	}
+
 	public String getKeywordName() {
 		return keywordName;
 	}
@@ -136,17 +145,21 @@ public class JobPostingVO {
 	public void setAcaCatNumList(List<String> acaCatNumList) {
 		this.acaCatNumList = acaCatNumList;
 	}
-	public JobPostingVO(int jobPostingNum, String companyId, String title, String careerStatus, String content,
-			List<QuestionAnswerVO> questionAnswerVOList, List<String> keywordNameList, List<LocCatVO> locCatVOList,
-			List<RecruitCatVO> recruitCatVOList, List<EmpTypeCatVO> empTypeCatVOList, List<DevCatVO> devCatVOList,
-			List<AcaCatVO> acaCatVOList, List<String> locCatNumList, List<String> recruitCatNumList,
-			List<String> empTypeCatNumList, List<String> devCatNumList, List<String> acaCatNumList) {
+
+	public JobPostingVO(int jobPostingNum, String companyId, CompanyMemberVO companyMemberVO, String title,
+			String careerStatus, String content, String keywordName, List<QuestionAnswerVO> questionAnswerVOList,
+			List<String> keywordNameList, List<LocCatVO> locCatVOList, List<RecruitCatVO> recruitCatVOList,
+			List<EmpTypeCatVO> empTypeCatVOList, List<DevCatVO> devCatVOList, List<AcaCatVO> acaCatVOList,
+			List<String> locCatNumList, List<String> recruitCatNumList, List<String> empTypeCatNumList,
+			List<String> devCatNumList, List<String> acaCatNumList) {
 		super();
 		this.jobPostingNum = jobPostingNum;
 		this.companyId = companyId;
+		this.companyMemberVO = companyMemberVO;
 		this.title = title;
 		this.careerStatus = careerStatus;
 		this.content = content;
+		this.keywordName = keywordName;
 		this.questionAnswerVOList = questionAnswerVOList;
 		this.keywordNameList = keywordNameList;
 		this.locCatVOList = locCatVOList;
@@ -160,16 +173,19 @@ public class JobPostingVO {
 		this.devCatNumList = devCatNumList;
 		this.acaCatNumList = acaCatNumList;
 	}
+
 	@Override
 	public String toString() {
-		return "JobPostingVO [jobPostingNum=" + jobPostingNum + ", companyId=" + companyId + ", title=" + title
-				+ ", careerStatus=" + careerStatus + ", content=" + content + ", questionAnswerVOList="
-				+ questionAnswerVOList + ", keywordNameList=" + keywordNameList + ", locCatVOList=" + locCatVOList
-				+ ", recruitCatVOList=" + recruitCatVOList + ", empTypeCatVOList=" + empTypeCatVOList
-				+ ", devCatVOList=" + devCatVOList + ", acaCatVOList=" + acaCatVOList + ", locCatNumList="
-				+ locCatNumList + ", recruitCatNumList=" + recruitCatNumList + ", empTypeCatNumList="
-				+ empTypeCatNumList + ", devCatNumList=" + devCatNumList + ", acaCatNumList=" + acaCatNumList + " , keywordName="+keywordName + "]";
+		return "JobPostingVO [jobPostingNum=" + jobPostingNum + ", companyId=" + companyId + ", companyMemberVO="
+				+ companyMemberVO + ", title=" + title + ", careerStatus=" + careerStatus + ", content=" + content
+				+ ", keywordName=" + keywordName + ", questionAnswerVOList=" + questionAnswerVOList
+				+ ", keywordNameList=" + keywordNameList + ", locCatVOList=" + locCatVOList + ", recruitCatVOList="
+				+ recruitCatVOList + ", empTypeCatVOList=" + empTypeCatVOList + ", devCatVOList=" + devCatVOList
+				+ ", acaCatVOList=" + acaCatVOList + ", locCatNumList=" + locCatNumList + ", recruitCatNumList="
+				+ recruitCatNumList + ", empTypeCatNumList=" + empTypeCatNumList + ", devCatNumList=" + devCatNumList
+				+ ", acaCatNumList=" + acaCatNumList + "]";
 	}
+	
 	
 	/**
 	 * 

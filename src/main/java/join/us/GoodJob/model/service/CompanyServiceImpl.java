@@ -313,4 +313,9 @@ public class CompanyServiceImpl implements CompanyService {
 		
 		return companyMapper.getMyKeyword(jobPostingNum);
 	}
+
+	@Override
+	public InterviewVO findCompanyIdByNum(String jobPostingNum) {
+		return companyMapper.findCompanyIdByNum(jobPostingNum);
+	}
 }

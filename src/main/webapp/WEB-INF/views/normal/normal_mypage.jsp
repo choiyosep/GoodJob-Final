@@ -19,7 +19,7 @@
 						alert("등록된 질문이 없습니다")
 						return false;
 				}else{ 
-						location.href = "getMyQuestionList.do?normalId="+normalId;	
+						location.href = "getMyQuestionList.do?";	
 					}
 				}//success
 			});//ajax
@@ -34,7 +34,7 @@
 						alert("신청한 면접이 없습니다")
 						return false;
 					}else{
-						location.href="getMyInterviewList.do?normalId="+normalId;
+						location.href="getMyInterviewList.do?";
 					}
 				}
 			})//ajax

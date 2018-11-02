@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import join.us.GoodJob.model.service.PagingBean;
 import join.us.GoodJob.model.vo.InterviewVO;
+import join.us.GoodJob.model.vo.JobPostingVO;
 import join.us.GoodJob.model.vo.MemberVO;
 import join.us.GoodJob.model.vo.NormalMemberVO;
 import join.us.GoodJob.model.vo.PortfolioVO;
@@ -111,4 +112,16 @@ public interface NormalMapper {
 	void updateQAToQuestion(QuestionAnswerVO qavo);
 	// 인재 상세검색 페이징
 	int portfolioSearchListCount();
+	//면접 신청 삭제
+	void deleteInterview(String interviewNum);
+	//면접 신청 수정
+	void updateInterview(InterviewVO interviewVO);
+	//면접 제목,내용 불러오기
+	InterviewVO getInterviewbyInterviewNum(String interviewNum);
+	//내가 질문한 구인공고 게시물번호 받아오기
+	List<String> getJopPostingNumListByNormalId(String id);
+	//내 질문리스트 가져오기
+	List<QuestionAnswerVO> getMyQuestionListByNormalIdAndJobPostingNum(QuestionAnswerVO qavo);
+	//구인공고 번호, 제목 가져오기
+	JobPostingVO getJobPostingInfoByJobPostingNum(String jobPostingNum);
 }

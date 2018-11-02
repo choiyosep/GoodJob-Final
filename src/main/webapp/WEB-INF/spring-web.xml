@@ -72,6 +72,23 @@ class="join.us.GoodJob.controller.DownloadView"></bean>
 class="org.springframework.web.servlet.view.BeanNameViewResolver">
 	<property name="order" value="1" />
 </bean>
+
+<!-- 메일보내기 -->
+<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+   <property name="host" value="smtp.gmail.com" />
+   <property name="port" value="587" />
+   <property name="username" value="mettuk00@gmail.com" />
+   <property name="password" value="sksmssn11" />
+   <property name="javaMailProperties">
+      <props>
+            <prop key="mail.transport.protocol">smtp</prop>
+            <prop key="mail.smtp.auth">true</prop>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.debug">true</prop>
+      </props>
+   </property>
+
+</bean>
  
 <mvc:interceptors>
 	<mvc:interceptor>
@@ -84,37 +101,6 @@ class="org.springframework.web.servlet.view.BeanNameViewResolver">
 </mvc:interceptors>
 
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

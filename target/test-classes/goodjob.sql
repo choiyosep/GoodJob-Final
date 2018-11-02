@@ -54,10 +54,10 @@ insert into MEMBER(id, password, email, name, address, tel, member_type) values(
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('miri', '123', 'miri@gmail.com', '서미리', '경기도 성남시 중원구', '010-2222-2222', 1);
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('yosep', '123', 'yosep@gmail.com', '최요셉', '경기도 수원시', '010-3333-3333', 1);
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('hsj', '123', 'hsj@gmail.com', '황성진', '경기도 안양시', '010-4444-4444', 1);
-insert into MEMBER(id, password, email, name, address, tel, member_type) values('MCW5', '123', 'MCW@gmail.com', '문철우', '서울특별시 중랑구', '010-5555-5555', 1);
+insert into MEMBER(id, password, email, name, address, tel, member_type) values('MCW', '123', 'MCW@gmail.com', '문철우', '서울특별시 중랑구', '010-5555-5555', 1);
 
 select * from member;
-update member set member_type='2' where id='Tmaxuser3'
+update member set member_type='2' where id='Tmaxuser3';
 ---------------------------------------------------------------------
  
 -- 관리자

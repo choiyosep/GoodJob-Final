@@ -45,12 +45,35 @@
 					$("#empTypeArea").html($("#empTypeArea").html()+catListString);
 				}//success					
 			});//ajax
-		});
+		});//click
 		
-	});
+	});//ready
+	function checkForm(){
+		if($("input[name=locCatNumList]:checked").size()==0){
+			alert("지역을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=acaCatNumList]:checked").size()==0){
+			alert("학력을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=empTypeCatNumList]:checked").size()==0){
+			alert("고용형태를 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=recruitCatNumList]:checked").size()==0){
+			alert("모집직군을 하나 이상 선택해주세요!");
+			return false;
+		}
+		if($("input[name=devCatNumList]:checked").size()==0){
+			alert("개발분야를 하나 이상 선택해주세요!");
+			return false;
+		}
+	}
 </script>	
 
 <script>
+/* 키워드 인풋 추가/제거 되는 코드 */
 var arrInput = new Array(0);
   var arrInputValue = new Array(0);
  
@@ -84,6 +107,26 @@ function deleteInput() {
   }
   display(); 
 }
+
+function checkForm(){
+	if($("input[name=locCatNumList]:checked").size()==0){
+		alert("지역을 하나 이상 선택해주세요!");
+		return false;
+	}
+	
+	if($("input[name=empTypeCatNumList]:checked").size()==0){
+		alert("고용형태를 하나 이상 선택해주세요!");
+		return false;
+	}
+	if($("input[name=recruitCatNumList]:checked").size()==0){
+		alert("모집직군을 하나 이상 선택해주세요!");
+		return false;
+	}
+	if($("input[name=devCatNumList]:checked").size()==0){
+		alert("개발분야를 하나 이상 선택해주세요!");
+		return false;
+	}
+}
 </script>
 
 
@@ -100,7 +143,7 @@ function deleteInput() {
 	<h5>제목</h5><input type="text" style="height:40px;width: 684px;" name="title" placeholder="제목을 입력하세요" required="required" style="height:40px; width:400px;"><br>
 	<h5>내용</h5><textarea rows="8" cols="94" name="content" placeholder="내용을 입력하세요" required="required"></textarea><br>	
 	<h5>경력</h5><input type="text" name="careerStatus" placeholder="ex)경력3년" required="required"><br><br>
-	<h5>검색 키워드</h5><input type="text" name="keywordNameList" placeholder="ex)자율복장" > &nbsp; 
+	<h5>검색 키워드</h5><input type="text" name="keywordNameList" placeholder="ex)자율복장" required="required"> &nbsp; 
 					<input type="button" value="추가" onclick="addInput()"> 
 					<input type="button" value="삭제" onclick="deleteInput()"><br>
 					<div id="parah"></div>	
@@ -115,7 +158,7 @@ function deleteInput() {
 		      	<th>지역</th>
 		        <td>
 					<c:forEach items="${requestScope.locCatList}" var="locCat" varStatus="i" >
-						<input type="checkbox"  name="locCatNumList" value="${locCat.locNum}" >${locCat.locName} &thinsp;&thinsp;
+						<input type="checkbox"  name="locCatNumList" value="${locCat.locNum}">${locCat.locName} &thinsp;&thinsp;
 					</c:forEach>
 		        </td>      
 		      </tr>
@@ -160,9 +203,9 @@ function deleteInput() {
 		      </tbody>
 	</table>	
 		
-		<div class="col-md-12">
+		<div class="col-md-12" style="text-align: center">
 		<button id="reset" type="reset"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">초기화</button>	
-		<input type="submit" value="등록하기"style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
+		<input type="submit" value="등록하기" onclick="return checkForm()" style="height:50px; width:150px;background: #81BEF7;font-size: 20px">
 		</div>
 </form>	
 </div>

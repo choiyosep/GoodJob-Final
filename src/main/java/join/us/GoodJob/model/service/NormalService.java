@@ -3,6 +3,7 @@ package join.us.GoodJob.model.service;
 import java.util.List;
 
 import join.us.GoodJob.model.vo.InterviewVO;
+import join.us.GoodJob.model.vo.JobPostingVO;
 import join.us.GoodJob.model.vo.NormalMemberVO;
 import join.us.GoodJob.model.vo.PortfolioVO;
 import join.us.GoodJob.model.vo.PostListVO;
@@ -73,4 +74,13 @@ public interface NormalService {
 
 	// 구직자가 면접신창한 구인공고 리스트에서 내용 확인
 	List<String> checkContent(String interviewNum);
+	//면접 신청 삭제
+	void deleteInterview(String interviewNum);
+	//면접 신청 수정
+	void updateInterview(InterviewVO interviewVO);
+	//면접 제목, 내용 불러오기
+	InterviewVO getInterviewbyInterviewNum(String interviewNum);
+	
+	//나의 질문리스트 불러오기
+	List<JobPostingVO> getMyQuestionListBynormalId(String id);
 }

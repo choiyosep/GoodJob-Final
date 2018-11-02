@@ -6,16 +6,20 @@ public class QuestionAnswerVO {
 	private String jobPostingNum;
 	private String question;
 	private String answer;
+	private JobPostingVO jobPostingVO;
 	public QuestionAnswerVO() {
 		super();
 		
 	}
-	public QuestionAnswerVO(String normalId, String qaNum, String jobPostingNum, String question, String answer) {
+	public QuestionAnswerVO(String normalId, String qaNum, String jobPostingNum, String question, String answer,
+			JobPostingVO jobPostingVO) {
 		super();
 		this.normalId = normalId;
+		this.qaNum = qaNum;
 		this.jobPostingNum = jobPostingNum;
 		this.question = question;
 		this.answer = answer;
+		this.jobPostingVO = jobPostingVO;
 	}
 	public String getNormalId() {
 		return normalId;
@@ -47,9 +51,16 @@ public class QuestionAnswerVO {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	public JobPostingVO getJobPostingVO() {
+		return jobPostingVO;
+	}
+	public void setJobPostingVO(JobPostingVO jobPostingVO) {
+		this.jobPostingVO = jobPostingVO;
+	}
 	@Override
 	public String toString() {
 		return "QuestionAnswerVO [normalId=" + normalId + ", qaNum=" + qaNum + ", jobPostingNum=" + jobPostingNum
-				+ ", question=" + question + ", answer=" + answer + "]";
+				+ ", question=" + question + ", answer=" + answer + ", jobPostingVO=" + jobPostingVO + "]";
 	}
+	
 }
