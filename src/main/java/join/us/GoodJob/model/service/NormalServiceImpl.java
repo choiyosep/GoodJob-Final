@@ -2,6 +2,7 @@ package join.us.GoodJob.model.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import join.us.GoodJob.model.mapper.NormalMapper;
 import join.us.GoodJob.model.vo.InterviewVO;
+import join.us.GoodJob.model.vo.JobPostingVO;
 import join.us.GoodJob.model.vo.NormalMemberVO;
 import join.us.GoodJob.model.vo.PortfolioVO;
 import join.us.GoodJob.model.vo.PostListVO;
@@ -246,5 +248,38 @@ public class NormalServiceImpl implements NormalService {
 	public List<String> checkContent(String interviewNum) {
 		System.out.println(interviewNum);
 		return normalMapper.checkContent(interviewNum);
-	}			
+	}
+
+	@Override
+	public void deleteInterview(String interviewNum) {
+		normalMapper.deleteInterview(interviewNum);
+	}
+
+	@Override
+	public void updateInterview(InterviewVO interviewVO) {
+		normalMapper.updateInterview(interviewVO);
+	}
+
+	@Override
+	public InterviewVO getInterviewbyInterviewNum(String interviewNum) {
+		return normalMapper.getInterviewbyInterviewNum(interviewNum);
+	}
+
+	@Override
+	public List<JobPostingVO> getMyQuestionListBynormalId(String id) {
+		List<JobPostingVO> jobPostingVOList = new  ArrayList<JobPostingVO>();
+		List<String> jobPostingNumList = normalMapper.getJopPostingNumListByNormalId(id);
+		
+		for(String jobPostingNum:jobPostingNumList) {
+			JobPostingVO jpvo= normalMapper.getJobPostingInfoByJobPostingNum(jobPostingNum);
+			QuestionAnswerVO qavo = new QuestionAnswerVO();
+			qavo.setNormalId(id);
+			qavo.setJobPostingNum(jobPostingNum);
+			
+			List<QuestionAnswerVO> questionAnswerVOList = normalMapper.getMyQuestionListByNormalIdAndJobPostingNum(qavo);
+			jpvo.setQuestionAnswerVOList(questionAnswerVOList);
+			jobPostingVOList.add(jpvo);
+		}		
+		return jobPostingVOList;
+	}
 }
