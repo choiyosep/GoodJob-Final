@@ -207,10 +207,10 @@ create sequence interview_num_seq start with 2001;
 alter table interview modify(content varchar(500));
 
 
-insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'hsj',1003 ,'면접신청합니다', '언제갈까요?');
-insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'qqqq',1001 ,'면접보러갈게요', '불러주세요~!~!~!');
-insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1002,'포트폴리오확인하시고 연락주세요', '내일가겠습니다~');
-insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'yosep', 1001,'꼭 가고싶습니다~!', '전화번호로 연락주세요~');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'hsj',1003 ,'황성진 입니다! 면접 신청합니다.', '내용 무');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'qqqq',1001 ,'이동규 입니다! 면접 신청합니다.', '내용 무');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1002,'서미리 입니다! 면접 신청합니다.', '내용 무');
+insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'yosep', 1001,'최요셉 입니다! 면접 신청합니다.', '내용 무');
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'miri', 1001,'항시 대기중', '불러만 주세요');
 
 select * from interview;
@@ -228,6 +228,8 @@ create table question_answer(
 create sequence qa_num_seq start with 701;
 
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'qqqq', 1001, '수습기간이 따로 있나요?', '3개월의 수습기간을 거치게 됩니다.');
+insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'hsj', 1001, '복장규칙이 따로 있나요?', '단정한 일상복 정도면 괜찮습니다.');
+insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'hsj', 1001, '비전공자도 지원 가능 한가요?', '네 가능합니다.');
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'qqqq', 1001, '정확한 채용 인원이 몇 명인가요?', '5명입니다.');
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'miri', 1003, '2중식은 어떻게 지원되나요?', null);
 insert into QUESTION_ANSWER(qa_num, normal_id, job_posting_num, question, answer) values(qa_num_seq.nextval, 'miri', 1002, '가장 자랑할만한 복리후생은 어떻게 되나요?', '탄력 근무제로 출퇴근 시간의 조정이 가능합니다.');
