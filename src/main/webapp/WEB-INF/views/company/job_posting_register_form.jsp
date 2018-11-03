@@ -49,10 +49,6 @@
 		
 	});//ready
 	function checkForm(){
-		if($.trim($("#keywordNameList").val()=='')){
-			alert("키워드를 입력해주세요.");
-			return false;
-		}
 		if($("input[name=locCatNumList]:checked").size()==0){
 			alert("지역을 하나 이상 선택해주세요!");
 			return false;
@@ -101,7 +97,7 @@ function saveValue(intId,strValue) {
 function createInput(id,value) {
   return "<input type='text' name='keywordNameList' id='test "+ id +"' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
  
-value +"'><br>";
+value +"' required='required'><br>";
 }
  
 function deleteInput() {
