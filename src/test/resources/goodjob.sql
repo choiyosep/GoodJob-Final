@@ -42,7 +42,7 @@ create table member(
    password varchar2(100) not null,
    email varchar2(100) not null,
    name varchar2(100) not null,
-   address varchar2(100) not null,
+   address varchar2(500) not null,
    tel varchar2(100) not null,
    member_type number --0은 관리자 / 1 은 개인회원 / 2 는 기업회원 승인 X / 3은 기업회원 승인 OK
 );
@@ -55,6 +55,8 @@ insert into MEMBER(id, password, email, name, address, tel, member_type) values(
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('yosep', '123', 'yosep@gmail.com', '최요셉', '경기도 수원시', '010-3333-3333', 1);
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('hsj', '123', 'hsj@gmail.com', '황성진', '경기도 안양시', '010-4444-4444', 1);
 insert into MEMBER(id, password, email, name, address, tel, member_type) values('MCW', '123', 'MCW@gmail.com', '문철우', '서울특별시 중랑구', '010-5555-5555', 1);
+
+alter table member modify(address varchar(500));
 
 select * from member;
 update member set member_type='2' where id='Tmaxuser3';
@@ -125,7 +127,7 @@ insert into PORTFOLIO_FILE(file_num, normal_id, file_path) values(portfolio_file
 -- 기업회원
 create table company_member(
    company_id varchar2(100) primary key,
-   introduction varchar2(100) not null,
+   introduction varchar2(500) not null,
    company_type varchar2(100) not null,
    industry varchar2(100) not null,
    sales number default 0,
@@ -134,6 +136,7 @@ create table company_member(
    picture_path varchar2(100) not null,
    constraint fk_member_company_member foreign key(company_id) references member(id) on delete cascade
 );
+alter table company_member modify(introduction varchar(500));
 
 insert into COMPANY_MEMBER(company_id, introduction, company_type, industry, sales, date_of_establishment, num_of_employees,picture_path) values('NHNuser', '더 넓은 세상, 더 많은 사람들이 더 큰 재미를 우리와 함께 나눕니다.', '대기업', '솔루션', 1813, '2015-11-18', 664,'maeil.jpg');
 insert into COMPANY_MEMBER(company_id, introduction, company_type, industry, num_of_employees, picture_path) values('Tmaxuser', '대한민국 S/W의 위상을 국내 및 전세계 시장에 알려나가고 있습니다.', '중견기업', 'SI/SM', 358,'로고로고.jpg');
@@ -195,12 +198,13 @@ create table interview(
 	company_id varchar2(100),
 	job_posting_num number,
 	title varchar2(100) not null,
-	content varchar2(100) not null,
+	content varchar2(500) not null,
 	constraint fk_member_interview foreign key(normal_id) references normal_member(normal_id) on delete set null,
 	constraint fk_comapny foreign key(company_id) references company_member(company_id) on delete set null,
 	constraint fk_job_posting_interview_num foreign key(job_posting_num) references job_posting(job_posting_num) on delete cascade
 );
 create sequence interview_num_seq start with 2001;
+alter table interview modify(content varchar(500));
 
 
 insert into interview(interview_num, normal_id ,job_posting_num, title, content) values(interview_num_seq.nextval, 'hsj',1003 ,'면접신청합니다', '언제갈까요?');

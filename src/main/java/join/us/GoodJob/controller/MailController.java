@@ -1,4 +1,4 @@
-package join.us.GoodJob.controller;
+/*package join.us.GoodJob.controller;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -50,3 +50,4 @@ public class MailController {
     return "redirect:/mail/mailForm";
   }
 } 
+*/

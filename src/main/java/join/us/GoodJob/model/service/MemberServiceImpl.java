@@ -176,7 +176,7 @@ public class MemberServiceImpl implements MemberService {
 				pagingBean = new PagingBean(totalCount);
 			} 	      
 			
-			pagingBean.setPostCountPerPage(1);
+			pagingBean.setPostCountPerPage(4);
 			Map<String, Object> map = new HashMap<String,Object>();
 			map.put("pagingBean", pagingBean);
 			map.put("companySearchParamVO", companySearchParamVO);

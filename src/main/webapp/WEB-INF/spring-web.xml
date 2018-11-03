@@ -73,8 +73,8 @@ class="org.springframework.web.servlet.view.BeanNameViewResolver">
 	<property name="order" value="1" />
 </bean>
 
-<!-- 메일보내기 -->
-<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+ <!-- 메일보내기 -->
+<!--<bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
    <property name="host" value="smtp.gmail.com" />
    <property name="port" value="587" />
    <property name="username" value="mettuk00@gmail.com" />
@@ -88,7 +88,7 @@ class="org.springframework.web.servlet.view.BeanNameViewResolver">
       </props>
    </property>
 
-</bean>
+</bean> -->
  
 <mvc:interceptors>
 	<mvc:interceptor>
