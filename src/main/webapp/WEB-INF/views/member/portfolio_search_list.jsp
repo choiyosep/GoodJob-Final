@@ -152,9 +152,11 @@
 		<span id="enter"></span>
 		<div class="cta-text">
 			<button type="reset" class="btn btn-default">초기화</button>
-
+	
 			<button type="submit" id="SearchBtn" class="btn btn-default">상세
 				검색</button>
+			<button type="reset" onclick="location.href='home.do'"
+				class="btn btn-default">홈으로</button>
 		</div>
 
 	</form>
@@ -173,41 +175,36 @@
 
 <c:choose>
 	<c:when test="${empty normalId}">
-		<span align="center">
+		<span align="center">		
 			<h3>검색 결과가 없습니다.</h3>
 		</span>
 	</c:when>
-
+	
 	<c:otherwise>
 		<c:forEach items="${normalId}" var="normalId" varStatus="status">
 			<div class="media">
-				<a class="pull-left"
-					href="normalDetailPortfolio.do?normalId=${normalId}"> <img
-					class="media-object"
+				<a class="pull-left" href="normalDetailPortfolio.do?normalId=${normalId}"> <img class="media-object"
 					src="${pageContext.request.contextPath}/
 											resources/upload/memberPicture/${povo[status.index].picturePath}"
 					width="130px" height="130px">
 				</a>
 				<div class="media-body">
-					<h4 class="media-heading">
-						<a href="normalDetailPortfolio.do?normalId=${normalId}">${normalId}</a>
-					</h4>
+					<h4 class="media-heading"><a href="normalDetailPortfolio.do?normalId=${normalId}">${normalId}</a></h4>
 					<h5>${povo[status.index].title}</h5>
 					<h5>${povo[status.index].content}</h5>
 					<!-- Nested media object -->
 					<!-- <div class="media"> -->
-					<h5>
-						개발분야 :
-						<c:forEach items="${devCatList[status.index]}" var="devCat">
+					<h5>개발분야 : 	
+					<c:forEach items="${devCatList[status.index]}" var="devCat">
 						${devCat.devCatName}
 					</c:forEach>
 					</h5>
-					<a href="normalDetailPortfolio.do?normalId=${normalId }"> 이력서
-						보기 </a>
+						<a href="normalDetailPortfolio.do?normalId=${normalId }">
+							이력서 보기 </a>
 				</div>
 			</div>
 			<hr>
-		</c:forEach>
+		</c:forEach>		
 	</c:otherwise>
 </c:choose>
 

@@ -97,7 +97,7 @@ function saveValue(intId,strValue) {
 function createInput(id,value) {
   return "<input type='text' name='keywordNameList' id='test "+ id +"' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
  
-value +"'><br>";
+value +"' required='required'><br>";
 }
  
 function deleteInput() {
@@ -108,25 +108,6 @@ function deleteInput() {
   display(); 
 }
 
-function checkForm(){
-	if($("input[name=locCatNumList]:checked").size()==0){
-		alert("지역을 하나 이상 선택해주세요!");
-		return false;
-	}
-	
-	if($("input[name=empTypeCatNumList]:checked").size()==0){
-		alert("고용형태를 하나 이상 선택해주세요!");
-		return false;
-	}
-	if($("input[name=recruitCatNumList]:checked").size()==0){
-		alert("모집직군을 하나 이상 선택해주세요!");
-		return false;
-	}
-	if($("input[name=devCatNumList]:checked").size()==0){
-		alert("개발분야를 하나 이상 선택해주세요!");
-		return false;
-	}
-}
 </script>
 
 
@@ -143,7 +124,7 @@ function checkForm(){
 	<h5>제목</h5><input type="text" style="height:40px;width: 684px;" name="title" placeholder="제목을 입력하세요" required="required" style="height:40px; width:400px;"><br>
 	<h5>내용</h5><textarea rows="8" cols="94" name="content" placeholder="내용을 입력하세요" required="required"></textarea><br>	
 	<h5>경력</h5><input type="text" name="careerStatus" placeholder="ex)경력3년" required="required"><br><br>
-	<h5>검색 키워드</h5><input type="text" name="keywordNameList" placeholder="ex)자율복장" required="required"> &nbsp; 
+	<h5>검색 키워드</h5><input type="text" id="keywordNameList" name="keywordNameList" placeholder="ex)자율복장" required="required"> &nbsp; 
 					<input type="button" value="추가" onclick="addInput()"> 
 					<input type="button" value="삭제" onclick="deleteInput()"><br>
 					<div id="parah"></div>	

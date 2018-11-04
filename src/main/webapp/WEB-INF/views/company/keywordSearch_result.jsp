@@ -16,31 +16,25 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${jobPostingList}" var="jobList">
-			<div class="col-lg-3">
-				<div class="box">
-					<div class="box-gray aligncenter">
-						<h4>${jobList.jobPostingVO.title}</h4>
-						<div class="thumbnail">
-							<a
-								href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingVO.jobPostingNum}"><img
-								src="${pageContext.request.contextPath}/resources/upload/companyLogo/${jobList.picturePath }"
-								alt="사진을 불러올 수 없습니다."></a>
-							
-							<div class="caption"
-								style="height: 200px; width: auto; border-bottom-width: 1px;">
-								<div style="height: 60px; width: auto">
-									<p></p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="box-bottom">
-						<a
-							href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingVO.jobPostingNum}">채용정보
-							확인하기</a>
-					</div>
-				</div>
-			</div>
+			 <div class="col-sm-3 col-md-3 ">
+	   <div class="thumbnail">
+	      <a  href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingVO.jobPostingNum}"><img src="${pageContext.request.contextPath}/
+										resources/upload/companyLogo/${jobList.picturePath }" alt="사진을 불러올 수 없습니다."></a>
+	      <div class="caption" style="height: 200px; width: auto;
+	    border-bottom-width: 1px;" >
+	    	<div style="height: 60px; width: auto">
+	        <h4><a  href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingVO.jobPostingNum}">${jobList.jobPostingVO.title}</a></h4>
+	        </div>
+	        <div style="height: 70px; width: auto">
+	        <p>${jobList.jobPostingVO.content}</p>
+	        </div>
+	       <div style="height: 30px; width: auto">
+	        <p align="center"><a href="job_posting_detail.do?jobPostingNum=${jobList.jobPostingVO.jobPostingNum}" 
+	        class="btn btn-primary">채용정보 확인하기</a></p>
+	        </div>
+	      </div>
+	    </div>
+  </div>
 		</c:forEach>
 		<div class="col-lg-12">
 			<div align="center">
