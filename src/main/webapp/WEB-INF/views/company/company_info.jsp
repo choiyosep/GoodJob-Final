@@ -51,7 +51,7 @@ $(document).ready(function(){
 				<h3 class="panel-title">기업명</h3>
 			</div>
 			<div class="panel-body">
-					<input type="text" class="recruit" name="companyName" id="" >			
+					<input type="text" class="recruit" name="companyName" id="" style="height:40px; width:500px;">			
 			</div>
 		</div>
 		

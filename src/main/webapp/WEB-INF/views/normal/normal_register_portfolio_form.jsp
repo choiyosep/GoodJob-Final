@@ -253,6 +253,5 @@
 		<button type="reset">초기화</button>	
 		<button type="submit"  onclick="return checkForm()">등록하기</button>	
 	</form >
-	
-	<button type="reset" onclick="location.href='home.do'">홈으로</button>	
+
 </div>

@@ -248,9 +248,9 @@ button:hover {
 	이름<br><input type="text" name="name" required="required" style="height:40px; width:500px;"><br><br>
 		주소 <br><input type="text" id="sample4_postcode" placeholder="우편번호" readonly="readonly" required="required"style="height:40px; width:400px;">
 				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="height:40px; width:100px;"><br>
-				<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="address" readonly="readonly" required="required"style="height:40px; width:500px;"><br>
-				<input type="text" id="sample4_jibunAddress" placeholder="지번주소"readonly="readonly" required="required"style="height:40px; width:500px;">
-					<input type="text"placeholder="상세주소" name="address" required="required"style="height:40px; width:500px;">
+				<input type="text" id="sample4_roadAddress" placeholder="주소" name="address" readonly="readonly" required="required"style="height:40px; width:500px;"><br>
+			<!-- 	<input type="text" id="sample4_jibunAddress" placeholder="지번주소"readonly="readonly" required="required"style="height:40px; width:500px;">
+					<input type="text"placeholder="상세주소" name="address" required="required"style="height:40px; width:500px;"> -->
 				<span id="guide" style="color:#999"></span><br><br>
 	연락처  <br><input type="text" name="tel" required="required" style="height:40px; width:500px;"><br><br>
 	경력사항 <br> <input type="text" name="careerStatus" required="required" style="height:40px; width:500px;"><br><br>
